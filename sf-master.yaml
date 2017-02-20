@@ -19,13 +19,15 @@ packages:
     source: external
   - name: software-factory/zookeeper-lite
     source: external
+  - name: software-factory/gitweb-theme-kogakure
+    source: external
   - name: software-factory/wait4service
     source: internal
     spec: included
   - name: software-factory/buck
     source: external
 
-chrootpackages: "@buildsys-build rpm-build python2-devel systemd"
+chrootpackages: "@buildsys-build rpm-build python2-devel"
 baserepos:
   - name: baseos
     baseurl: http://mirror.centos.org/centos/7/os/x86_64/
