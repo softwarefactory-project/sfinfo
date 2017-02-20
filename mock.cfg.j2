@@ -1,0 +1,33 @@
+config_opts['root'] = 'sf-x86_64'
+config_opts['target_arch'] = 'x86_64'
+config_opts['legal_host_arches'] = ('x86_64',)
+config_opts['chroot_setup_cmd'] = 'install {{ chrootpackages }}'
+config_opts['dist'] = 'el7'  # only useful for --resultdir variable subst
+config_opts['releasever'] = '7'
+config_opts['use_host_resolv'] = False
+
+config_opts['yum.conf'] = """
+[main]
+keepcache=1
+debuglevel=2
+reposdir=/dev/null
+logfile=/var/log/yum.log
+retries=20
+obsoletes=1
+gpgcheck=0
+assumeyes=1
+syslog_ident=mock
+syslog_device=
+mdpolicy=group:primary
+
+# repos
+{% for repo in baserepos %}
+[{{ repo.name }}]
+name={{ repo.name }}
+baseurl={{ repo.baseurl }}
+gpgkey={{ repo.gpgkey }}
+gpgcheck={{ repo.gpgcheck }}
+enabled=1
+
+{% endfor %}
+"""

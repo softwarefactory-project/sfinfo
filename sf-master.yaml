@@ -1,0 +1,41 @@
+---
+name: software-factory
+
+koji-target: sf-master-centos7
+koji-url: http://koji.softwarefactory-project.io/kojifiles/repos/sf-master-centos7-build/latest/x86_64/
+branch: master
+packages:
+  - name: software-factory/buck
+    source: external
+  - name: software-factory/gerrit
+    source: external
+  - name: software-factory/repoxplorer
+    source: external
+  - name: software-factory/lodgeit
+    source: external
+  - name: software-factory/mod_auth_pubtkt
+    source: external
+  - name: software-factory/umurmur
+    source: external
+  - name: software-factory/zookeeper-lite
+    source: external
+  - name: software-factory/wait4service
+    source: internal
+    spec: included
+  - name: software-factory/buck
+    source: external
+
+chrootpackages: "@buildsys-build rpm-build python2-devel systemd"
+baserepos:
+  - name: baseos
+    baseurl: http://mirror.centos.org/centos/7/os/x86_64/
+    gpgkey: file:///usr/share/distribution-gpg-keys/centos/RPM-GPG-KEY-CentOS-7
+    gpgcheck: 1
+  - name: update
+    baseurl: http://mirror.centos.org/centos/7/updates/x86_64/
+    gpgkey: file:///usr/share/distribution-gpg-keys/centos/RPM-GPG-KEY-CentOS-7
+    gpgcheck: 1
+  - name: rdo
+    baseurl: http://mirror.centos.org/centos/7/cloud/x86_64/openstack-newton/
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Cloud
+    gpgcheck: 1
