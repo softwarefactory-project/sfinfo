@@ -5,6 +5,8 @@ koji-target: sf-master-centos7
 koji-url: http://koji.softwarefactory-project.io/kojifiles/repos/sf-master-centos7-build/latest/x86_64/
 branch: master
 packages:
+  - name: software-factory/sf-web-assets
+    source: external
   - name: software-factory/buck
     source: external
   - name: software-factory/gerrit
@@ -27,15 +29,22 @@ packages:
 
 chrootpackages: "@buildsys-build rpm-build python2-devel systemd"
 baserepos:
-  - name: baseos
+  - name: centos7-os
     baseurl: http://mirror.centos.org/centos/7/os/x86_64/
     gpgkey: file:///usr/share/distribution-gpg-keys/centos/RPM-GPG-KEY-CentOS-7
     gpgcheck: 1
-  - name: update
+
+  - name: centos7-updates
     baseurl: http://mirror.centos.org/centos/7/updates/x86_64/
     gpgkey: file:///usr/share/distribution-gpg-keys/centos/RPM-GPG-KEY-CentOS-7
     gpgcheck: 1
-  - name: rdo
+
+  - name: centos7-extras
+    baseurl: http://mirror.centos.org/centos/7/extras/x86_64/
+    gpgkey: file:///usr/share/distribution-gpg-keys/centos/RPM-GPG-KEY-CentOS-7
+    gpgcheck: 1
+
+  - name: openstack-newton
     baseurl: http://mirror.centos.org/centos/7/cloud/x86_64/openstack-newton/
     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Cloud
     gpgcheck: 1
