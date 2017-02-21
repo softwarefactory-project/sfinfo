@@ -331,6 +331,10 @@ class ZuulRpmBuild:
         else:
             os.mkdir(self.args.local_output, 0700)
 
+        # Clean logs
+        for logfile in glob.glob("%s/*.log" % self.args.local_output):
+            os.unlink(logfile)
+
         # For each change, build package and create intermediary repo
         for change in self.args.changes.split('^'):
             project, branch, ref = change.split(':')
