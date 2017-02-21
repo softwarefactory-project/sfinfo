@@ -31,7 +31,7 @@ packages:
   - name: software-factory/buck
     source: external
 
-chrootpackages: "@buildsys-build rpm-build python2-devel"
+chrootpackages: "@buildsys-build shadow-utils rpm-build python2-devel"
 baserepos:
   - name: centos7-os
     baseurl: http://mirror.centos.org/centos/7/os/x86_64/
