@@ -237,27 +237,39 @@ class ZuulRpmBuild:
             os.mkdir(os.path.dirname(mockconf))
         file(mockconf, 'w').write(rendered)
 
-    def get_package_info(self, project):
+    def get_package_info(self, project, fallback=None):
         package_info = [pi for pi in self.distro_info['packages']
-                        if pi['name'] == project][0]
-        return package_info
+                        if pi['name'] == project]
+        if not package_info and fallback:
+            package_info = [pi for pi in self.distro_info['packages']
+                            if pi.get('distgit', '') == fallback]
+        if not package_info:
+            raise IndexError
+        return package_info[0]
 
     def build(self, project):
+        o_project = None
         if project.endswith("-distgit"):
+            o_project = project
             project = project.replace('-distgit', '')
 
         try:
-            package_info = self.get_package_info(project)
+            package_info = self.get_package_info(project,
+                                                 fallback=o_project)
         except IndexError:
             self.log.warning("%s: project not found in info yaml" %
                              project)
             return False
 
+        project = package_info["name"]
+
         if package_info.get("spec") == "included":
             # Spec file is part of project source
             distgit = project
         else:
-            distgit = "%s-distgit" % project
+            distgit = package_info.get("distgit")
+            if not distgit:
+                distgit = "%s-distgit" % project
 
         # Fetch the distgit repository
         if not os.path.isdir(distgit):
