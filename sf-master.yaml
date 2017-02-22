@@ -31,6 +31,8 @@ packages:
     source: external
   - name: software-factory/python-basicauth
     source: external
+  - name: software-factory/python-redmine
+    source: external
   - name: software-factory/wait4service
     source: internal
     spec: included
