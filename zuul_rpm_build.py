@@ -202,6 +202,8 @@ class ZuulRpmBuild:
             source_version = self.execute(
                 shlex.split(package_info['source-version']),
                 capture=True, cwd=project).strip()
+            # Only keep the last line of the output
+            source_version = source_version.splitlines()[-1]
             self.log.info("%s: Detected source version: %s" % (
                 project, source_version))
         else:
