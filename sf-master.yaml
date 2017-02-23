@@ -52,6 +52,14 @@ packages:
     sdist-build: python setup.py sdist
     sdist-output-filter: dist/pysflib-*.tar.gz
     source-version: python setup.py --version
+  # python-ioc depends
+  - name: software-factory/python-cryptography
+    source: external
+  # python-cryptography depends
+  - name: software-factory/python-cryptography-vectors
+    source: external
+  - name: software-factory/python-hypothesis
+    source: external
 
 chrootpackages: "@buildsys-build shadow-utils rpm-build python2-devel"
 baserepos:
