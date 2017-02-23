@@ -55,6 +55,8 @@ packages:
   # python-ioc depends
   - name: software-factory/python-cryptography
     source: external
+  - name: software-factory/python-beaker
+    source: external
   # python-cryptography depends
   - name: software-factory/python-cryptography-vectors
     source: external
