@@ -40,6 +40,12 @@ packages:
     spec: included
   - name: software-factory/buck
     source: external
+  - name: python-sfmanager
+    source: internal
+    spec: included
+    sdist-build: python setup.py sdist
+    sdist-output-filter: dist/python-sfmanager-*.tar.gz
+    source-version: python setup.py --version
   - name: pysflib
     source: internal
     distgit: software-factory/pysflib-distgit
