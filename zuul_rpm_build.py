@@ -132,10 +132,13 @@ class ZuulRpmBuild:
     def build_srpm(self, distgit, source_version=None, release_version=None):
         # Fetch external source using spectool and create src.rpm
         specs = filter(lambda x: x.endswith(".spec"), os.listdir(distgit))
-        if len(specs) != 1:
+        if len(specs) > 1:
             self.log.error("%s: Incorrect number of .spec files: %s" %
                            (distgit, specs))
             exit(1)
+        if not specs:
+            self.log.warning("%s: Unable to find a spec file" % distgit)
+            return False
         specfile = "%s/%s" % (distgit, specs[0])
 
         if source_version and release_version:
@@ -150,6 +153,7 @@ class ZuulRpmBuild:
                       "--resultdir", self.args.local_output,
                       "--spec", specfile, "--sources", distgit] +
                      self.mock_argument)
+        return True
 
     def check_postinstall_failed(self, project):
         pattern = "^WARNING .* Failed install built packages$"
@@ -299,7 +303,8 @@ class ZuulRpmBuild:
             release_version = None
 
         try:
-            self.build_srpm(distgit, source_version, release_version)
+            if not self.build_srpm(distgit, source_version, release_version):
+                return False
             self.build_rpm()
             self.check_postinstall_failed(project)
         except RuntimeError:
