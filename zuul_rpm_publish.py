@@ -76,11 +76,15 @@ class ZuulRpmPublish:
         return srpms
 
     def get_package_name(self, project):
+        oproject = None
         if project.endswith("-distgit"):
+            oproject = project
             project = project[:-8]
         for package in self.distro_info["packages"]:
             if project == package["name"]:
                 # TODO: make this dynamic based on extra distro info metadatas
+                return os.path.basename(project)
+            if oproject == package.get("distgit", ""):
                 return os.path.basename(project)
         raise RuntimeError("Couln't find project %s in distro info" % project)
 
