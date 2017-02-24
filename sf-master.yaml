@@ -35,6 +35,10 @@ packages:
     source: external
   - name: software-factory/python-redmine
     source: external
+  - name: software-factory/germqtt
+    source: external
+  - name: software-factory/python-gerritlib
+    source: external
   - name: software-factory/wait4service
     source: internal
     spec: included
