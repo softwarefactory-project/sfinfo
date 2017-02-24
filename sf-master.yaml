@@ -61,6 +61,8 @@ packages:
     source: external
   - name: software-factory/python-beaker
     source: external
+  - name: software-factory/python-cffi
+    source: external
   # python-cryptography depends
   - name: software-factory/python-cryptography-vectors
     source: external
