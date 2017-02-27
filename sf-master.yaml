@@ -73,6 +73,8 @@ packages:
     source: external
   - name: software-factory/python-jwkest
     source: external
+  - name: software-factory/python-alabaster
+    source: external
   # python-cryptography depends
   - name: software-factory/python-cryptography-vectors
     source: external
