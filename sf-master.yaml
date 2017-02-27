@@ -64,6 +64,8 @@ packages:
     sdist-build: python setup.py sdist
     sdist-output-filter: dist/pysflib-*.tar.gz
     source-version: python setup.py --version
+  - name: software-factory/python-oic
+    source: external
   # python-ioc depends
   - name: software-factory/python-cryptography
     source: external
