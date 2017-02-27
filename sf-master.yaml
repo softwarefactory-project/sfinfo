@@ -39,6 +39,8 @@ packages:
     source: external
   - name: software-factory/python-gerritlib
     source: external
+  - name: software-factory/python-deepdiff
+    source: external
   - name: software-factory/wait4service
     source: internal
     spec: included
@@ -49,6 +51,12 @@ packages:
     spec: included
     sdist-build: python setup.py sdist
     sdist-output-filter: dist/python-sfmanager-*.tar.gz
+    source-version: python setup.py --version
+  - name: managesf
+    source: internal
+    spec: included
+    sdist-build: python setup.py sdist
+    sdist-output-filter: dist/managesf-*.tar.gz
     source-version: python setup.py --version
   - name: pysflib
     source: internal
