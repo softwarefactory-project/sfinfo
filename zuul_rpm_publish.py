@@ -122,7 +122,7 @@ class ZuulRpmPublish:
         built_url = "%s/gate/%s/" % (self.args.testing_repo_base, change_ref)
         srpms = self.get_srpms(built_url)
 
-        srpms = filter(lambda x: x.startswith(package_name), srpms)
+        srpms = filter(lambda x: re.match("^%s-\d.*" % package_name, x), srpms)
         if len(srpms) != 1:
             raise RuntimeError("Multiple package available... %s" % srpms)
         srpm = srpms[0]
