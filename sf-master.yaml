@@ -35,6 +35,8 @@ packages:
     source: external
   - name: software-factory/python-htpasswd
     source: external
+  - name: software-factory/python-orderedmultidict
+    source: external
   - name: software-factory/python-redmine
     source: external
   - name: software-factory/germqtt
