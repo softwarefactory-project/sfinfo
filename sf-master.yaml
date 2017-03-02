@@ -71,20 +71,14 @@ packages:
   - name: software-factory/python-oic
     source: external
   # python-ioc depends
-  - name: software-factory/python-cryptography
-    source: external
-  - name: software-factory/python-beaker
-    source: external
-  - name: software-factory/python-cffi
-    source: external
   - name: software-factory/python-jwkest
     source: external
   - name: software-factory/python-alabaster
     source: external
-  # python-cryptography depends
-  - name: software-factory/python-cryptography-vectors
+  # python-ioc build depends
+  - name: software-factory/python-testfixtures
     source: external
-  - name: software-factory/python-hypothesis
+  - name: software-factory/python-cryptodomex
     source: external
 
 chrootpackages: "@buildsys-build shadow-utils rpm-build python2-devel"
