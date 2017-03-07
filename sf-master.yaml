@@ -70,12 +70,12 @@ packages:
     sdist-build: python setup.py sdist
     sdist-output-filter: dist/pysflib-*.tar.gz
     source-version: python setup.py --version
-  #- name: cauth
-  #  source: internal
-  #  distgit: software-factory/cauth-distgit
-  #  sdist-build: python setup.py sdist
-  #  sdist-output-filter: dist/pysflib-*.tar.gz
-  #  source-version: python setup.py --version
+  - name: cauth
+    source: internal
+    distgit: software-factory/cauth-distgit
+    sdist-build: python setup.py sdist
+    sdist-output-filter: dist/cauth-*.tar.gz
+    source-version: python setup.py --version
   # cauth depends
   - name: software-factory/python-oic
     source: external
