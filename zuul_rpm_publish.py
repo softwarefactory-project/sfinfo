@@ -15,7 +15,6 @@
 # under the License.
 
 import argparse
-import json
 import logging
 import os
 import re
@@ -39,10 +38,8 @@ class ZuulRpmPublish:
 
     def parse_arguments(self, args):
         p = argparse.ArgumentParser(description='Zuul RPM publish')
-        p.add_argument("--commit", default=os.environ.get("ZUUL_COMMIT"))
-        p.add_argument("--gerrit-url", default=os.environ.get("GIT_SERVER"))
         p.add_argument("--project", default=os.environ.get("ZUUL_PROJECT"))
-        p.add_argument("--testing-repo-base")
+        p.add_argument("--testing-repo")
         p.add_argument("--distro-info", default="distro.yaml",
                        help="The yaml distro info file")
         p.add_argument('--verbose', action='store_true', help='verbose output')
@@ -52,18 +49,6 @@ class ZuulRpmPublish:
         if not os.path.isfile(path):
             raise RuntimeError()
         self.distro_info = yaml.safe_load(file(path))
-
-    def get_change_ref(self, commit):
-        r = requests.get("%s/changes/?q=commit:%s&o=CURRENT_REVISION" % (
-            self.args.gerrit_url, commit))
-        info = json.loads(r.text[4:])
-        if len(info) != 1:
-            raise RuntimeError("Multiple change matches %s" % commit)
-        info = info[0]
-        return "%s/%s" % (
-            info["_number"],
-            info["revisions"].values()[0]["_number"]
-        )
 
     def get_srpms(self, url):
         match = re.findall(r'<a href="([^"]*)">', requests.get(url).text)
@@ -82,7 +67,6 @@ class ZuulRpmPublish:
             project = project[:-8]
         for package in self.distro_info["packages"]:
             if project == package["name"]:
-                # TODO: make this dynamic based on extra distro info metadatas
                 return os.path.basename(project)
             if oproject == package.get("distgit", ""):
                 return os.path.basename(project)
@@ -112,22 +96,15 @@ class ZuulRpmPublish:
 
         package_name = self.get_package_name(self.args.project)
 
-        try:
-            change_ref = self.get_change_ref(self.args.commit)
-        except:
-            self.log.exception("Couln't find change number for commit %s" %
-                               self.args.commit)
-            raise
-
-        built_url = "%s/gate/%s/" % (self.args.testing_repo_base, change_ref)
-        srpms = self.get_srpms(built_url)
+        srpms = self.get_srpms(self.args.testing_repo)
 
         srpms = filter(lambda x: re.match("^%s-\d.*" % package_name, x), srpms)
         if len(srpms) != 1:
             raise RuntimeError("Multiple package available... %s" % srpms)
         srpm = srpms[0]
-        self.log.info("Going to submit %s%s" % (built_url, srpm))
-        self.download("%s%s" % (built_url, srpm))
+        srpm_url = "%s/%s" % (self.args.testing_repo, srpm)
+        self.log.info("Going to submit %s" % srpm_url)
+        self.download(srpm_url)
 
         self.execute(["koji", "--authtype=ssl", "add-pkg", "--owner=sfci",
                       self.distro_info["koji-target"], package_name])

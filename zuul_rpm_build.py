@@ -129,6 +129,29 @@ class ZuulRpmBuild:
                 dir_name)
             self.execute(shlex.split(sdist_cmd))
 
+    def check_spec(self, specfile):
+        # Check specfile name == project name
+        project_name = os.path.basename(os.path.dirname(specfile)) \
+            .replace('-distgit', '')
+        spec_name = os.path.basename(specfile).replace('.spec', '')
+        if project_name != spec_name:
+            self.log.error("File doesn't match project's name: %s != %s" % (
+                project_name, spec_name))
+
+        # Check name == project_name
+        spec = self.execute(["rpmspec", "-P", specfile], capture=True)
+        for line in spec.split('\n'):
+            if line.startswith("Name:"):
+                name = line.split()[1]
+                if project_name == name:
+                    return True
+                self.log.error("Spec Name doesn't match project's name: "
+                               "%s != %s" % (project_name, name))
+                return False
+
+        self.log.error("Couldn't find Name in spec")
+        return False
+
     def build_srpm(self, distgit, source_version=None, release_version=None):
         # Fetch external source using spectool and create src.rpm
         specs = filter(lambda x: x.endswith(".spec"), os.listdir(distgit))
@@ -140,6 +163,10 @@ class ZuulRpmBuild:
             self.log.warning("%s: Unable to find a spec file" % distgit)
             return False
         specfile = "%s/%s" % (distgit, specs[0])
+
+        if not self.check_spec(specfile):
+            self.log.error("%s: Something wrong with specfile" % specfile)
+            exit(1)
 
         if source_version and release_version:
             self.update_spec_file(specfile, source_version, release_version)
