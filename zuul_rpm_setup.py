@@ -15,37 +15,16 @@
 # under the License.
 
 import argparse
-import logging
-import os
 import urllib2
-import yaml
+
+import zuul_koji_lib
 
 
-class ZuulRpmSetup:
-    log = logging.getLogger('zuulrpm.setup')
-
-    def __init__(self):
-        self.distro_info = None
-
-    def setup_logging(self, verbose=False):
-        if verbose:
-            logging.basicConfig(level=logging.DEBUG)
-        else:
-            logging.basicConfig(level=logging.INFO)
-
-    def parse_arguments(self):
+class ZuulRpmSetup(zuul_koji_lib.App):
+    def usage(self):
         p = argparse.ArgumentParser(description='Zuul RPM setup')
         p.add_argument("--testing-repo", help="The previously built repo")
-        p.add_argument("--distro-info", default="distro.yaml",
-                       help="The yaml distro info file")
-        p.add_argument('--verbose', action='store_true', help='verbose output')
-
-        self.args = p.parse_args()
-
-    def load_distro_info(self, path):
-        if not os.path.isfile(path):
-            raise RuntimeError()
-        self.distro_info = yaml.safe_load(file(path))
+        return p
 
     def write_repo(self, of, conf):
         self.log.info("Adding repo %s" % conf['name'])
@@ -66,13 +45,7 @@ gpgcheck=%(gpgcheck)s
         except:
             return False
 
-    def main(self):
-        self.parse_arguments()
-        # Force debug during test phase
-        self.args.verbose = True
-        self.setup_logging(verbose=self.args.verbose)
-        self.load_distro_info(self.args.distro_info)
-
+    def main(self, args):
         repo_file_path = "/etc/yum.repos.d/zuul-built.repo"
         self.log.info("Writing repo to %s" % repo_file_path)
         with open(repo_file_path, "w") as of:
@@ -83,9 +56,9 @@ gpgcheck=%(gpgcheck)s
             self.write_repo(of, conf)
             for extrepo in self.distro_info['baserepos']:
                 self.write_repo(of, extrepo)
-            if self.args.testing_repo:
+            if args.testing_repo:
                 conf = {"name": "testing",
-                        "baseurl": self.args.testing_repo,
+                        "baseurl": args.testing_repo,
                         "gpgkey": '',
                         "gpgcheck": 0}
                 if self.check_repo(conf["baseurl"]):
@@ -95,4 +68,4 @@ gpgcheck=%(gpgcheck)s
 
 
 if __name__ == "__main__":
-    ZuulRpmSetup().main()
+    ZuulRpmSetup()

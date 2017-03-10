@@ -15,12 +15,9 @@
 # under the License.
 
 import argparse
-import logging
 import os
 import re
-import subprocess
 import sys
-import yaml
 import shlex
 import glob
 import shutil
@@ -28,37 +25,18 @@ import shutil
 from jinja2 import FileSystemLoader
 from jinja2.environment import Environment
 
+import zuul_koji_lib
 
-class ZuulRpmBuild:
-    log = logging.getLogger('zuulrpm.builder')
 
-    def __init__(self):
-        # The list of package already built
-        self.built_srpms = set()
-        self.distro_info = None
-
-    def execute(self, argv, capture=False, cwd=None):
-        if capture is True:
-            stdout = subprocess.PIPE
-        else:
-            stdout = None
-        self.log.debug("Running %s" % argv)
-        s = subprocess.Popen(argv, stdout=stdout, cwd=cwd)
-        out, _ = s.communicate()
-        code = s.wait()
-        self.log.debug("Command %s exited with code %s" % (argv, code))
-        if code:
-            self.log.error("Command %s failed" % argv)
-            raise RuntimeError()
-        return out
-
-    def parse_arguments(self, args=sys.argv[1:]):
+class ZuulRpmBuild(zuul_koji_lib.App):
+    def usage(self):
         p = argparse.ArgumentParser(description='Zuul RPM builder')
         p.add_argument("--pipeline",
                        default=os.environ.get('ZUUL_PIPELINE', 'check'))
         p.add_argument("--changes",
                        default=os.environ.get('ZUUL_CHANGES', ''))
         p.add_argument("--project", action='append',
+                       default=[os.environ.get('ZUUL_PROJECT')],
                        help="Specify project name when running outside"
                             " of Zuul context"),
         p.add_argument("--source", default=os.environ.get('GIT_SERVER'),
@@ -67,19 +45,10 @@ class ZuulRpmBuild:
                        help="The repository to publish package")
         p.add_argument("--local_output", default="zuul-rpm-build",
                        help="The directory to locally store build")
-        p.add_argument("--distro-info", default="distro.yaml",
-                       help="The yaml distro info file")
-        p.add_argument('--verbose', action='store_true', help='verbose output')
+        p.add_argument('--srpm', action='store_true', help='Only build srpm')
         p.add_argument('--noclean', dest='clean', default=True,
                        action='store_false', help="don't clean between build")
-
-        self.args = p.parse_args()
-
-    def setup_logging(self, verbose=False):
-        if verbose:
-            logging.basicConfig(level=logging.DEBUG)
-        else:
-            logging.basicConfig(level=logging.INFO)
+        return p
 
     def render_mock_template(self):
         loader = FileSystemLoader(os.path.dirname(os.path.realpath(__file__)))
@@ -87,47 +56,24 @@ class ZuulRpmBuild:
         template = env.get_template("mock.cfg.j2")
         return template.render(self.distro_info)
 
-    def load_distro_info(self, path):
-        if not os.path.isfile(path):
-            raise RuntimeError()
-        self.distro_info = yaml.safe_load(file(path))
-
-    def update_spec_file(self, specfile, source_version, release_version):
+    def update_spec_file(self, specfile, source_version):
         self.log.info("Update specfile %s" % specfile)
         # Update spec file when source is internal
         spec = open(specfile).read()
         # Change Source0 with the pre-created local sdist HEAD.tgz
         spec = re.sub(r"Source0:.*", r"Source0: HEAD.tgz", spec)
-        # Update version with local distgit and source version info
-        if source_version:
-            spec = re.sub(r"Version:.*", r"Version: %s" % source_version, spec)
-        if release_version:
-            spec = re.sub(r"Release:.*",
-                          r"Release: %s%%{?dist}" % release_version, spec)
+        # Update version with source version info
+        spec = re.sub(r"Version:.*", r"Version: %s" % source_version, spec)
         open(specfile, "w").write(spec)
 
-    def build_sdist(self, project, package_info, source_version):
+    def build_sdist(self, project, source_version):
         self.log.info("Generate sdist for %s" % project)
-        if ("sdist-build" in package_info and
-                "sdist-output-filter" in package_info):
-            self.log.debug("%s: Building sdist using custom command" % project)
-            sdist_cmd = package_info["sdist-build"]
-            sdist_output_filter = package_info["sdist-output-filter"]
-            self.execute(shlex.split(sdist_cmd), cwd=project)
-            self.execute([
-                "mv",
-                glob.glob(os.path.join(project, sdist_output_filter))[0],
-                'HEAD.tgz'])
-        else:
-            # When no sdist available, archive the whole project directory
-            self.log.debug("%s: Building sdist with tar" % project)
-            dir_name = "%s-%s" % (os.path.basename(project), source_version)
-            if os.path.exists(dir_name):
-                os.unlink(dir_name)
-            os.symlink(project, dir_name)
-            sdist_cmd = "tar -cz --exclude .git -f HEAD.tgz -h %s" % (
-                dir_name)
-            self.execute(shlex.split(sdist_cmd))
+        dir_name = "%s-%s" % (os.path.basename(project), source_version)
+        if os.path.exists(dir_name):
+            os.unlink(dir_name)
+        os.symlink(project, dir_name)
+        sdist_cmd = "tar -cz --exclude .git -f HEAD.tgz -h %s" % dir_name
+        self.execute(shlex.split(sdist_cmd))
 
     def check_spec(self, specfile):
         # Check specfile name == project name
@@ -152,7 +98,7 @@ class ZuulRpmBuild:
         self.log.error("Couldn't find Name in spec")
         return False
 
-    def build_srpm(self, distgit, source_version=None, release_version=None):
+    def build_srpm(self, distgit, source_version=None):
         # Fetch external source using spectool and create src.rpm
         specs = filter(lambda x: x.endswith(".spec"), os.listdir(distgit))
         if len(specs) > 1:
@@ -168,8 +114,8 @@ class ZuulRpmBuild:
             self.log.error("%s: Something wrong with specfile" % specfile)
             exit(1)
 
-        if source_version and release_version:
-            self.update_spec_file(specfile, source_version, release_version)
+        if source_version is not None:
+            self.update_spec_file(specfile, source_version)
 
         self.log.info("%s: Fetching sources" % distgit)
         self.execute(["spectool", "-g", "-C", distgit, specfile])
@@ -204,42 +150,6 @@ class ZuulRpmBuild:
                           "%s/%s" % (self.args.local_output, srpm)] +
                          self.mock_argument)
             self.built_srpms.add(srpm)
-
-    def _get_release_version(self, repo):
-        try:
-            describe = "git describe --tags"
-            release_version = self.execute(
-                shlex.split(describe), capture=True, cwd=repo).strip()
-        except RuntimeError:
-            describe = "git rev-list --count HEAD"
-            release_version = self.execute(
-                shlex.split(describe), capture=True, cwd=repo).strip()
-        release_version = release_version.replace('-', '.')
-        return release_version
-
-    def get_release_version(self, project, distgit):
-        project_v = self._get_release_version(project)
-        distgit_v = self._get_release_version(distgit)
-
-        release_version = "0.source.%s.distgit.%s" % (
-            project_v, distgit_v)
-
-        self.log.info("%s: Detected release version: %s" % (
-            project, release_version))
-        return release_version
-
-    def get_source_version(self, project, package_info):
-        if "source-version" in package_info:
-            source_version = self.execute(
-                shlex.split(package_info['source-version']),
-                capture=True, cwd=project).strip()
-            # Only keep the last line of the output
-            source_version = source_version.splitlines()[-1]
-            self.log.info("%s: Detected source version: %s" % (
-                project, source_version))
-        else:
-            source_version = "0.0"
-        return source_version
 
     def create_mock_config(self):
         mockconf = os.path.expanduser('~/.mock/user.cfg')
@@ -295,14 +205,7 @@ class ZuulRpmBuild:
             return False
 
         project = package_info["name"]
-
-        if package_info.get("spec") == "included":
-            # Spec file is part of project source
-            distgit = project
-        else:
-            distgit = package_info.get("distgit")
-            if not distgit:
-                distgit = "%s-distgit" % project
+        distgit = package_info["distgit"]
 
         # Fetch the distgit repository
         if not os.path.isdir(distgit):
@@ -313,25 +216,24 @@ class ZuulRpmBuild:
             if not os.path.isdir(project):
                 self.execute(["zuul-cloner", self.args.source, project])
 
-            # Discover version's numbers
-            source_version = self.get_source_version(project, package_info)
-            release_version = self.get_release_version(project, distgit)
-            self.log.info("%s: Detected source %s release %s" % (
-                          project, source_version, release_version))
+            # Discover version number
+            version = self.get_repo_version(project)
+            self.log.info("%s: Detected version %s" % (project, version))
 
             # Generate a local source tarball
-            self.build_sdist(project, package_info, source_version)
+            self.build_sdist(project, version)
 
             # Move tarball to distgit directory
             self.execute(["mv", "HEAD.tgz", distgit])
         else:
             # When source is external, use version's numbers from spec file
-            source_version = None
-            release_version = None
+            version = None
 
         try:
-            if not self.build_srpm(distgit, source_version, release_version):
+            if not self.build_srpm(distgit, version):
                 return False
+            if self.args.srpm:
+                return True
             self.build_rpm()
             self.check_postinstall_failed(project)
         except RuntimeError:
@@ -344,17 +246,20 @@ class ZuulRpmBuild:
             raise
         return True
 
-    def main(self):
-        self.parse_arguments()
+    def main(self, args):
+        self.args = args
+        self.built_srpms = set()
         self.mock_argument = []
         if not self.args.verbose:
             self.mock_argument.append("-q")
         if not self.args.clean:
             self.mock_argument.extend(["--no-clean", "--no-cleanup-after"])
-        # Force debug during test phase
-        self.args.verbose = True
-        self.setup_logging(verbose=self.args.verbose)
-        self.load_distro_info(self.args.distro_info)
+
+        branch = "master"
+        if os.path.isfile("zuul-branch"):
+            branch = open("zuul-branch").read().strip()
+            self.log.info("Forcing zuul-branch to %s" % branch)
+            os.environ["ZUUL_BRANCH"] = branch
 
         if not self.args.changes and not self.args.project:
             self.log.error("No changes or project defined, stopping now")
@@ -362,7 +267,7 @@ class ZuulRpmBuild:
         if not self.args.changes:
             changes = []
             for project in self.args.project:
-                changes.append("%s:master:refs/HEAD" % project)
+                changes.append("%s:%s:refs/HEAD" % (project, branch))
             self.args.changes = "^".join(changes)
         self.log.debug("Computed or detected ZUUL_CHANGES is %s" %
                        self.args.changes)
@@ -395,4 +300,4 @@ class ZuulRpmBuild:
 
 
 if __name__ == "__main__":
-    ZuulRpmBuild().main()
+    ZuulRpmBuild()
