@@ -22,7 +22,7 @@ import zuul_koji_lib
 class ZuulKojiMash(zuul_koji_lib.App):
     def usage(self):
         p = argparse.ArgumentParser(description='Zuul Koji Mash')
-        p.add_argument("--candidate", action='store_true')
+        p.add_argument("--release", action='store_true')
         return p
 
     def main(self, args):
@@ -41,10 +41,10 @@ inherit = False
 debuginfo = False
 """ % self.distro_info)
         self.execute(["sudo", "mv", mash_file, "/etc/mash"])
-        if args.candidate:
-            tag = "%s-candidate" % self.distro_info["koji-target"]
-        else:
+        if args.release:
             tag = "%s-release" % self.distro_info["koji-target"]
+        else:
+            tag = "%s-candidate" % self.distro_info["koji-target"]
         self.execute(["sudo", "mash", "-o", "/mnt/koji/repos", tag])
 
 

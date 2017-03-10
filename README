@@ -1,0 +1,43 @@
+# zuul koji toolbox
+
+## Packaging ci:
+
+zuul_rpm_build:   build package, whenever distgit or source change
+zuul_rpm_publish: publish package to koji target
+zuul_rpm_setup:   setup yum.repo.d file of the distrib repos
+
+## Release process:
+
+### Step1 - prepare the distro info
+
+cp tdpw-master.yaml tdpw-1.0.yaml
+Update koji-target and branch
+
+### Step2 - create branch and tag (optional at that point)
+
+./zuul_set_distro_branch.py
+
+### Step3 - create koji target (with kojiadmin account)
+
+./zuul_koji_set_target --distro-info tdpw-1.0.yaml
+
+### Step4 - populate 1.0 target
+
+./zuul_koji_populate_target.py --distro-info tdpw-1.0.yaml
+
+### Step5 - populate candidate target (all package needs to be tagged at this point)
+
+./zuul_koji_populate_target.py --distro-info tdpw-1.0.yaml --candidate
+
+### Step6 - once candidate is valid, create release:
+
+koji clone-tag tdpw-1.0-centos7-candidate tdpw-1.0-centos7-release
+
+### Step7 - mash repo
+
+TBD
+
+
+## Tag process:
+
+zuul_discover_tag_branch: discover which target to build a tag against

@@ -1,14 +1,11 @@
 ---
-name: software-factory
-
-koji-target: sf-master-centos7
-arch: x86_64
-koji-url: http://koji.softwarefactory-project.io/kojifiles/repos/sf-master-centos7-build/latest/x86_64/
-branch: master
+inherit: sf-master.yaml
+koji-target: sf-2.4-centos7
+koji-url: http://koji.softwarefactory-project.io/kojifiles/repos/sf-2.4-centos7-build/latest/x86_64/
+branch: 2.4
+from: master
 packages:
   - name: software-factory/sf-web-assets
-    source: external
-  - name: software-factory/zuul-swift-upload
     source: external
   - name: software-factory/python-glob2
     source: external
@@ -23,8 +20,6 @@ packages:
   - name: software-factory/mod_auth_pubtkt
     source: external
   - name: software-factory/umurmur
-    source: external
-  - name: software-factory/zookeeper-lite
     source: external
   - name: software-factory/gitweb-theme-kogakure
     source: external
@@ -83,34 +78,4 @@ packages:
   - name: software-factory/python-cryptodomex
     source: external
 
-chrootpackages: "@buildsys-build shadow-utils rpm-build python2-devel"
-baserepos:
-  - name: centos7-os
-    baseurl: http://mirror.centos.org/centos/7/os/x86_64/
-    gpgkey: file:///usr/share/distribution-gpg-keys/centos/RPM-GPG-KEY-CentOS-7
-    gpgcheck: 1
-    kojipriority: 12
 
-  - name: centos7-updates
-    baseurl: http://mirror.centos.org/centos/7/updates/x86_64/
-    gpgkey: file:///usr/share/distribution-gpg-keys/centos/RPM-GPG-KEY-CentOS-7
-    gpgcheck: 1
-    kojipriority: 11
-
-  - name: centos7-extras
-    baseurl: http://mirror.centos.org/centos/7/extras/x86_64/
-    gpgkey: file:///usr/share/distribution-gpg-keys/centos/RPM-GPG-KEY-CentOS-7
-    gpgcheck: 1
-    kojipriority: 10
-
-  - name: epel7
-    baseurl: http://download.fedoraproject.org/pub/epel/7/x86_64/
-    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
-    gpgcheck: 1
-    kojipriority: 90
-
-  - name: openstack-newton
-    baseurl: http://mirror.centos.org/centos/7/cloud/x86_64/openstack-newton/
-    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Cloud
-    gpgcheck: 1
-    kojipriority: 5
