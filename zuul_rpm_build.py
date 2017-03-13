@@ -31,6 +31,8 @@ import zuul_koji_lib
 class ZuulRpmBuild(zuul_koji_lib.App):
     def usage(self):
         p = argparse.ArgumentParser(description='Zuul RPM builder')
+        p.add_argument("--branch",
+                       default=os.environ.get('ZUUL_BRANCH', 'master'))
         p.add_argument("--pipeline",
                        default=os.environ.get('ZUUL_PIPELINE', 'check'))
         p.add_argument("--changes",
@@ -255,11 +257,12 @@ class ZuulRpmBuild(zuul_koji_lib.App):
         if not self.args.clean:
             self.mock_argument.extend(["--no-clean", "--no-cleanup-after"])
 
-        branch = "master"
         if os.path.isfile("zuul-branch"):
             branch = open("zuul-branch").read().strip()
             self.log.info("Forcing zuul-branch to %s" % branch)
             os.environ["ZUUL_BRANCH"] = branch
+        else:
+            branch = args.branch
 
         if not self.args.changes and not self.args.project:
             self.log.error("No changes or project defined, stopping now")
@@ -288,7 +291,11 @@ class ZuulRpmBuild(zuul_koji_lib.App):
 
         # For each change, build package and create intermediary repo
         for change in self.args.changes.split('^'):
-            project, branch, ref = change.split(':')
+            project, change_branch, ref = change.split(':')
+            if change_branch != branch:
+                self.log.warning("Skipping %s because not on branch %s" % (
+                                 change, branch))
+                continue
             try:
                 if self.build(project):
                     self.execute(["createrepo", "."],
