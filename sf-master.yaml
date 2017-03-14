@@ -10,6 +10,10 @@ packages:
     source: external
   - name: software-factory/zuul-swift-upload
     source: external
+  - name: software-factory/shade
+    source: external
+  - name: software-factory/nodepool
+    source: external
   - name: software-factory/python-glob2
     source: external
   - name: software-factory/buck
