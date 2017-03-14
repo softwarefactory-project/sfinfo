@@ -14,6 +14,14 @@ packages:
     source: external
   - name: software-factory/nodepool
     source: external
+  - name: software-factory/zuul
+    source: external
+  - name: software-factory/python-email
+    source: external
+  - name: software-factory/python-sqlalchemy-fulltext-search
+    source: external
+  - name: software-factory/storyboard
+    source: external
   - name: software-factory/python-glob2
     source: external
   - name: software-factory/buck
