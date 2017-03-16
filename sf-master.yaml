@@ -16,6 +16,35 @@ packages:
     source: external
   - name: software-factory/zuul
     source: external
+
+# Gerritbot
+  - name: software-factory/python-backports-functools-lru-cache
+    source: external
+  - name: software-factory/python-inflect
+    source: external
+  - name: software-factory/python-more-itertools
+    source: external
+  - name: software-factory/python-tempora
+    source: external
+  - name: software-factory/python-jaraco-classes
+    source: external
+  - name: software-factory/python-jaraco-collections
+    source: external
+  - name: software-factory/python-jaraco-functools
+    source: external
+  - name: software-factory/python-jaraco-itertools
+    source: external
+  - name: software-factory/python-jaraco-logging
+    source: external
+  - name: software-factory/python-jaraco-stream
+    source: external
+  - name: software-factory/python-jaraco-text
+    source: external
+  - name: software-factory/python-irc
+    source: external
+  - name: software-factory/gerritbot
+    source: external
+
   - name: software-factory/python-email
     source: external
   - name: software-factory/python-sqlalchemy-fulltext-search
