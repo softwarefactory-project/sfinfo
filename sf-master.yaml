@@ -17,6 +17,10 @@ packages:
   - name: software-factory/zuul
     source: external
 
+# Lecm
+  - name: software-factory/lecm
+    source: external
+
 # Gerritbot
   - name: software-factory/python-backports-functools-lru-cache
     source: external
