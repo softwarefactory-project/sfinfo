@@ -17,6 +17,10 @@ packages:
   - name: software-factory/zuul
     source: external
 
+# Mirror2swift
+  - name: software-factory/mirror2swift
+    source: external
+
 # Lecm
   - name: software-factory/lecm
     source: external
