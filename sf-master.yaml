@@ -133,6 +133,9 @@ packages:
     source: external
   - name: software-factory/python-cryptodomex
     source: external
+  - name: software-factory/ochlero
+    source: internal
+    spec: included
 
 chrootpackages: "@buildsys-build shadow-utils rpm-build python2-devel"
 baserepos:
