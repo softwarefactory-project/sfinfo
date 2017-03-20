@@ -17,10 +17,6 @@ packages:
   - name: software-factory/zuul
     source: external
 
-  - name: software-factory
-    source: internal
-    spec: included
-
 # Mirror2swift
   - name: software-factory/mirror2swift
     source: external
