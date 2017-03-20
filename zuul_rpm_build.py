@@ -215,7 +215,7 @@ class ZuulRpmBuild(zuul_koji_lib.App):
 
         if package_info.get("source") == "internal":
             # Fetch repository with zuul-cloner
-            if not os.path.isdir(project):
+            if not os.path.isdir(os.path.join(project, '.git')):
                 self.execute(["zuul-cloner", self.args.source, project])
 
             # Discover version number
