@@ -51,8 +51,8 @@ class ZuulKojiSetTarget(zuul_koji_lib.App):
 
     def define_external_repo(self):
         self.koji_list_external_repos()
-        baserepos = self.distro_info.get('baserepos', [])
-        for repo in baserepos:
+        repos = self.distro_info.get('repos', [])
+        for repo in repos:
             if repo['name'] in [defined[0] for defined in
                                 self.defined_external_repos]:
                 self.log.warning("External repo %s already defined" % (
@@ -64,8 +64,8 @@ class ZuulKojiSetTarget(zuul_koji_lib.App):
                              repo['name'], repo['baseurl']])
 
     def add_external_repos(self, tag):
-        baserepos = self.distro_info.get('baserepos', [])
-        for repo in baserepos:
+        repos = self.distro_info.get('repos', [])
+        for repo in repos:
             self.log.info("Set %s as external repo for %s" % (
                           repo['name'], tag))
             self.execute(['koji', 'remove-external-repo', repo['name'], tag])

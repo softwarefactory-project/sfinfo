@@ -99,6 +99,9 @@ class App:
             elif not package.get("distgit"):
                 package["distgit"] = "%s-distgit" % package["name"]
 
+        self.distro_info["repos"] = self.distro_info.get("baserepos", []) + \
+            self.distro_info.get("extrarepos", [])
+
     def _parse_arguments(self, args):
         # Parse command line
         p = self.usage()

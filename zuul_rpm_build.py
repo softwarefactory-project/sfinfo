@@ -162,9 +162,9 @@ class ZuulRpmBuild(zuul_koji_lib.App):
             "enabled": 1,
             "gpgcheck": 0,
         }
-        if not [r for r in self.distro_info['baserepos']
+        if not [r for r in self.distro_info['repos']
                 if r['name'] == "built-release"]:
-            self.distro_info['baserepos'].append(built_release)
+            self.distro_info['repos'].append(built_release)
         if os.path.isfile("%s/repodata/repomd.xml" % self.args.local_output):
             self.log.debug("Append local-build to mock configuration in %s" %
                            mockconf)
@@ -174,9 +174,9 @@ class ZuulRpmBuild(zuul_koji_lib.App):
                 "enabled": 1,
                 "gpgcheck": 0,
             }
-            if not [r for r in self.distro_info['baserepos']
+            if not [r for r in self.distro_info['repos']
                     if r['name'] == "local-build"]:
-                self.distro_info['baserepos'].append(local_build)
+                self.distro_info['repos'].append(local_build)
         rendered = self.render_mock_template()
         if not os.path.isdir(os.path.dirname(mockconf)):
             os.mkdir(os.path.dirname(mockconf))

@@ -21,10 +21,14 @@ syslog_device=
 mdpolicy=group:primary
 
 # repos
-{% for repo in baserepos %}
+{% for repo in repos %}
 [{{ repo.name }}]
 name={{ repo.name }}
+{% if repo.mirror %}
+mirrorlist={{ repo.mirror }}
+{% else %}
 baseurl={{ repo.baseurl }}
+{% endif %}
 gpgkey={{ repo.gpgkey }}
 gpgcheck={{ repo.gpgcheck }}
 enabled=1

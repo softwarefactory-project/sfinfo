@@ -28,11 +28,17 @@ class ZuulRpmSetup(zuul_koji_lib.App):
 
     def write_repo(self, of, conf):
         self.log.info("Adding repo %s" % conf['name'])
+        if "mirror" in conf:
+            conf["repourl"] = "mirrorlist=%s" % conf["mirror"]
+        elif "baseurl" in conf:
+            conf["repourl"] = "baseurl=%s" % conf["baseurl"]
+        print conf
         of.write("""[%(name)s]
 name=%(name)s
-baseurl=%(baseurl)s
+%(repourl)s
 gpgkey=%(gpgkey)s
 gpgcheck=%(gpgcheck)s
+priority=%(kojipriority)s
 
 """ % conf)
 
@@ -49,18 +55,20 @@ gpgcheck=%(gpgcheck)s
         repo_file_path = "/etc/yum.repos.d/zuul-built.repo"
         self.log.info("Writing repo to %s" % repo_file_path)
         with open(repo_file_path, "w") as of:
-            conf = {"name": "release",
+            conf = {"name": "sfmaster",
                     "baseurl": self.distro_info['koji-url'],
                     "gpgkey": '',
-                    "gpgcheck": 0}
+                    "gpgcheck": 0,
+                    "kojipriority": 110,}
             self.write_repo(of, conf)
-            for extrepo in self.distro_info['baserepos']:
+            for extrepo in self.distro_info['extrarepos']:
                 self.write_repo(of, extrepo)
             if args.testing_repo:
-                conf = {"name": "testing",
+                conf = {"name": "sftesting",
                         "baseurl": args.testing_repo,
                         "gpgkey": '',
-                        "gpgcheck": 0}
+                        "gpgcheck": 0,
+                        "kojipriority": 2}
                 if self.check_repo(conf["baseurl"]):
                     self.write_repo(of, conf)
                 else:
