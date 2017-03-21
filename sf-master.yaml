@@ -19,7 +19,6 @@ packages:
 
   - name: software-factory/software-factory
     source: internal
-    spec: included
 
 # Mirror2swift
   - name: software-factory/mirror2swift
