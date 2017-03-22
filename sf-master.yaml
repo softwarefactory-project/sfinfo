@@ -105,16 +105,16 @@ packages:
   - name: software-factory/wait4service
     source: internal
     spec: included
-  - name: python-sfmanager
+  - name: software-factory/python-sfmanager
     source: internal
     spec: included
-  - name: managesf
+  - name: software-factory/managesf
     source: internal
     spec: included
-  - name: pysflib
+  - name: software-factory/pysflib
     source: internal
     distgit: software-factory/pysflib-distgit
-  - name: cauth
+  - name: software-factory/cauth
     source: internal
     distgit: software-factory/cauth-distgit
   # cauth depends
