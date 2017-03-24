@@ -23,12 +23,19 @@ class ZuulKojiMash(zuul_koji_lib.App):
     def usage(self):
         p = argparse.ArgumentParser(description='Zuul Koji Mash')
         p.add_argument("--release", action='store_true')
+        p.add_argument("--build", action='store_true')
         return p
 
     def main(self, args):
         mash_file = "%s.mash" % self.distro_info["koji-target"]
         with open(mash_file, "w") as of:
-            of.write("""[%(koji-target)s-candidate]
+            of.write("""[%(koji-target)s]
+tag = %(koji-target)s
+arches = %(arch)s
+inherit = False
+debuginfo = False
+
+[%(koji-target)s-candidate]
 tag = %(koji-target)s-candidate
 arches = %(arch)s
 inherit = False
@@ -41,7 +48,9 @@ inherit = False
 debuginfo = False
 """ % self.distro_info)
         self.execute(["sudo", "mv", mash_file, "/etc/mash"])
-        if args.release:
+        if args.build:
+            tag = self.distro_info["koji-target"]
+        elif args.release:
             tag = "%s-release" % self.distro_info["koji-target"]
         else:
             tag = "%s-candidate" % self.distro_info["koji-target"]
