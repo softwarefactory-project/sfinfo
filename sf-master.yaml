@@ -108,6 +108,9 @@ packages:
   - name: software-factory/wait4service
     source: internal
     spec: included
+  - name: software-factory/sf-elements
+    source: internal
+    spec: included
   - name: software-factory/python-sfmanager
     source: internal
     spec: included
