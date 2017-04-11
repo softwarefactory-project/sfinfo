@@ -146,6 +146,35 @@ packages:
     source: internal
     spec: included
 
+# Epel import
+  - name: software-factory/acme-tiny
+    source: external
+  - name: software-factory/git-review
+    source: external
+  - name: software-factory/js-jquery1
+    source: external
+  - name: software-factory/libtomcrypt
+    source: external
+  - name: software-factory/libtommath
+    source: external
+  - name: software-factory/libwebsockets
+    source: external
+  - name: software-factory/monit
+    source: external
+  - name: software-factory/mosquitto
+    source: external
+  - name: software-factory/python-gear
+    source: external
+  - name: software-factory/python-jenkins
+    source: external
+  - name: software-factory/python-openid
+    source: external
+  - name: software-factory/python-paho-mqtt
+    source: external
+  - name: software-factory/uwsgi
+    source: external
+
+
 chrootpackages: "@buildsys-build shadow-utils rpm-build python2-devel"
 baserepos:
   - name: centos7-os
