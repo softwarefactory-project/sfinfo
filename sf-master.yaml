@@ -23,6 +23,19 @@ packages:
   - name: software-factory/software-factory
     source: internal
 
+  - name: software-factory/sf-release
+    source: internal
+    spec: included
+
+  - name: software-factory/sf-docs
+    source: internal
+    spec: included
+
+  - name: software-factory/sf-config
+    source: internal
+    spec: included
+
+
 # Mirror2swift
   - name: software-factory/mirror2swift
     source: external
