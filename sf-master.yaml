@@ -161,8 +161,6 @@ packages:
     source: external
   - name: software-factory/git-review
     source: external
-  - name: software-factory/js-jquery1
-    source: external
   - name: software-factory/libtomcrypt
     source: external
   - name: software-factory/libtommath
@@ -183,7 +181,8 @@ packages:
     source: external
   - name: software-factory/uwsgi
     source: external
-
+  - name: software-factory/uthash
+    source: external
 
 chrootpackages: "@buildsys-build shadow-utils rpm-build python2-devel"
 baserepos:
