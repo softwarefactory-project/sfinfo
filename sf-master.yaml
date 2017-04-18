@@ -99,6 +99,8 @@ packages:
     source: external
   - name: software-factory/python-basicauth
     source: external
+  - name: software-factory/python-future
+    source: external
   - name: software-factory/python-htpasswd
     source: external
   - name: software-factory/python-orderedmultidict
@@ -182,6 +184,20 @@ packages:
   - name: software-factory/uwsgi
     source: external
   - name: software-factory/uthash
+    source: external
+  - name: software-factory/python-pkginfo
+    source: external
+  - name: software-factory/python-twine
+    source: external
+  - name: software-factory/python-colorama
+    source: external
+  - name: software-factory/python-appdirs
+    source: external
+  - name: software-factory/python-args
+    source: external
+  - name: software-factory/python-clint
+    source: external
+  - name: software-factory/python-requests-toolbelt
     source: external
 
 chrootpackages: "@buildsys-build shadow-utils rpm-build python2-devel"
