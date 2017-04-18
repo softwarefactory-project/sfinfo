@@ -199,6 +199,15 @@ packages:
     source: external
   - name: software-factory/python-requests-toolbelt
     source: external
+  - name: software-factory/python-sure
+    source: external
+  - name: software-factory/python-httpretty
+    source: external
+  - name: software-factory/python-responses
+    source: external
+  - name: software-factory/python-cookies
+    source: external
+
 
 chrootpackages: "@buildsys-build shadow-utils rpm-build python2-devel"
 baserepos:
