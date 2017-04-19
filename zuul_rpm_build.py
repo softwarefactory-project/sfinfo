@@ -124,7 +124,8 @@ class ZuulRpmBuild(zuul_koji_lib.App):
 
         self.log.info("%s: Building SRPM" % distgit)
         self.create_mock_config()
-        self.execute(["mock", "--buildsrpm",
+        # TODO: use distro-info file for -D param value
+        self.execute(["mock", "--buildsrpm", "-D", "dist .el7"
                       "--resultdir", self.args.local_output,
                       "--spec", specfile, "--sources", distgit] +
                      self.mock_argument)

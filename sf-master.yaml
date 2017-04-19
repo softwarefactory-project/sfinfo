@@ -1,9 +1,9 @@
 ---
 name: software-factory
 
-koji-target: sf-master-centos7
+koji-target: sf-master-el7
 arch: x86_64
-koji-url: http://koji.softwarefactory-project.io/kojifiles/repos/sf-master-centos7-build/latest/x86_64/
+koji-url: http://koji.softwarefactory-project.io/kojifiles/repos/sf-master-el7-build/latest/x86_64/
 branch: master
 packages:
   - name: software-factory/sf-web-assets
@@ -210,7 +210,8 @@ packages:
   - name: software-factory/python-funcparserlib
     source: external
 
-chrootpackages: "@buildsys-build shadow-utils rpm-build python2-devel"
+chrootpackages: "@buildsys-build buildsys-macros-el7 make gcc shadow-utils rpm-build python2-devel"
+
 baserepos:
   - name: centos7-os
     baseurl: http://mirror.centos.org/centos/7/os/x86_64/
@@ -234,13 +235,6 @@ baserepos:
     kojipriority: 10
 
 extrarepos:
-  - name: epel7
-    mirror: https://mirrors.fedoraproject.org/metalink?repo=epel-7&arch=x86_64
-    baseurl: http://download.fedoraproject.org/pub/epel/7/x86_64/
-    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
-    gpgcheck: 1
-    kojipriority: 110
-
   - name: openstack-newton
     baseurl: http://mirror.centos.org/centos/7/cloud/x86_64/openstack-newton/
     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Cloud
