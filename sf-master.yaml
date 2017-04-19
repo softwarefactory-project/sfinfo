@@ -207,7 +207,8 @@ packages:
     source: external
   - name: software-factory/python-cookies
     source: external
-
+  - name: software-factory/python-funcparserlib
+    source: external
 
 chrootpackages: "@buildsys-build shadow-utils rpm-build python2-devel"
 baserepos:
