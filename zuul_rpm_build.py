@@ -242,12 +242,12 @@ class ZuulRpmBuild(zuul_koji_lib.App):
         except RuntimeError:
             self.log.warning("Gathering logs...")
             for log in ["root.log", "build.log"]:
-                if not os.path.exists(log):
+                logfile = "%s/%s" % (self.args.local_output, log)
+                if not os.path.exists(logfile):
                     continue
                 # glob.glob("%s/*.log" % self.args.local_output):
                 self.log.warning("\n\n===== %s =====\n%s" % (
-                                 log, open("%s/%s" % (
-                                     self.args.local_output, log)).read()))
+                                 log, open(logfile).read()))
             raise
         return True
 
