@@ -75,6 +75,8 @@ packages:
     source: external
   - name: software-factory/storyboard
     source: external
+  - name: software-factory/os-loganalyze
+    source: external
   - name: software-factory/python-glob2
     source: external
   - name: software-factory/buck
