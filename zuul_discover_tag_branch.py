@@ -39,6 +39,7 @@ class ZuulDiscoverTagBranch(zuul_koji_lib.App):
             # Remove (no branch) and prefix space
             valid_branch = map(lambda x: x[2:],
                                filter(lambda x: "(" not in x, branches))
+            self.log.info("Tag found on branches: %s" % ', '.join(valid_branch))
             if "master" in valid_branch:
                 print("master")
             else:
