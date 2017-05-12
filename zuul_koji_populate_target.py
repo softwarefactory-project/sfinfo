@@ -39,6 +39,8 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
         p.add_argument("--update", action='store_true', help='Update repo')
         p.add_argument("--project",
                        help="Restrict action to a single project")
+        p.add_argument("--internal", action='store_true',
+                       help="Restrict to internal project")
         return p
 
     def clone(self, repo, base_dir, git_server, update):
@@ -157,6 +159,8 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
                     pkg['name'] == args.project]
         else:
             pkgs = self.distro_info["packages"]
+        if args.internal:
+            pkgs = filter(lambda pkg: pkg["source"] == "internal", pkgs)
         if args.candidate:
             self.discover_nvr_from_koji(pkgs, self.distro_info["koji-target"])
         else:
