@@ -33,7 +33,7 @@ class ZuulDiscoverTagBranch(zuul_koji_lib.App):
         tag = args.ref.replace('refs/tags/', '')
         if not os.path.isdir(args.project):
             self.execute(["zuul-cloner", args.git_server, args.project])
-        self.execute(["git", "fetch", "--all"], cwd=args.project)
+        self.log.info("Looking for branch containing ref %s" % tag)
         branches = self.execute(["git", "branch", "--contains", tag],
                                 capture=True, cwd=args.project).split('\n')
         try:
@@ -42,8 +42,10 @@ class ZuulDiscoverTagBranch(zuul_koji_lib.App):
                                filter(lambda x: "(" not in x, branches))
             self.log.info("Tag found on branches: %s" % ', '.join(valid_branch))
             if "master" in valid_branch:
+                self.log.info("Choosing 'master'")
                 print("master")
             else:
+                self.log.info("Choosing '%s'" % valid_branch[0])
                 print(valid_branch[0])
         except:
             self.log.error("Couldn't find branch for tag %s" % tag)
