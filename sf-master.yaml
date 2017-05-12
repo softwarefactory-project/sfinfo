@@ -156,6 +156,9 @@ packages:
   - name: software-factory/ochlero
     source: internal
     spec: included
+  - name: software-factory/hydrant
+    source: internal
+    spec: included
 
 # Epel import
   - name: software-factory/acme-tiny
