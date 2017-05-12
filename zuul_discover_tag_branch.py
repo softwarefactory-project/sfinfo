@@ -33,6 +33,7 @@ class ZuulDiscoverTagBranch(zuul_koji_lib.App):
         tag = args.ref.replace('refs/tags/', '')
         if not os.path.isdir(args.project):
             self.execute(["zuul-cloner", args.git_server, args.project])
+        self.execute(["git", "fetch", "--all"], cwd=args.project)
         branches = self.execute(["git", "branch", "--contains", tag],
                                 capture=True, cwd=args.project).split('\n')
         try:
