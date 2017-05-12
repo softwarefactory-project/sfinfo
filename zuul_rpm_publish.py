@@ -88,9 +88,17 @@ class ZuulRpmPublish(zuul_koji_lib.App):
 
         self.execute(["koji", "--authtype=ssl", "add-pkg", "--owner=sfci",
                       self.distro_info["koji-target"], package_name])
-        self.execute(["koji", "--authtype=ssl", "build", "--noprogress",
-                      "--wait",
-                      self.distro_info["koji-target"], srpm])
+        try:
+            self.execute(["koji", "--authtype=ssl", "build", "--noprogress",
+                          "--wait", self.distro_info["koji-target"], srpm])
+        except RuntimeError:
+            # If the build task was unable to build the pkg for other reason
+            # that a "Build already exists" error then the following task will
+            # fail too.
+            print "Build failed but if it was because of NVR already built"
+            print "then try to add it to the tag."
+            self.execute(["koji", "--authtype=ssl", "tag-build",
+                          self.distro_info["koji-target"], to_build_nvr])
 
 
 if __name__ == "__main__":
