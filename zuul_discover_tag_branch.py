@@ -33,7 +33,7 @@ class ZuulDiscoverTagBranch(zuul_koji_lib.App):
         tag = args.ref.replace('refs/tags/', '')
         if not os.path.isdir(args.project):
             os.makedirs(args.project)
-            self.execute(["git", "clone", "-q"
+            self.execute(["git", "clone", "-q",
                           "%s/%s" % (args.git_server, args.project),
                           args.project], capture=True)
         self.log.info("Looking for branch containing ref %s" % tag)
