@@ -19,8 +19,10 @@ import glob
 import requests
 import re
 import os
+import sys
 
 import zuul_koji_lib
+from rpmUtils.miscutils import splitFilename
 
 
 class ZuulRpmPublish(zuul_koji_lib.App):
@@ -81,11 +83,33 @@ class ZuulRpmPublish(zuul_koji_lib.App):
             srpm_url = "%s/%s" % (args.testing_repo, srpm)
             self.download(srpm_url)
 
+        # Verify this NVR is already build in that target
+        # If this the case do not build
+        nvrs = self.execute(["koji", "list-tagged",
+                             self.distro_info["koji-target"]],
+                            capture=True).splitlines()[2:]
+        nvrs = [l.split()[0].strip() for l in nvrs]
+        already_tagged_nvr = [p for p in nvrs if
+                              splitFilename(p)[0] == package_name]
+        to_build_nvr = srpm.replace(".src.rpm", "")
+        if to_build_nvr in already_tagged_nvr:
+            print "The target tag already have that NVR %s (already in %s)" % (
+                to_build_nvr, already_tagged_nvr)
+            print "Nothing more to do."
+            sys.exit(0)
         self.execute(["koji", "--authtype=ssl", "add-pkg", "--owner=sfci",
                       self.distro_info["koji-target"], package_name])
-        self.execute(["koji", "--authtype=ssl", "build", "--noprogress",
-                      "--wait",
-                      self.distro_info["koji-target"], srpm])
+        try:
+            self.execute(["koji", "--authtype=ssl", "build", "--noprogress",
+                          "--wait", self.distro_info["koji-target"], srpm])
+        except RuntimeError:
+            # If the build task was unable to build the pkg for other reason
+            # that a "Build already exists" error then the following task will
+            # fail too.
+            print "Build failed but if it was because of NVR already built"
+            print "then try to add it to the tag."
+            self.execute(["koji", "--authtype=ssl", "tag-build",
+                          self.distro_info["koji-target"], to_build_nvr])
 
 
 if __name__ == "__main__":
