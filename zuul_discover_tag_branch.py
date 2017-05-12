@@ -33,15 +33,15 @@ class ZuulDiscoverTagBranch(zuul_koji_lib.App):
         tag = args.ref.replace('refs/tags/', '')
         if not os.path.isdir(args.project):
             os.makedirs(args.project)
-            self.execute(["git", "clone",
+            self.execute(["git", "clone", "-q"
                           "%s/%s" % (args.git_server, args.project),
                           args.project], capture=True)
         self.log.info("Looking for branch containing ref %s" % tag)
-        branches = self.execute(["git", "branch", "--contains", tag],
+        branches = self.execute(["git", "branch", "-a", "--contains", tag],
                                 capture=True, cwd=args.project).split('\n')
         try:
             # Remove (no branch) and prefix space
-            valid_branch = map(lambda x: x[2:],
+            valid_branch = map(lambda x: x[2:].replace("remotes/origin/", ""),
                                filter(lambda x: "(" not in x, branches))
             self.log.info("Tag found on branches: %s" % ', '.join(valid_branch))
             if "master" in valid_branch:
