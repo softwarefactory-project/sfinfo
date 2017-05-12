@@ -17,9 +17,6 @@ packages:
   - name: software-factory/zuul
     source: external
 
-  - name: software-factory/sf
-    source: external
-
   - name: software-factory/sf-release
     source: internal
     spec: included
