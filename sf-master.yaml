@@ -29,6 +29,12 @@ packages:
     source: internal
     spec: included
 
+# Test tools
+  - name: software-factory/ansible-lint
+    source: external
+
+  - name: software-factory/yamllint
+    source: external
 
 # Mirror2swift
   - name: software-factory/mirror2swift
