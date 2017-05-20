@@ -238,7 +238,8 @@ class ZuulRpmBuild(zuul_koji_lib.App):
             if self.args.srpm:
                 return True
             self.build_rpm()
-            self.check_postinstall_failed(project)
+            if self.args.clean:
+                self.check_postinstall_failed(project)
         except RuntimeError:
             self.log.warning("Gathering logs...")
             for log in ["root.log", "build.log"]:
