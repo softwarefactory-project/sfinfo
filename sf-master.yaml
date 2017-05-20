@@ -29,6 +29,16 @@ packages:
     source: internal
     spec: included
 
+# ZuulV3
+  - name: software-factory/zuul3
+    source: external
+  - name: software-factory/nodepool3
+    source: external
+  - name: software-factory/python-github3
+    source: external
+  - name: software-factory/python-uritemplate
+    source: external
+
 # Test tools
   - name: software-factory/ansible-lint
     source: external
