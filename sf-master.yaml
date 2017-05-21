@@ -40,6 +40,10 @@ packages:
     source: external
   - name: software-factory/GitPython
     source: external
+  - name: software-factory/python-os-client-config
+    source: external
+
+
 
 # Test tools
   - name: software-factory/ansible-lint
