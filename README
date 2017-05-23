@@ -1,5 +1,11 @@
 # zuul koji toolbox
 
+## Prepare runtime for zuul_rpm_build.py
+sudo yum install mock rpmdevtools createrepo python-jinja2
+sudo usermod -a -G mock $SUDO_USER
+sudo mkdir /var/lib/sf
+sudo ln -s /home/$SUDO_USER/zuul-rpm-build /var/lib/sf/zuul-rpm-build
+
 ## Packaging ci:
 
 zuul_rpm_build:   build package, whenever distgit or source change
