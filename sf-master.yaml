@@ -43,13 +43,20 @@ packages:
   - name: software-factory/python-os-client-config
     source: external
 
-
-
 # Test tools
   - name: software-factory/ansible-lint
     source: external
 
   - name: software-factory/yamllint
+    source: external
+
+  - name: software-factory/python-py
+    source: external
+
+  - name: software-factory/python-tox
+    source: external
+
+  - name: software-factory/python-pluggy
     source: external
 
 # Mirror2swift
