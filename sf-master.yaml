@@ -59,6 +59,9 @@ packages:
   - name: software-factory/python-pluggy
     source: external
 
+  - name: software-factory/python-virtualenv
+    source: external
+
 # Mirror2swift
   - name: software-factory/mirror2swift
     source: external
