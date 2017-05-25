@@ -62,6 +62,30 @@ packages:
   - name: software-factory/python-virtualenv
     source: external
 
+  - name: software-factory/python-decorator
+    source: external
+
+  - name: software-factory/python-flask-sqlalchemy
+    source: external
+
+  - name: software-factory/python-flask-script
+    source: external
+
+  - name: software-factory/python-flask-migrate
+    source: external
+
+  - name: software-factory/python-flask-frozen
+    source: external
+
+  - name: software-factory/python-junit_xml
+    source: external
+
+  - name: software-factory/ara
+    source: external
+
+  - name: software-factory/python-nose-htmloutput
+    source: external
+
 # Mirror2swift
   - name: software-factory/mirror2swift
     source: external
