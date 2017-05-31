@@ -98,6 +98,9 @@ packages:
   - name: software-factory/python-jinja2
     source: external
 
+  - name: software-factory/python-markupsafe
+    source: external
+
   - name: software-factory/ara
     source: external
 
@@ -290,7 +293,7 @@ packages:
   - name: software-factory/python-funcparserlib
     source: external
 
-chrootpackages: "@buildsys-build buildsys-macros-el7 make gcc shadow-utils rpm-build python2-devel"
+chrootpackages: "@buildsys-build buildsys-macros-el7 make gcc shadow-utils rpm-build python2-devel openstack-macros"
 
 baserepos:
   - name: centos7-os
