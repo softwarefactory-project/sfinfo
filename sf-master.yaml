@@ -80,6 +80,24 @@ packages:
   - name: software-factory/python-junit_xml
     source: external
 
+  - name: software-factory/python-pyfakefs
+    source: external
+
+  - name: software-factory/python-XStatic-DataTables
+    source: external
+
+  - name: software-factory/python-XStatic-Patternfly
+    source: external
+
+  - name: software-factory/python-XStatic-Bootstrap-SCSS
+    source: external
+
+  - name: software-factory/python-XStatic-Patternfly-Bootstrap-Treeview
+    source: external
+
+  - name: software-factory/python-jinja2
+    source: external
+
   - name: software-factory/ara
     source: external
 
