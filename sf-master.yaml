@@ -44,6 +44,8 @@ packages:
     source: external
   - name: software-factory/GitPython
     source: external
+  - name: software-factory/python-CacheControl
+    source: external
   - name: software-factory/python-os-client-config
     source: external
 
