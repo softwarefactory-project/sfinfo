@@ -38,6 +38,10 @@ packages:
     source: external
   - name: software-factory/python-uritemplate
     source: external
+  - name: software-factory/python-smmap
+    source: external
+  - name: software-factory/python-gitdb
+    source: external
   - name: software-factory/GitPython
     source: external
   - name: software-factory/python-os-client-config
