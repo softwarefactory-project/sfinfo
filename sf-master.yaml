@@ -159,6 +159,8 @@ packages:
     source: external
   - name: software-factory/storyboard
     source: external
+  - name: software-factory/storyboard-webclient
+    source: external
   - name: software-factory/os-loganalyze
     source: external
   - name: software-factory/python-glob2
