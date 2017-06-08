@@ -56,6 +56,9 @@ packages:
   - name: software-factory/yamllint
     source: external
 
+  - name: software-factory/bashate
+    source: external
+
   - name: software-factory/python-py
     source: external
 
