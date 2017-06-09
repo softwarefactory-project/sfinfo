@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_a849a6d2",
+        "filename": "README",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 7
+      },
+      "writtenOn": "2017-06-09T04:37:15Z",
+      "side": 1,
+      "message": "It also needs python-jinja2",
+      "revId": "7fbcd54cc48f331cb6dd097f4a13344e7751a2b8",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    }
+  ]
+}
