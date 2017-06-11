@@ -30,6 +30,8 @@ packages:
     spec: included
 
 # ZuulV3
+  - name: software-factory/bubblewrap
+    source: external
   - name: software-factory/zuul3
     source: external
   - name: software-factory/nodepool3
