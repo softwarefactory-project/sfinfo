@@ -313,6 +313,8 @@ packages:
     source: external
   - name: software-factory/python-funcparserlib
     source: external
+  - name: software-factory/python-unidecode
+    source: external
 
 chrootpackages: "@buildsys-build buildsys-macros-el7 make gcc shadow-utils rpm-build python2-devel openstack-macros"
 
