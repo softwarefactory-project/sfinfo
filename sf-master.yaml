@@ -253,6 +253,14 @@ packages:
   - name: software-factory/hydrant
     source: internal
     spec: included
+  # python-grafyaml (from fedora)
+  - name: software-factory/python-grafyaml
+    source: external
+  # python-grafyaml depends
+  - name: software-factory/python-slugify
+    source: external
+  - name: software-factory/python-voluptuous
+    source: external
 
 # Epel import
   - name: software-factory/acme-tiny
