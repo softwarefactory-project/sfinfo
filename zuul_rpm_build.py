@@ -80,7 +80,7 @@ class ZuulRpmBuild(zuul_koji_lib.App):
     def check_spec(self, specfile):
         # Check specfile name == project name
         project_name = os.path.basename(os.path.dirname(specfile)) \
-            .replace('-distgit', '')
+            .replace('-distgit', '').replace('rh-python35-', '')
         spec_name = os.path.basename(specfile).replace('.spec', '')
         if project_name != spec_name:
             self.log.error("File doesn't match project's name: %s != %s" % (
@@ -124,11 +124,12 @@ class ZuulRpmBuild(zuul_koji_lib.App):
 
         self.log.info("%s: Building SRPM" % distgit)
         self.create_mock_config()
+
         # TODO: use distro-info file for -D param value
-        self.execute(["mock", "--buildsrpm", "-D", "dist .el7",
+        self.execute(["mock", "--buildsrpm",
                       "--resultdir", self.args.local_output,
                       "--spec", specfile, "--sources", distgit] +
-                     self.mock_argument)
+                     self.mock_macros + self.mock_argument)
         return True
 
     def check_postinstall_failed(self, project):
@@ -148,7 +149,7 @@ class ZuulRpmBuild(zuul_koji_lib.App):
             if self.args.clean:
                 self.execute(["mock", "--clean"])
             self.log.info("%s: Building RPM" % srpm)
-            self.execute(["mock", "--rebuild", "--postinstall",
+            self.execute(["mock", "--rebuild", "--postinstall", "-D", "scl rh-python35",
                           "--resultdir", self.args.local_output,
                           "%s/%s" % (self.args.local_output, srpm)] +
                          self.mock_argument)
@@ -231,6 +232,10 @@ class ZuulRpmBuild(zuul_koji_lib.App):
         else:
             # When source is external, use version's numbers from spec file
             version = None
+
+        self.mock_macros = ["-D", "dist .el7"]
+        if package_info.get("scl"):
+            self.mock_macros.extend(["-D", "scl %s" % package_info["scl"]])
 
         try:
             if not self.build_srpm(distgit, version):

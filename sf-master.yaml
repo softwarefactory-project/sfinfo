@@ -29,6 +29,192 @@ packages:
     source: internal
     spec: included
 
+# rh-python35 scl
+  - name: scl/rh-python35-python-idna
+    source: external
+    scl: rh-python35
+  - name: scl/rh-python35-python-asn1crypto
+    source: external
+    scl: rh-python35
+  - name: scl/rh-python35-python-cffi
+    source: external
+    scl: rh-python35
+  - name: scl/rh-python35-python-pycparser
+    source: external
+    scl: rh-python35
+  - name: scl/rh-python35-python-cryptography
+    source: external
+    scl: rh-python35
+  - name: scl/rh-python35-python-bcrypt
+    source: external
+    scl: rh-python35
+  - name: scl/rh-python35-python-pynacl
+    source: external
+    scl: rh-python35
+  - name: scl/rh-python35-python-pyasn1
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-paramiko
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-crypto
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-ansible
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-paste
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-webob
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-GitPython
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-pbr
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-lockfile
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-daemon
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-extras
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-statsd
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-voluptuous
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-gear
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-pytz
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-tzlocal
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-setuptools-scm
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-APScheduler
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-prettytable
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-kazoo
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-mako
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-PyMySQL
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-dateutil
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-alembic
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-urllib3
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-chardet
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-certifi
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-requests
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-msgpack
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-CacheControl
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-jwt
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-iso8601
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-smmap
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-gitdb
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-uritemplate
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-pyopenssl
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-github3
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-rjsmin
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-pyparsing
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-python-rcssmin
+    source: external
+    scl: rh-python35
+
+  - name: scl/rh-python35-zuul
+    source: external
+    scl: rh-python35
+
 # ZuulV3
   - name: software-factory/bubblewrap
     source: external
@@ -306,7 +492,7 @@ packages:
   - name: software-factory/python-funcparserlib
     source: external
 
-chrootpackages: "@buildsys-build buildsys-macros-el7 make gcc shadow-utils rpm-build python2-devel openstack-macros"
+chrootpackages: "@buildsys-build buildsys-macros-el7 make gcc shadow-utils rpm-build python2-devel openstack-macros scl-utils-build rh-python35 rh-python35-build rh-python35-runtime"
 
 baserepos:
   - name: centos7-os
@@ -329,6 +515,11 @@ baserepos:
     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
     gpgcheck: 1
     kojipriority: 10
+
+  - name: centos-sclo-rh
+    baseurl: http://mirror.centos.org/centos/7/sclo/x86_64/rh/
+    gpgcheck: 1
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-SCLo
 
 extrarepos:
   - name: openstack-newton
