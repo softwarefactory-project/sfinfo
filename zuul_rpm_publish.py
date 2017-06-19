@@ -47,10 +47,15 @@ class ZuulRpmPublish(zuul_koji_lib.App):
             oproject = project
             project = project[:-8]
         for package in self.distro_info["packages"]:
+            package_name = None
             if project == package["name"]:
-                return os.path.basename(project)
+                package_name = os.path.basename(project)
             if oproject == package.get("distgit", ""):
-                return os.path.basename(project)
+                package_name = os.path.basename(project)
+            if package_name:
+                if package.get("scl"):
+                    return "%s-%s" % (package["scl"], package_name)
+                return package_name
         raise RuntimeError("Couln't find project %s in distro info" % project)
 
     def download(self, url):

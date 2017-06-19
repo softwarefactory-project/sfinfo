@@ -124,11 +124,11 @@ class ZuulRpmBuild(zuul_koji_lib.App):
 
         self.log.info("%s: Building SRPM" % distgit)
         self.create_mock_config()
-        # TODO: use distro-info file for -D param value
-        self.execute(["mock", "--buildsrpm", "-D", "dist .el7",
+
+        self.execute(["mock", "--buildsrpm",
                       "--resultdir", self.args.local_output,
                       "--spec", specfile, "--sources", distgit] +
-                     self.mock_argument)
+                     self.mock_macros + self.mock_argument)
         return True
 
     def check_postinstall_failed(self, project):
@@ -151,7 +151,7 @@ class ZuulRpmBuild(zuul_koji_lib.App):
             self.execute(["mock", "--rebuild", "--postinstall",
                           "--resultdir", self.args.local_output,
                           "%s/%s" % (self.args.local_output, srpm)] +
-                         self.mock_argument)
+                         self.mock_macros + self.mock_argument)
             self.built_srpms.add(srpm)
 
     def create_mock_config(self):
@@ -231,6 +231,11 @@ class ZuulRpmBuild(zuul_koji_lib.App):
         else:
             # When source is external, use version's numbers from spec file
             version = None
+
+        # TODO: use distro-info file for the dist value
+        self.mock_macros = ["-D", "dist .el7"]
+        if package_info.get("scl"):
+            self.mock_macros.extend(["-D", "scl %s" % package_info["scl"]])
 
         try:
             if not self.build_srpm(distgit, version):
