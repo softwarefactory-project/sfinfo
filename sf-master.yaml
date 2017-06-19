@@ -29,6 +29,192 @@ packages:
     source: internal
     spec: included
 
+# rh-python35 scl
+  - name: scl/python-idna
+    source: external
+    scl: rh-python35
+  - name: scl/python-asn1crypto
+    source: external
+    scl: rh-python35
+  - name: scl/python-cffi
+    source: external
+    scl: rh-python35
+  - name: scl/python-pycparser
+    source: external
+    scl: rh-python35
+  - name: scl/python-cryptography
+    source: external
+    scl: rh-python35
+  - name: scl/python-bcrypt
+    source: external
+    scl: rh-python35
+  - name: scl/python-pynacl
+    source: external
+    scl: rh-python35
+  - name: scl/python-pyasn1
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-paramiko
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-crypto
+    source: external
+    scl: rh-python35
+
+  - name: scl/ansible
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-paste
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-webob
+    source: external
+    scl: rh-python35
+
+  - name: scl/GitPython
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-pbr
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-lockfile
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-daemon
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-extras
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-statsd
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-voluptuous
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-gear
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-pytz
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-tzlocal
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-setuptools-scm
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-APScheduler
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-prettytable
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-kazoo
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-mako
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-PyMySQL
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-dateutil
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-alembic
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-urllib3
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-chardet
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-certifi
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-requests
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-msgpack
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-CacheControl
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-jwt
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-iso8601
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-smmap
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-gitdb
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-uritemplate
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-pyopenssl
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-github3
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-rjsmin
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-pyparsing
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-rcssmin
+    source: external
+    scl: rh-python35
+
+  - name: scl/zuul
+    source: external
+    scl: rh-python35
+
 # ZuulV3
   - name: software-factory/bubblewrap
     source: external
@@ -320,7 +506,7 @@ packages:
   - name: software-factory/python-feedparser
     source: external
 
-chrootpackages: "@buildsys-build buildsys-macros-el7 make gcc shadow-utils rpm-build python2-devel openstack-macros"
+chrootpackages: "@buildsys-build buildsys-macros-el7 make gcc shadow-utils rpm-build python2-devel openstack-macros scl-utils-build rh-python35 rh-python35-build rh-python35-runtime"
 
 baserepos:
   - name: centos7-os
@@ -343,6 +529,11 @@ baserepos:
     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
     gpgcheck: 1
     kojipriority: 10
+
+  - name: centos-sclo-rh
+    baseurl: http://mirror.centos.org/centos/7/sclo/x86_64/rh/
+    gpgcheck: 1
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-SCLo
 
 extrarepos:
   - name: openstack-newton
