@@ -454,6 +454,9 @@ packages:
     source: external
   - name: software-factory/python-voluptuous
     source: external
+  # EL curator
+  - name: software-factory/elasticsearch-curator
+    source: external
 
 # Epel import
   - name: software-factory/acme-tiny
