@@ -14,10 +14,9 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-import re
 import os
 import sys
-import pwd
+import yaml
 import argparse
 
 import zuul_koji_lib
@@ -29,97 +28,107 @@ class ZuulSetDistroBranch(zuul_koji_lib.App):
         p.add_argument("--git-server", default=os.environ.get("GIT_SERVER",
                        "https://softwarefactory-project.io/r"))
         p.add_argument("--local-git-dir", default="~/koji-git")
-        p.add_argument("--username", default=pwd.getpwuid(os.getuid())[0],
-                       help="Username used to git push")
-        p.add_argument("--push-branch", action="store_true",
-                       help="Push the branch")
-        p.add_argument("--force-push-branch", action="store_true",
-                       help="Force reset the branch")
-        p.add_argument("--project",
-                       help="Restrict action to a single project")
+        p.add_argument("--project-resources", default="software-factory.yaml")
         return p
 
-    def branch(self, repo, base_dir, git_server):
-        dirname = "%s/%s" % (base_dir, repo)
+    def clone_config_repo(self, base_dir, git_server):
+        dirname = "%s/%s" % (base_dir, 'config')
         if not os.path.isdir(os.path.dirname(dirname)):
             os.mkdir(os.path.dirname(dirname), 0700)
-        repourl = "%s/%s" % (git_server, repo)
-        branch = self.distro_info["branch"]
-        bfrom = self.distro_info.get("from", "master")
+        repourl = "%s/config" % git_server
         if not os.path.isdir(dirname):
             self.log.info("Cloning %s to %s" % (repourl, dirname))
             self.execute(["git", "clone", repourl, dirname])
         else:
             self.log.info("Fetch all references of %s" % dirname)
             self.execute(["git", "fetch", "--all"], cwd=dirname)
+            self.log.info("Checkout branch master for repo config")
+            self.execute(["git", "reset", "--hard", "origin/master"],
+                         cwd=dirname)
 
-        try:
-            self.log.info("Checkout branch %s for repo %s" % (branch, repo))
-            self.execute(["git", "checkout", branch], test=True, cwd=dirname)
-            self.execute(["git", "pull"], capture=True, cwd=dirname)
-        except RuntimeError:
-            self.log.info("Failed to checkout branch %s for repo %s" % (
-                          branch, repo))
-            self.log.info("Creating branch %s for %s from %s" % (
-                          branch, repo, bfrom))
-            self.execute(["git", "branch", branch,
-                          "origin/%s" % bfrom], cwd=dirname)
-            self.execute(["git", "checkout", branch], cwd=dirname)
+    def repo_get_offset(self, raw, name):
+        offset = 0
+        # Find repos sections
+        while True:
+            if 'repos:' in raw[offset]:
+                break
+            offset += 1
+        # Find repo definition
+        while True:
+            if '%s:' % name in raw[offset]:
+                break
+            offset += 1
+        start = offset
+        # Find the end of the repo definition section
+        # based on the indent
+        # Get indent offset
+        ioffset = raw[start].find('%s:' % name)
+        while True:
+            offset += 1
+            if offset >= len(raw):
+                # EOF
+                return start, len(raw), ioffset
+            # Remove indent
+            nextl = raw[offset].strip()
+            inextl = raw[offset].find(nextl)
+            if inextl == ioffset:
+                end = offset
+                break
+        return start, end, ioffset
 
-        # self.log.info("Last commit on %s for repo %s is:" % (branch, repo))
-        # self.execute(["git", "log", "-n", "1"], cwd=dirname)
-
-    def branch_project(self, base_dir, git_server, package):
-        self.branch(package["distgit"], base_dir, git_server)
-        if package["source"] == "internal":
-            self.branch(package["name"], base_dir, git_server)
-
-    def push(self, repo, base_dir, username, force):
-        branch = self.distro_info["branch"]
-        dirname = "%s/%s" % (base_dir, repo)
-        gitreview = open("%s/.gitreview" % dirname).read()
-        gitreview_updated = open("%s/.gitreview" % dirname).read()
-        gitreview_updated = re.sub(
-            "defaultbranch=.*", "defaultbranch=%s" % branch, gitreview)
-        port = re.findall("port=.*", gitreview)[-1].replace("port=", "")
-        host = re.findall("host=.*", gitreview)[-1].replace("host=", "")
-        if gitreview_updated != gitreview:
-            self.log.info("Update .gitreview file on %s for repo %s" % (
-                          branch, repo))
-            with open("%s/.gitreview" % dirname, "w") as of:
-                of.write(gitreview_updated)
-            self.execute(["git", "commit", "-a", "-m",
-                          "Update .gitreview to %s" % branch], cwd=dirname)
-        remote = "ssh://%s@%s:%s/%s" % (username, host, port, repo)
-        if force:
-            self.log.info("Force push branch %s on repo %s" % (branch, repo))
-            self.execute(["git", "push", remote, "-f", branch], cwd=dirname)
-        else:
-            self.log.info("Push branch %s on repo %s" % (branch, repo))
-            self.execute(["git", "push", remote, branch], cwd=dirname)
-
-    def push_branch(self, base_dir, package, username, force=False):
-        self.push(package["distgit"], base_dir, username, force)
-        if package["source"] == "internal":
-            self.push(package["name"], base_dir, username, force)
+    def update_repo_def(self, resources, raw_resources, name, branch, bfrom):
+        orepo = resources['resources']['repos'].get(name)
+        if not orepo:
+            self.log.info(
+                "Repo %s not found in the current resources file. Skip !" % (
+                    name))
+            return
+        start, end, ioffset = self.repo_get_offset(
+                raw_resources, name)
+        # Remove old repo section
+        raw_resources[start:end] = []
+        repo = {}
+        repo[name] = orepo
+        repo[name].setdefault('branches', {})
+        repo[name]['branches'][branch] = bfrom
+        repo_raw = yaml.dump(repo, default_flow_style=False).split('\n')
+        repo_raw = ['%s%s\n' % (" " * ioffset, l) for l in repo_raw]
+        del repo_raw[-1]
+        # Insert new repo section
+        raw_resources[start:start] = repo_raw
 
     def main(self, args):
         base_dir = os.path.expanduser(args.local_git_dir)
         if not os.path.isdir(base_dir):
             os.mkdir(base_dir, 0700)
-        if args.project:
-            packages = [pkg for pkg in self.distro_info["packages"] if
-                        pkg['name'] == args.project]
-        else:
-            packages = self.distro_info["packages"]
+        # Get repos list to act on
+        packages = self.distro_info["packages"]
+        bfrom = self.distro_info.get("from", "master")
+        branch = self.distro_info.get("branch")
+        if not branch:
+            self.log.error("Branch is missing from the distro file")
+            sys.exit(1)
+        repos_names = []
         for package in packages:
-            self.branch_project(base_dir, args.git_server, package)
-            if args.push_branch:
-                if not os.path.isfile(os.path.expanduser("~/.gitconfig")):
-                    self.log.error("Please defines a ~/.gitconfig file")
-                    sys.exit(1)
-                self.push_branch(base_dir, package, args.username,
-                                 args.force_push_branch)
+            if package['source'] == 'internal':
+                repos_names.append(package['name'])
+                repos_names.append(package['distgit'])
+            else:
+                repos_names.append(package['distgit'])
+        # Get and load the resources file
+        self.clone_config_repo(base_dir, args.git_server)
+        p_resources_path = os.path.join(
+            base_dir, 'config', 'resources', args.project_resources)
+        raw_resources = file(p_resources_path).readlines()
+        resources = yaml.load(file(p_resources_path))
+        for name in repos_names:
+            self.update_repo_def(
+                resources,
+                raw_resources,
+                name,
+                branch,
+                bfrom)
+        file(p_resources_path, 'w').writelines(raw_resources)
 
 
 if __name__ == "__main__":
