@@ -86,6 +86,8 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
             package["nvr"] = "%s-%s-%s" % (os.path.basename(package["name"]),
                                            package["version"],
                                            package["release"])
+            if package.get("scl"):
+                package["nvr"] = "%s-%s" % (package["scl"], package["nvr"])
             self.log.info("%(name)s: %(nvr)s" % package)
 
     def discover_nvr_from_koji(self, packages, tag):

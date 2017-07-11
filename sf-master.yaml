@@ -225,21 +225,7 @@ packages:
 # ZuulV3
   - name: software-factory/bubblewrap
     source: external
-  - name: software-factory/zuul3
-    source: external
   - name: software-factory/nodepool3
-    source: external
-  - name: software-factory/python-github3
-    source: external
-  - name: software-factory/python-uritemplate
-    source: external
-  - name: software-factory/python-smmap
-    source: external
-  - name: software-factory/python-gitdb
-    source: external
-  - name: software-factory/GitPython
-    source: external
-  - name: software-factory/python-CacheControl
     source: external
   - name: software-factory/python-os-client-config
     source: external
@@ -451,8 +437,6 @@ packages:
     source: external
   # python-grafyaml depends
   - name: software-factory/python-slugify
-    source: external
-  - name: software-factory/python-voluptuous
     source: external
   # EL curator
   - name: software-factory/elasticsearch-curator
