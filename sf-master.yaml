@@ -30,6 +30,26 @@ packages:
     spec: included
 
 # rh-python35 scl
+  - name: scl/python-multidict
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-async-timeout
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-yarl
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-aiohttp
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-uvloop
+    source: external
+    scl: rh-python35
+
   - name: scl/python-idna
     source: external
     scl: rh-python35
