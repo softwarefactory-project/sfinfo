@@ -124,11 +124,13 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
         missing_packages = []
         tag_content = self.execute(["koji", "list-tagged", tag], capture=True)
         for package in packages:
+            name = os.path.basename(package["name"])
+            if package.get("scl"):
+                name = "%s-%s" % (package["scl"], name)
             if candidate and not package["valid_nvr"]:
-                missing_packages.append(package["name"])
+                missing_packages.append(name)
                 continue
             # Check if package in tag
-            name = os.path.basename(package["name"])
             if package["nvr"] in tag_content:
                 self.log.info("%s already in %s" % (package["nvr"], tag))
                 package["populated"] = True
