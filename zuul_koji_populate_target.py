@@ -95,9 +95,13 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
         tag_content = map(lambda x: x.split()[0],
                           self.execute(["koji", "list-tagged", tag],
                                        capture=True).splitlines()[2:])
-        rpms = map(lambda x: (x, splitFilename(x)), tag_content)
+        # Remove 9999 package
+        rpms = map(lambda x: (x, splitFilename(x)),
+                   filter(lambda x: "9999" not in x, tag_content))
         for package in packages:
             name = os.path.basename(package["name"])
+            if package.get("scl"):
+                name = "%s-%s" % (package["scl"], name)
             pkgs = [rpm for rpm in rpms if rpm[1][0] == name]
             if len(pkgs) > 1:
                 pkg = most_recent(pkgs)
