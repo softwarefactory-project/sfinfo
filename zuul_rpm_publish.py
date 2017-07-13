@@ -98,7 +98,8 @@ class ZuulRpmPublish(zuul_koji_lib.App):
             print "Build failed but if it was because of NVR already built"
             print "then try to add it to the tag."
             self.execute(["koji", "--authtype=ssl", "tag-build",
-                          self.distro_info["koji-target"], to_build_nvr])
+                          self.distro_info["koji-target"],
+                          srpm.replace('.src.rpm', '')])
 
 
 if __name__ == "__main__":
