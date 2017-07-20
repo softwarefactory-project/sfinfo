@@ -3,7 +3,7 @@ name: software-factory
 
 koji-target: sf-2.6-el7
 arch: x86_64
-koji-url: http://koji.softwarefactory-project.io/kojifiles/repos/sf-2.6-el7-build/latest/x86_64/
+koji-url: http://softwarefactory-project.io/kojifiles/repos/sf-2.6-el7-build/latest/x86_64/
 branch: 2.6
 packages:
   - name: software-factory/sf-web-assets
