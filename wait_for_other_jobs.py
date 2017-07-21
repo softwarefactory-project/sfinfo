@@ -15,13 +15,11 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import argparse
 import os
 import sys
 import time
 import requests
-
-
-round_delay = 20
 
 
 def log(msg):
@@ -30,6 +28,7 @@ def log(msg):
 
 
 def look_for_my_change(gate, cid):
+    first = True
     for queue in gate['change_queues']:
         if queue['heads']:
             for head in queue['heads']:
@@ -37,7 +36,9 @@ def look_for_my_change(gate, cid):
                     if change['id'].split(',')[0] == cid:
                         log("Found change in shared queue: " +
                             "%s" % queue['name'])
+                        change['first'] = first
                         return change
+                    first = False
 
 
 def check_jobs_status(my_change):
@@ -60,9 +61,9 @@ def check_jobs_status(my_change):
     return status
 
 
-def fetch_get_pipeline_status(pipeline_name):
+def fetch_get_pipeline_status(url, pipeline_name):
     log("Fetching Zuul status")
-    r = requests.get("https://softwarefactory-project.io/zuul/status.json").json()
+    r = requests.get(url).json()
     return [pipeline for pipeline in r['pipelines'] if
             pipeline['name'] == pipeline_name][0]
 
@@ -78,18 +79,24 @@ def check_non_voting(status, my_change):
 
 
 if __name__ == "__main__":
+    p = argparse.ArgumentParser()
+    p.add_argument("--url", default="https://softwarefactory-project.io/zuul/status.json")
+    p.add_argument("--round-delay", default=20, type=int)
+    p.add_argument("--independent", action='store_true')
+    args = p.parse_args()
     myname = os.environ.get('JOB_NAME', os.environ["WORKSPACE"].split('/')[-1])
-    change = os.environ['ZUUL_CHANGE']
+    change = os.environ.get('ZUUL_CHANGE', os.environ.get('ZUUL_COMMIT'))
     pipeline_name = os.environ['ZUUL_PIPELINE']
     while True:
-        log("")
-        gate = fetch_get_pipeline_status(pipeline_name)
+        log("Looking for my change in %s" % pipeline_name)
+        gate = fetch_get_pipeline_status(args.url, pipeline_name)
         my_change = look_for_my_change(gate, change)
         if not my_change:
             log("Error. Change does not exists !")
             sys.exit(1)
-        if my_change['item_ahead'] is None:
-            log("Found current jobs running along with me")
+        if (args.independent and my_change['first']) or \
+               (not args.independent and my_change['item_ahead'] is None):
+            log("Check current jobs running along with me")
             status = check_jobs_status(my_change)
             if len([v for v in status.values() if v == 0]) == \
                len(my_change['jobs']) - 1:
@@ -97,7 +104,7 @@ if __name__ == "__main__":
                 break
             elif len([v for v in status.values() if v == 2]):
                 log("At least one job is in progress. Waiting ...")
-                time.sleep(round_delay)
+                time.sleep(args.round_delay)
                 continue
             else:
                 if check_non_voting(status, my_change):
@@ -108,4 +115,4 @@ if __name__ == "__main__":
                     sys.exit(1)
         else:
             log("Change is not ahead of the shared queue. waiting ...")
-            time.sleep(round_delay)
+            time.sleep(args.round_delay)
