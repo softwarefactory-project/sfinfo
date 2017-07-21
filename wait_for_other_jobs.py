@@ -78,7 +78,7 @@ def check_non_voting(status, my_change):
 
 
 if __name__ == "__main__":
-    myname = os.environ['JOB_NAME']
+    myname = os.environ.get('JOB_NAME', os.environ["WORKSPACE"].split('/')[-1])
     change = os.environ['ZUUL_CHANGE']
     pipeline_name = os.environ['ZUUL_PIPELINE']
     while True:
