@@ -60,9 +60,9 @@ def check_jobs_status(my_change):
     return status
 
 
-def fetch_get_pipeline_status(host, pipeline_name):
+def fetch_get_pipeline_status(pipeline_name):
     log("Fetching Zuul status")
-    r = requests.get("%s/status.json" % host).json()
+    r = requests.get("https://softwarefactory-project.io/zuul/status.json").json()
     return [pipeline for pipeline in r['pipelines'] if
             pipeline['name'] == pipeline_name][0]
 
@@ -78,15 +78,12 @@ def check_non_voting(status, my_change):
 
 
 if __name__ == "__main__":
-    host = os.environ['ZUUL_URL'].rstrip('/p')
-    if host.find('/p/') != -1:
-        host = host[:host.find('/p/')]
     myname = os.environ['JOB_NAME']
     change = os.environ['ZUUL_CHANGE']
     pipeline_name = os.environ['ZUUL_PIPELINE']
     while True:
         log("")
-        gate = fetch_get_pipeline_status(host, pipeline_name)
+        gate = fetch_get_pipeline_status(pipeline_name)
         my_change = look_for_my_change(gate, change)
         if not my_change:
             log("Error. Change does not exists !")
