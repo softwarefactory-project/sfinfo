@@ -33,19 +33,21 @@ class ZuulKojiMash(zuul_koji_lib.App):
 tag = %(koji-target)s
 arches = %(arch)s
 inherit = False
-debuginfo = False
+debuginfo = True
 
 [%(koji-target)s-candidate]
 tag = %(koji-target)s-candidate
 arches = %(arch)s
 inherit = False
-debuginfo = False
+debuginfo = True
 
 [%(koji-target)s-release]
 tag = %(koji-target)s-release
 arches = %(arch)s
 inherit = False
-debuginfo = False
+debuginfo = True
+strict_keys = True
+keys = %(signing_key)s
 """ % self.distro_info)
         self.execute(["sudo", "mv", mash_file, "/etc/mash"])
         if args.build:
