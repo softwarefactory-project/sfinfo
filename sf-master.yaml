@@ -378,6 +378,8 @@ packages:
     source: external
   - name: software-factory/lodgeit
     source: external
+  - name: software-factory/etherpad
+    source: external
   - name: software-factory/mod_auth_pubtkt
     source: external
   - name: software-factory/umurmur
