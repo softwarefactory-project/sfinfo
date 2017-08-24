@@ -378,7 +378,7 @@ packages:
     source: external
   - name: software-factory/lodgeit
     source: external
-  - name: software-factory/etherpad
+  - name: software-factory/etherpad-lite
     source: external
   - name: software-factory/mod_auth_pubtkt
     source: external
