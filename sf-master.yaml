@@ -35,6 +35,10 @@ packages:
     source: external
     scl: rh-python35
 
+  - name: scl/python-setuptools
+    source: external
+    scl: rh-python35
+
   - name: scl/python-multidict
     source: external
     scl: rh-python35
@@ -382,6 +386,28 @@ packages:
   - name: scl/python-shade
     source: external
     scl: rh-python35
+
+# diskimage-builder
+  - name: scl/python-flake8
+    source: external
+    scl: rh-python35
+  - name: scl/python-mccabe
+    source: external
+    scl: rh-python35
+  - name: scl/python-pycodestyle
+    source: external
+    scl: rh-python35
+  - name: scl/python-networkx
+    source: external
+    scl: rh-python35
+  - name: scl/pyflakes
+    source: external
+    scl: rh-python35
+  - name: scl/diskimage-builder
+    source: external
+    scl: rh-python35
+
+# nodepool
   - name: scl/nodepool
     source: external
     scl: rh-python35
