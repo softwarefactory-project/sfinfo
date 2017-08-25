@@ -31,6 +31,10 @@ packages:
     spec: included
 
 # rh-python35 scl
+  - name: scl/enable-py3
+    source: external
+    scl: rh-python35
+
   - name: scl/python-multidict
     source: external
     scl: rh-python35
@@ -240,6 +244,145 @@ packages:
     scl: rh-python35
 
   - name: scl/zuul
+    source: external
+    scl: rh-python35
+
+#os-client-config
+  - name: scl/python-stevedore
+    source: external
+    scl: rh-python35
+  - name: scl/python-requestsexceptions
+    source: external
+    scl: rh-python35
+  - name: scl/python-keystoneauth1
+    source: external
+    scl: rh-python35
+  - name: scl/python-appdirs
+    source: external
+    scl: rh-python35
+  - name: scl/python-wrapt
+    source: external
+    scl: rh-python35
+  - name: scl/python-positional
+    source: external
+    scl: rh-python35
+  - name: scl/python-os-client-config
+    source: external
+    scl: rh-python35
+
+#keystoneclient
+  - name: scl/python-debtcollector
+    source: external
+    scl: rh-python35
+  - name: scl/python-babel
+    source: external
+    scl: rh-python35
+  - name: scl/python-oslo-i18n
+    source: external
+    scl: rh-python35
+  - name: scl/python-netaddr
+    source: external
+    scl: rh-python35
+  - name: scl/python-rfc3986
+    source: external
+    scl: rh-python35
+  - name: scl/python-oslo-config
+    source: external
+    scl: rh-python35
+  - name: scl/python-oslo-serialization
+    source: external
+    scl: rh-python35
+  - name: scl/python-monotonic
+    source: external
+    scl: rh-python35
+  - name: scl/python-oslo-utils
+    source: external
+    scl: rh-python35
+  - name: scl/python-keystoneclient
+    source: external
+    scl: rh-python35
+
+#openstackclient
+  - name: scl/python-warlock
+    source: external
+    scl: rh-python35
+  - name: scl/python-osc-lib
+    source: external
+    scl: rh-python35
+  - name: scl/python-dogpile-cache
+    source: external
+    scl: rh-python35
+  - name: scl/python-vcversioner
+    source: external
+    scl: rh-python35
+  - name: scl/python-jsonschema
+    source: external
+    scl: rh-python35
+  - name: scl/python-glanceclient
+    source: external
+    scl: rh-python35
+  - name: scl/python-novaclient
+    source: external
+    scl: rh-python35
+  - name: scl/python-cinderclient
+    source: external
+    scl: rh-python35
+  - name: scl/python-openstackclient
+    source: external
+    scl: rh-python35
+  - name: scl/python-deprecation
+    source: external
+    scl: rh-python35
+  - name: scl/python-openstacksdk
+    source: external
+    scl: rh-python35
+
+#ironicclient
+  - name: scl/python-pyperclip
+    source: external
+    scl: rh-python35
+  - name: scl/python-cliff
+    source: external
+    scl: rh-python35
+  - name: scl/python-cmd2
+    source: external
+    scl: rh-python35
+  - name: scl/python-unicodecsv
+    source: external
+    scl: rh-python35
+  - name: scl/python-simplejson
+    source: external
+    scl: rh-python35
+  - name: scl/python-ironicclient
+    source: external
+    scl: rh-python35
+
+#shade
+  - name: scl/python-jsonpointer
+    source: external
+    scl: rh-python35
+  - name: scl/python-jsonpatch
+    source: external
+    scl: rh-python35
+  - name: scl/python-jmespath
+    source: external
+    scl: rh-python35
+  - name: scl/python-decorator
+    source: external
+    scl: rh-python35
+  - name: scl/python-munch
+    source: external
+    scl: rh-python35
+  - name: scl/python-ipaddress
+    source: external
+    scl: rh-python35
+  - name: scl/python-netifaces
+    source: external
+    scl: rh-python35
+  - name: scl/python-shade
+    source: external
+    scl: rh-python35
+  - name: scl/nodepool
     source: external
     scl: rh-python35
 
