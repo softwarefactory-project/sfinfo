@@ -39,6 +39,10 @@ packages:
     source: external
     scl: rh-python35
 
+  - name: scl/python-pytest-runner
+    source: external
+    scl: rh-python35
+
   - name: scl/python-multidict
     source: external
     scl: rh-python35
@@ -409,6 +413,74 @@ packages:
 
 # nodepool
   - name: scl/nodepool
+    source: external
+    scl: rh-python35
+
+# ara
+  - name: scl/python-jinja2
+    source: external
+    scl: rh-python35
+  - name: scl/python-testtools
+    source: external
+    scl: rh-python35
+  - name: scl/python-subunit
+    source: external
+    scl: rh-python35
+  - name: scl/python-pygments
+    source: external
+    scl: rh-python35
+  - name: scl/python-junit-xml
+    source: external
+    scl: rh-python35
+  - name: scl/python-pyfakefs
+    source: external
+    scl: rh-python35
+  - name: scl/python-itsdangerous
+    source: external
+    scl: rh-python35
+  - name: scl/python-click
+    source: external
+    scl: rh-python35
+  - name: scl/python-werkzeug
+    source: external
+    scl: rh-python35
+  - name: scl/python-flask
+    source: external
+    scl: rh-python35
+  - name: scl/python-flask-sqlalchemy
+    source: external
+    scl: rh-python35
+  - name: scl/python-flask-frozen
+    source: external
+    scl: rh-python35
+  - name: scl/python-alembic
+    source: external
+    scl: rh-python35
+  - name: scl/python-flask-migrate
+    source: external
+    scl: rh-python35
+  - name: scl/python-flask-script
+    source: external
+    scl: rh-python35
+  - name: scl/python-XStatic
+    source: external
+    scl: rh-python35
+  - name: scl/python-XStatic-Bootstrap-SCSS
+    source: external
+    scl: rh-python35
+  - name: scl/python-XStatic-DataTables
+    source: external
+    scl: rh-python35
+  - name: scl/python-XStatic-jQuery
+    source: external
+    scl: rh-python35
+  - name: scl/python-XStatic-Patternfly
+    source: external
+    scl: rh-python35
+  - name: scl/python-XStatic-Patternfly-Bootstrap-Treeview
+    source: external
+    scl: rh-python35
+  - name: scl/ara
     source: external
     scl: rh-python35
 

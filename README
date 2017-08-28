@@ -1,5 +1,10 @@
 # zuul koji toolbox
 
+## On koji, to enable sf-ci to create package:
+Add to /etc/koji-hub/hub.conf, [policy] section
+  package_list = all :: allow
+Then restart httpd
+
 ## Prepare runtime for zuul_rpm_build.py
 sudo yum install mock rpmdevtools createrepo python-jinja2
 sudo usermod -a -G mock $SUDO_USER
