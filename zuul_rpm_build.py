@@ -312,7 +312,6 @@ class ZuulRpmBuild(zuul_koji_lib.App):
                     self.execute(["createrepo", "."],
                                  cwd=self.args.local_output)
             except RuntimeError, e:
-                raise
                 self.log.error(e)
                 sys.exit(1)
 
