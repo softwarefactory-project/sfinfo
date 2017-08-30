@@ -289,12 +289,12 @@ class ZuulRpmBuild(zuul_koji_lib.App):
         if os.path.isdir(self.args.local_output):
             if self.args.clean:
                 shutil.rmtree(self.args.local_output)
-                os.mkdir(self.args.local_output, 0700)
+                os.mkdir(self.args.local_output, 0o700)
             else:
                 self.log.info("Skipping cleaning of intermediary repo: %s" %
                               self.args.local_output)
         else:
-            os.mkdir(self.args.local_output, 0700)
+            os.mkdir(self.args.local_output, 0o700)
 
         # Clean logs
         for logfile in glob.glob("%s/*.log" % self.args.local_output):
@@ -311,8 +311,9 @@ class ZuulRpmBuild(zuul_koji_lib.App):
                 if self.build(project):
                     self.execute(["createrepo", "."],
                                  cwd=self.args.local_output)
-            except RuntimeError, e:
-                self.log.error(e)
+            except RuntimeError:
+                raise
+                #self.log.error(e)
                 sys.exit(1)
 
 

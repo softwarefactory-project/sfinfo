@@ -562,6 +562,9 @@ packages:
   - name: software-factory/python-nose-timer
     source: external
 
+  - name: software-factory/python-testinfra
+    source: external
+
 
 # Mirror2swift
   - name: software-factory/mirror2swift

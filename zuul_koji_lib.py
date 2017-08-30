@@ -80,13 +80,13 @@ class App:
     def _load_distro_info(self, path):
         if not os.path.isfile(path):
             raise RuntimeError()
-        self.distro_info = yaml.safe_load(file(path))
+        self.distro_info = yaml.safe_load(open(path))
         if "inherit" in self.distro_info:
             loc = os.path.dirname(path)
             ipath = os.path.join(loc, self.distro_info["inherit"])
             if not os.path.isfile(ipath):
                 raise RuntimeError("Inherited file not found in %s" % ipath)
-            base_distro_info = yaml.safe_load(file(ipath))
+            base_distro_info = yaml.safe_load(open(ipath))
             base_distro_info.update(self.distro_info)
             self.distro_info = base_distro_info
             self.log.debug("Found inheritance from distro %s" % ipath)
