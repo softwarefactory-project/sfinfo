@@ -30,6 +30,10 @@ packages:
     source: internal
     spec: included
 
+  - name: software-factory/sf-selinux
+    source: internal
+    spec: included
+
 # rh-python35 scl
   - name: scl/enable-py3
     source: external
