@@ -171,6 +171,10 @@ packages:
     source: external
     scl: rh-python35
 
+  - name: scl/python-paho-mqtt
+    source: external
+    scl: rh-python35
+
   - name: scl/python-kazoo
     source: external
     scl: rh-python35
