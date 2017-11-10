@@ -72,6 +72,7 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
     def discover_nvr_from_repo(self, packages, base_dir):
         self.log.info("===== Discovering package from repo")
         for package in packages:
+            self.log.info("===== Processing %s" % package['name'])
             specfile = "%s/%s/%s.spec" % (base_dir, package["distgit"],
                                           os.path.basename(package["name"]))
             if package["source"] == "internal":
@@ -110,7 +111,7 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
                 pkg = pkgs[0]
             else:
                 package["valid_nvr"] = False
-                self.log.info("Package %s doesn't exists in %s" % (name, tag))
+                self.log.warning("Package %s doesn't exists in %s" % (name, tag))
                 continue
             package["nvr"] = pkg[0]
             v = pkg[1][1]
