@@ -110,7 +110,7 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
                 pkg = pkgs[0]
             else:
                 package["valid_nvr"] = False
-                self.log.info("Package %s doesn't exists in %s" % (name, tag))
+                self.log.warning("Package %s doesn't exists in %s" % (name, tag))
                 continue
             package["nvr"] = pkg[0]
             v = pkg[1][1]

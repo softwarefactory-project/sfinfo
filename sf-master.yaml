@@ -461,9 +461,6 @@ packages:
   - name: scl/python-flask-frozen
     source: external
     scl: rh-python35
-  - name: scl/python-alembic
-    source: external
-    scl: rh-python35
   - name: scl/python-flask-migrate
     source: external
     scl: rh-python35
