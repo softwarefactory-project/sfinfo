@@ -6,10 +6,11 @@ Add to /etc/koji-hub/hub.conf, [policy] section
 Then restart httpd
 
 ## Prepare runtime for zuul_rpm_build.py
-sudo yum install mock rpmdevtools createrepo python-jinja2
+sudo yum install mock rpm-build rpmdevtools createrepo python-jinja2
 sudo usermod -a -G mock $SUDO_USER
 sudo mkdir /var/lib/sf
 sudo ln -s /home/$SUDO_USER/zuul-rpm-build /var/lib/sf/zuul-rpm-build
+sude sed -i 's/\(%dist .el7\).*/\1/' /etc/rpm/macros.dist
 
 ## Packaging ci:
 
