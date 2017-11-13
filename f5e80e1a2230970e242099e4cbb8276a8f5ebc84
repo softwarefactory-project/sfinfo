@@ -1,0 +1,8 @@
+Code-Review+2: Fabien Boucher <fboucher@redhat.com>
+Workflow+1: Fabien Boucher <fboucher@redhat.com>
+Verified+2: Jenkins CI <jenkins@softwarefactory-project.io>
+Submitted-by: Jenkins CI <jenkins@softwarefactory-project.io>
+Submitted-at: Mon, 13 Nov 2017 14:01:13 +0000
+Reviewed-on: https://softwarefactory-project.io/r/10176
+Project: software-factory/sfinfo
+Branch: refs/heads/master
