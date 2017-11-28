@@ -1,0 +1,8 @@
+Code-Review+2: Matthieu Huin <mhuin@redhat.com>
+Workflow+1: Matthieu Huin <mhuin@redhat.com>
+Verified+2: Jenkins CI <jenkins@softwarefactory-project.io>
+Submitted-by: Jenkins CI <jenkins@softwarefactory-project.io>
+Submitted-at: Tue, 28 Nov 2017 11:46:08 +0000
+Reviewed-on: https://softwarefactory-project.io/r/10423
+Project: software-factory/sfinfo
+Branch: refs/heads/master
