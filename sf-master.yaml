@@ -702,6 +702,9 @@ packages:
   # firehooks dependencies
   - name: software-factory/python-taiga
     source: external
+  - name: software-factory/firehooks
+    source: internal
+    spec: included
   # python-grafyaml (from fedora)
   - name: software-factory/python-grafyaml
     source: external
