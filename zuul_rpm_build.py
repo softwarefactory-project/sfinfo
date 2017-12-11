@@ -313,7 +313,7 @@ class ZuulRpmBuild(zuul_koji_lib.App):
                                  cwd=self.args.local_output)
             except RuntimeError:
                 raise
-                #self.log.error(e)
+                # self.log.error(e)
                 sys.exit(1)
 
 

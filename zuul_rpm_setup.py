@@ -59,7 +59,7 @@ priority=%(kojipriority)s
                     "baseurl": self.distro_info['koji-url'],
                     "gpgkey": '',
                     "gpgcheck": 0,
-                    "kojipriority": 110,}
+                    "kojipriority": 110}
             self.write_repo(of, conf)
             for extrepo in self.distro_info['extrarepos']:
                 self.write_repo(of, extrepo)

@@ -1,0 +1,9 @@
+---
+- project:
+    name: software-factory/sfinfo
+    check:
+      jobs:
+        - linters
+    gate:
+      jobs:
+        - linters
