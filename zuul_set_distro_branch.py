@@ -84,7 +84,7 @@ class ZuulSetDistroBranch(zuul_koji_lib.App):
                     name))
             return
         start, end, ioffset = self.repo_get_offset(
-                raw_resources, name)
+            raw_resources, name)
         # Remove old repo section
         raw_resources[start:end] = []
         repo = {}

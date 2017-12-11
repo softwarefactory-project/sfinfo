@@ -16,8 +16,6 @@
 
 import argparse
 import difflib
-import re
-import os
 
 import rpm
 from rpmUtils.miscutils import splitFilename
@@ -64,7 +62,6 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
         dst = self.list_tag(args.dst_tag)
         for diff in difflib.ndiff(src, dst):
             print(diff)
-
 
 
 if __name__ == "__main__":

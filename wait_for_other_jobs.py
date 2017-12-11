@@ -80,7 +80,8 @@ def check_non_voting(status, my_change):
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
-    p.add_argument("--url", default="https://softwarefactory-project.io/zuul/status.json")
+    p.add_argument("--url", default="https://softwarefactory-project.io/"
+                   "zuul/status.json")
     p.add_argument("--round-delay", default=20, type=int)
     p.add_argument("--independent", action='store_true')
     args = p.parse_args()
@@ -95,7 +96,7 @@ if __name__ == "__main__":
             log("Error. Change does not exists !")
             sys.exit(1)
         if (args.independent and my_change['first']) or \
-               (not args.independent and my_change['item_ahead'] is None):
+           (not args.independent and my_change['item_ahead'] is None):
             log("Check current jobs running along with me")
             status = check_jobs_status(my_change)
             if len([v for v in status.values() if v == 0]) == \

@@ -21,6 +21,7 @@ import tempfile
 import argparse
 import zuul_koji_lib
 
+
 class ZuulKojiSignRelease(zuul_koji_lib.App):
     def usage(self):
         return argparse.ArgumentParser(description='Zuul Koji Sign release')
@@ -58,7 +59,8 @@ class ZuulKojiSignRelease(zuul_koji_lib.App):
                     shutil.copy(path, self.td)
                     copied = True
             if not copied:
-                self.log.error("Unable to copy %s in the temp directory" % path)
+                self.log.error("Unable to copy %s in the temp directory" %
+                               path)
                 raise RuntimeError
 
     def write_nvr_list_to_sign(self):
