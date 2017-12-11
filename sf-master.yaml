@@ -7,17 +7,10 @@ arch: x86_64
 koji-url: https://softwarefactory-project.io/kojifiles/repos/sf-master-el7-build/latest/x86_64/
 branch: master
 packages:
-  - name: software-factory/sf-web-assets
-    source: external
-  - name: software-factory/zuul-swift-upload
-    source: external
-  - name: software-factory/shade
-    source: external
-  - name: software-factory/nodepool
-    source: external
-  - name: software-factory/zuul
-    source: external
-
+  # ===========================================================================
+  # Services packages
+  # ===========================================================================
+  # SF internals
   - name: software-factory/sf-release
     source: internal
     spec: included
@@ -30,18 +23,179 @@ packages:
     source: internal
     spec: included
 
-  - name: software-factory/sf-selinux
+  - name: software-factory/python-sfmanager
     source: internal
     spec: included
 
-# rh-python35 scl
+  - name: software-factory/managesf
+    source: internal
+    spec: included
+
+  - name: software-factory/pysflib
+    source: internal
+    distgit: software-factory/pysflib-distgit
+
+  - name: software-factory/cauth
+    source: internal
+    distgit: software-factory/cauth-distgit
+
+  - name: software-factory/sf-web-assets
+    source: external
+
+  - name: software-factory/sf-elements
+    source: internal
+    spec: included
+
+  # Auth
+  - name: software-factory/mod_auth_pubtkt
+    source: external
+
+  # System bits
+  - name: software-factory/haveged
+    source: external
+
+  - name: software-factory/lecm
+    source: external
+
+  - name: software-factory/monit
+    source: external
+
+  - name: software-factory/ara
+    source: external
+
+  - name: scl/python-shade
+    source: external
+    scl: rh-python35
+
+  - name: software-factory/wait4service
+    source: internal
+    spec: included
+
+#  - name: software-factory/sf-selinux
+#    source: internal
+#    spec: included
+
+  # Zuul
+  - name: scl/zuul
+    source: external
+    scl: rh-python35
+
+  - name: scl/zuul-jobs
+    source: external
+    scl: rh-python35
+
+  - name: scl/ara
+    source: external
+    scl: rh-python35
+
+  - name: software-factory/bubblewrap
+    source: external
+
+  - name: software-factory/zookeeper-lite
+    source: external
+
+  # Nodepool
+  - name: scl/diskimage-builder
+    source: external
+    scl: rh-python35
+
+  - name: scl/nodepool
+    source: external
+    scl: rh-python35
+
+  # Log server
+  - name: software-factory/os-loganalyze
+    source: external
+
+  # MQTT
+  - name: software-factory/mosquitto
+    source: external
+
+  - name: software-factory/germqtt
+    source: external
+
+  - name: software-factory/firehooks
+    source: internal
+    spec: included
+
+  # Status
+  - name: software-factory/graphite-api
+    source: external
+
+  - name: software-factory/grafyaml
+    source: external
+
+  # Gerrit
+  - name: software-factory/gerrit
+    source: external
+
+  - name: software-factory/gitweb-theme-kogakure
+    source: external
+
+  - name: software-factory/git-review
+    source: external
+
+  - name: software-factory/gerritbot
+    source: external
+
+  # RepoXplorer
+  - name: software-factory/repoxplorer
+    source: external
+
+  # Storyboard
+  - name: software-factory/storyboard
+    source: external
+
+  - name: software-factory/storyboard-webclient
+    source: external
+
+  # Extra service
+  - name: software-factory/lodgeit
+    source: external
+
+  - name: software-factory/etherpad
+    source: external
+
+  - name: software-factory/umurmur
+    source: external
+
+  - name: software-factory/mirror2swift
+    source: external
+
+
+  # Test tools
+  - name: software-factory/ansible-lint
+    source: external
+
+  - name: software-factory/yamllint
+    source: external
+
+  - name: software-factory/python-restructuredtext-lint
+    source: external
+
+  - name: software-factory/doc8
+    source: external
+
+  - name: software-factory/bashate
+    source: external
+
+  - name: software-factory/python-tox
+    source: external
+
+  - name: software-factory/python-pelican
+    source: external
+
+  # ===========================================================================
+  # Requirements
+  # ===========================================================================
   - name: scl/enable-py3
     source: external
     scl: rh-python35
 
-  - name: scl/python-setuptools
-    source: external
-    scl: rh-python35
+    # TODO: check if this is still needed
+    #  - name: scl/python-setuptools
+    #    source: external
+    #    scl: rh-python35
 
   - name: scl/python-pytest-runner
     source: external
@@ -259,15 +413,7 @@ packages:
     source: external
     scl: rh-python35
 
-  - name: scl/zuul
-    source: external
-    scl: rh-python35
-
-  - name: scl/zuul-jobs
-    source: external
-    scl: rh-python35
-
-#os-client-config
+  #os-client-config
   - name: scl/python-stevedore
     source: external
     scl: rh-python35
@@ -290,7 +436,7 @@ packages:
     source: external
     scl: rh-python35
 
-#keystoneclient
+  #keystoneclient
   - name: scl/python-debtcollector
     source: external
     scl: rh-python35
@@ -322,7 +468,7 @@ packages:
     source: external
     scl: rh-python35
 
-#openstackclient
+  #openstackclient
   - name: scl/python-warlock
     source: external
     scl: rh-python35
@@ -341,12 +487,6 @@ packages:
   - name: scl/python-glanceclient
     source: external
     scl: rh-python35
-  - name: scl/python-novaclient
-    source: external
-    scl: rh-python35
-  - name: scl/python-cinderclient
-    source: external
-    scl: rh-python35
   - name: scl/python-openstackclient
     source: external
     scl: rh-python35
@@ -357,7 +497,6 @@ packages:
     source: external
     scl: rh-python35
 
-#ironicclient
   - name: scl/python-pyperclip
     source: external
     scl: rh-python35
@@ -373,11 +512,8 @@ packages:
   - name: scl/python-simplejson
     source: external
     scl: rh-python35
-  - name: scl/python-ironicclient
-    source: external
-    scl: rh-python35
 
-#shade
+  #shade
   - name: scl/python-jsonpointer
     source: external
     scl: rh-python35
@@ -399,11 +535,8 @@ packages:
   - name: scl/python-netifaces
     source: external
     scl: rh-python35
-  - name: scl/python-shade
-    source: external
-    scl: rh-python35
 
-# diskimage-builder
+  # diskimage-builder
   - name: scl/python-flake8
     source: external
     scl: rh-python35
@@ -419,16 +552,7 @@ packages:
   - name: scl/pyflakes
     source: external
     scl: rh-python35
-  - name: scl/diskimage-builder
-    source: external
-    scl: rh-python35
 
-# nodepool
-  - name: scl/nodepool
-    source: external
-    scl: rh-python35
-
-# ara
   - name: scl/python-jinja2
     source: external
     scl: rh-python35
@@ -487,9 +611,6 @@ packages:
     source: external
     scl: rh-python35
   - name: scl/python-XStatic-Patternfly-Bootstrap-Treeview
-    source: external
-    scl: rh-python35
-  - name: scl/ara
     source: external
     scl: rh-python35
 
@@ -553,39 +674,6 @@ packages:
     source: external
     scl: rh-python35
 
-# ZuulV3
-  - name: software-factory/bubblewrap
-    source: external
-  - name: software-factory/nodepool3
-    source: external
-  - name: software-factory/python-os-client-config
-    source: external
-  - name: software-factory/haveged
-    source: external
-
-# Graphyaml
-  - name: software-factory/grafyaml
-    source: external
-
-# Test tools
-  - name: software-factory/ansible-lint
-    source: external
-
-  - name: software-factory/yamllint
-    source: external
-
-  - name: software-factory/python-restructuredtext-lint
-    source: external
-
-  - name: software-factory/doc8
-    source: external
-
-  - name: software-factory/bashate
-    source: external
-
-  - name: software-factory/python-tox
-    source: external
-
   - name: software-factory/python-pluggy
     source: external
 
@@ -631,9 +719,6 @@ packages:
   - name: software-factory/python-markupsafe
     source: external
 
-  - name: software-factory/ara
-    source: external
-
   - name: software-factory/python-nose-htmloutput
     source: external
 
@@ -644,15 +729,7 @@ packages:
     source: external
 
 
-# Mirror2swift
-  - name: software-factory/mirror2swift
-    source: external
-
-# Lecm
-  - name: software-factory/lecm
-    source: external
-
-# Gerritbot
+  # Gerritbot
   - name: software-factory/python-backports-functools-lru-cache
     source: external
   - name: software-factory/python-inflect
@@ -677,38 +754,14 @@ packages:
     source: external
   - name: software-factory/python-irc
     source: external
-  - name: software-factory/gerritbot
-    source: external
 
   - name: software-factory/python-email
     source: external
   - name: software-factory/python-sqlalchemy-fulltext-search
     source: external
-  - name: software-factory/storyboard
-    source: external
-  - name: software-factory/storyboard-webclient
-    source: external
-  - name: software-factory/os-loganalyze
-    source: external
   - name: software-factory/python-glob2
     source: external
   - name: software-factory/buck
-    source: external
-  - name: software-factory/gerrit
-    source: external
-  - name: software-factory/repoxplorer
-    source: external
-  - name: software-factory/lodgeit
-    source: external
-  - name: software-factory/etherpad
-    source: external
-  - name: software-factory/mod_auth_pubtkt
-    source: external
-  - name: software-factory/umurmur
-    source: external
-  - name: software-factory/zookeeper-lite
-    source: external
-  - name: software-factory/gitweb-theme-kogakure
     source: external
   - name: software-factory/python-pygerrit
     source: external
@@ -724,8 +777,6 @@ packages:
     source: external
   - name: software-factory/python-redmine
     source: external
-  - name: software-factory/germqtt
-    source: external
   - name: software-factory/python-gerritlib
     source: external
   - name: software-factory/python-jenkins-job-builder
@@ -734,24 +785,7 @@ packages:
     source: external
   - name: software-factory/python-log2gearman
     source: external
-  - name: software-factory/wait4service
-    source: internal
-    spec: included
-  - name: software-factory/sf-elements
-    source: internal
-    spec: included
-  - name: software-factory/python-sfmanager
-    source: internal
-    spec: included
-  - name: software-factory/managesf
-    source: internal
-    spec: included
-  - name: software-factory/pysflib
-    source: internal
-    distgit: software-factory/pysflib-distgit
-  - name: software-factory/cauth
-    source: internal
-    distgit: software-factory/cauth-distgit
+
   # cauth depends
   - name: software-factory/python-oic
     source: external
@@ -778,29 +812,18 @@ packages:
   # firehooks dependencies
   - name: software-factory/python-taiga
     source: external
-  - name: software-factory/firehooks
-    source: internal
-    spec: included
   # EL curator
   - name: software-factory/elasticsearch-curator
     source: external
 
-# Epel import
+  # Epel import
   - name: software-factory/acme-tiny
-    source: external
-  - name: software-factory/git-review
-    source: external
-  - name: software-factory/graphite-api
     source: external
   - name: software-factory/libtomcrypt
     source: external
   - name: software-factory/libtommath
     source: external
   - name: software-factory/libwebsockets
-    source: external
-  - name: software-factory/monit
-    source: external
-  - name: software-factory/mosquitto
     source: external
   - name: software-factory/python-appdirs
     source: external
@@ -829,8 +852,6 @@ packages:
   - name: software-factory/python-openid
     source: external
   - name: software-factory/python-paho-mqtt
-    source: external
-  - name: software-factory/python-pelican
     source: external
   - name: software-factory/python-pkginfo
     source: external
