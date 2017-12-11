@@ -9,14 +9,6 @@ branch: master
 packages:
   - name: software-factory/sf-web-assets
     source: external
-  - name: software-factory/zuul-swift-upload
-    source: external
-  - name: software-factory/shade
-    source: external
-  - name: software-factory/nodepool
-    source: external
-  - name: software-factory/zuul
-    source: external
 
   - name: software-factory/sf-release
     source: internal
@@ -30,18 +22,18 @@ packages:
     source: internal
     spec: included
 
-  - name: software-factory/sf-selinux
-    source: internal
-    spec: included
+    #  - name: software-factory/sf-selinux
+    #    source: internal
+    #    spec: included
 
 # rh-python35 scl
   - name: scl/enable-py3
     source: external
     scl: rh-python35
 
-  - name: scl/python-setuptools
-    source: external
-    scl: rh-python35
+    #  - name: scl/python-setuptools
+    #    source: external
+    #    scl: rh-python35
 
   - name: scl/python-pytest-runner
     source: external
@@ -492,10 +484,6 @@ packages:
 # ZuulV3
   - name: software-factory/bubblewrap
     source: external
-  - name: software-factory/nodepool3
-    source: external
-  - name: software-factory/python-os-client-config
-    source: external
 
 # Test tools
   - name: software-factory/ansible-lint
@@ -516,46 +504,14 @@ packages:
   - name: software-factory/python-virtualenv
     source: external
 
-  - name: software-factory/python-decorator
-    source: external
-
-  - name: software-factory/python-flask-sqlalchemy
-    source: external
-
-  - name: software-factory/python-flask-script
-    source: external
-
-  - name: software-factory/python-flask-migrate
-    source: external
-
-  - name: software-factory/python-flask-frozen
-    source: external
-
-  - name: software-factory/python-junit_xml
-    source: external
-
-  - name: software-factory/python-pyfakefs
-    source: external
-
+  # Add python2 Xstatic package for xstatic-*-common sub-package
   - name: software-factory/python-XStatic-DataTables
     source: external
 
   - name: software-factory/python-XStatic-Patternfly
     source: external
 
-  - name: software-factory/python-XStatic-Bootstrap-SCSS
-    source: external
-
-  - name: software-factory/python-XStatic-Patternfly-Bootstrap-Treeview
-    source: external
-
-  - name: software-factory/python-jinja2
-    source: external
-
   - name: software-factory/python-markupsafe
-    source: external
-
-  - name: software-factory/ara
     source: external
 
   - name: software-factory/python-nose-htmloutput
@@ -729,8 +685,6 @@ packages:
   - name: software-factory/monit
     source: external
   - name: software-factory/mosquitto
-    source: external
-  - name: software-factory/python-gear
     source: external
   - name: software-factory/python-jenkins
     source: external
