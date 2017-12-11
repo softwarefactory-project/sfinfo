@@ -1,0 +1,9 @@
+---
+- project:
+    name: sfinfo
+    check:
+      jobs:
+        - linters
+#    gate:
+#      jobs:
+#        - linters
