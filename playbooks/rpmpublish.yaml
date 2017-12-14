@@ -1,0 +1,61 @@
+---
+- hosts: all
+  vars:
+    # Get sfinfo location
+    sfinfo_path_query: "projects[?name=='software-factory/sfinfo'].src_dir"
+    sfinfo_path: "{{ (zuul | json_query(sfinfo_path_query))[0] }}"
+    # Get workspace path to run zuul_rpm_* commands
+    sfnamespace_path: "{{ sfinfo_path | dirname | dirname }}"
+  tasks:
+    - name: "Ensure buildset_artifacts_url is set or zuul.pipeline == tag"
+      fail:
+        msg: "Can't publish untested package (no buildset_artifacts) or untagged change"
+      when:
+        - buildset_artifacts_url is not defined
+        - zuul.pipeline != "release"
+
+    - name: "Write koji configuration tarball"
+      copy:
+        content: "{{ sf_koji_configuration.tarball }}"
+        dest: "{{ ansible_env.HOME }}/.koji.b64"
+
+    - name: "Extract koji configuration"
+      shell: "cat {{ ansible_env.HOME }}/.koji.b64 | base64 -d | tar -xzf - -C {{ ansible_env.HOME }}/"
+
+    - name: Publish buildset artifacts
+      command: >
+        ./software-factory/sfinfo/zuul_rpm_publish.py \
+            --distro-info ./software-factory/sfinfo/sf-{{ zuul.branch }}.yaml \
+            --testing-repo "{{ buildset_artifacts_url }}" \
+            --project {{ zuul.project.name }}
+      args:
+        chdir: "{{ sfnamespace_path }}"
+      when: buildset_artifacts_url is defined
+
+    - name: Publish new tag
+      block:
+        - name: Discover branch name
+          command: >
+             ./software-factory/sfinfo/zuul_discover_tag_branch.py \
+                --distro-info ./software-factory/sfinfo/sf-{{ zuul.branch|default('master') }}.yaml \
+                --project "{{ zuul.project.name }}" --ref "{{ zuul.tag }}"
+          args:
+            chdir: "{{ sfnamespace_path }}"
+          register: _branch_name
+
+        - name: Build src.rpm
+          command: >
+            ./software-factory/sfinfo/zuul_rpm_build.py --distro-info \
+                ./software-factory/sfinfo/sf-{{ _branch_name.stdout_lines[-1] }}.yaml \
+                --zuulv3 --srpm --project "{{ zuul.project.name }}"
+          args:
+            chdir: "{{ sfnamespace_path }}"
+
+        - name: Publish package
+          command: >
+            ./software-factory/sfinfo/zuul_rpm_publish.py --distro-info \
+                ./software-factory/sfinfo/sf-{{ _branch_name.stdout_lines[-1] }}.yaml \
+                --pipeline tag --project "{{ zuul.project.name }}"
+          args:
+            chdir: "{{ sfnamespace_path }}"
+      when: zuul.pipeline == "release"
