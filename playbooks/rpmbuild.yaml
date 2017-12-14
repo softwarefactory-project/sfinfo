@@ -5,7 +5,7 @@
     projects_list_query: "projects[*].name"
     projects_list: "{{ zuul | json_query(projects_list_query) }}"
     projects_args: >
-        {% for project in projects_list %}--project {{ project }} {% endfor %}
+        {% for project in projects_list | reverse %}--project {{ project }} {% endfor %}
     # Get sfinfo location
     sfinfo_path_query: "projects[?name=='software-factory/sfinfo'].src_dir"
     sfinfo_path: "{{ (zuul | json_query(sfinfo_path_query))[0] }}"
