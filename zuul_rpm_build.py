@@ -31,6 +31,8 @@ import zuul_koji_lib
 class ZuulRpmBuild(zuul_koji_lib.App):
     def usage(self):
         p = argparse.ArgumentParser(description='Zuul RPM builder')
+        p.add_argument("--zuulv3", action="store_true",
+                       help="temporary flag to ease transition")
         p.add_argument("--branch",
                        default=os.environ.get('ZUUL_BRANCH', 'master'))
         p.add_argument("--pipeline",
@@ -212,12 +214,20 @@ class ZuulRpmBuild(zuul_koji_lib.App):
 
         # Fetch the distgit repository
         if not os.path.isdir(distgit):
-            self.execute(["zuul-cloner", self.args.source, distgit])
+            if not self.args.zuulv3:
+                self.execute(["zuul-cloner", self.args.source, distgit])
+            else:
+                raise RuntimeError("%s: not found, "
+                                   "please add to required_projects" % distgit)
 
         if package_info.get("source") == "internal":
-            # Fetch repository with zuul-cloner
             if not os.path.isdir(project):
-                self.execute(["zuul-cloner", self.args.source, project])
+                if not self.args.zuulv3:
+                    # Fetch repository with zuul-cloner
+                    self.execute(["zuul-cloner", self.args.source, project])
+                else:
+                    raise RuntimeError("%s: not found, please add to "
+                                       "required_projects" % project)
 
             # Discover version number
             version = self.get_repo_version(project)
@@ -289,12 +299,12 @@ class ZuulRpmBuild(zuul_koji_lib.App):
         if os.path.isdir(self.args.local_output):
             if self.args.clean:
                 shutil.rmtree(self.args.local_output)
-                os.mkdir(self.args.local_output, 0o700)
+                os.mkdir(self.args.local_output, 0o755)
             else:
                 self.log.info("Skipping cleaning of intermediary repo: %s" %
                               self.args.local_output)
         else:
-            os.mkdir(self.args.local_output, 0o700)
+            os.mkdir(self.args.local_output, 0o755)
 
         # Clean logs
         for logfile in glob.glob("%s/*.log" % self.args.local_output):

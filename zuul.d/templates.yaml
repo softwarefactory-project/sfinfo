@@ -1,0 +1,38 @@
+---
+# - project-template:
+#     name: sf-jobs
+#     check:
+#       jobs:
+#         - sf-rpm-build
+#         - sf-ci-functional-minimal:
+#             dependencies:
+#               - sf-rpm-build
+#     gate:
+#       queue: sf
+#       jobs:
+#         - sf-rpm-build
+#         - sf-ci-functional-minimal:
+#             dependencies:
+#               - sf-rpm-build
+#         - sf-rpm-publish:
+#             dependencies:
+#               - sf-ci-functional-minimal
+#     release:
+#       jobs:
+#         - sf-rpm-publish
+
+- project-template:
+    name: sf-incubation-jobs
+    check:
+      jobs:
+        - sf-rpm-build
+    gate:
+      queue: sf
+      jobs:
+        - sf-rpm-build
+        - sf-rpm-publish:
+            dependencies:
+              - sf-rpm-build
+    release:
+      jobs:
+        - sf-rpm-publish
