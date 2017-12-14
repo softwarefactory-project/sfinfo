@@ -12,3 +12,8 @@
     name: software-factory/firehooks
     templates:
       - sf-incubation-jobs
+
+- project:
+    name: software-factory/python-taiga-distgit
+    templates:
+      - sf-incubation-jobs
