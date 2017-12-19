@@ -497,6 +497,10 @@ packages:
   - name: software-factory/python-os-client-config
     source: external
 
+# Graphyaml
+  - name: software-factory/grafyaml
+    source: external
+
 # Test tools
   - name: software-factory/ansible-lint
     source: external

@@ -17,3 +17,8 @@
     name: software-factory/python-taiga-distgit
     templates:
       - sf-incubation-jobs
+
+- project:
+    name: software-factory/grafyaml-distgit
+    templates:
+      - sf-incubation-jobs
