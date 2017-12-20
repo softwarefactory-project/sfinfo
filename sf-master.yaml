@@ -709,12 +709,6 @@ packages:
   - name: software-factory/firehooks
     source: internal
     spec: included
-  # python-grafyaml (from fedora)
-  - name: software-factory/python-grafyaml
-    source: external
-  # python-grafyaml depends
-  - name: software-factory/python-slugify
-    source: external
   # EL curator
   - name: software-factory/elasticsearch-curator
     source: external
