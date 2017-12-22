@@ -22,3 +22,8 @@
     name: software-factory/grafyaml-distgit
     templates:
       - sf-incubation-jobs
+
+- project:
+    name: software-factory/zuul-jobs-distgit
+    templates:
+      - sf-incubation-jobs

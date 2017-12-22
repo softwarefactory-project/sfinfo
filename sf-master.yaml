@@ -496,6 +496,8 @@ packages:
     source: external
   - name: software-factory/python-os-client-config
     source: external
+  - name: software-factory/zuul-jobs
+    source: external
 
 # Graphyaml
   - name: software-factory/grafyaml
