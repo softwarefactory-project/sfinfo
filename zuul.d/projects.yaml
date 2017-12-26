@@ -27,3 +27,8 @@
     name: software-factory/zuul-jobs-distgit
     templates:
       - sf-incubation-jobs
+
+- project:
+    name: software-factory/haveged-distgit
+    templates:
+      - sf-incubation-jobs

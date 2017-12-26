@@ -498,6 +498,8 @@ packages:
     source: external
   - name: software-factory/zuul-jobs
     source: external
+  - name: software-factory/haveged
+    source: external
 
 # Graphyaml
   - name: software-factory/grafyaml
