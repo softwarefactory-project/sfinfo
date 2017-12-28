@@ -2,13 +2,10 @@
 - hosts: all
   vars:
     # Set projects_args to a list of "--project project_name"
-    projects_list_query: "projects[*].name"
-    projects_list: "{{ zuul | json_query(projects_list_query) }}"
-    projects_args: >
-        {% for project in projects_list | reverse %}--project {{ project }} {% endfor %}
+    projects_args: "{% for item in zuul['items'] %}--project {{ item.project.name }} {% endfor %}"
     # Get sfinfo location
-    sfinfo_path_query: "projects[?name=='software-factory/sfinfo'].src_dir"
-    sfinfo_path: "{{ (zuul | json_query(sfinfo_path_query))[0] }}"
+    sfinfo_path_query: "[?name=='software-factory/sfinfo'].src_dir"
+    sfinfo_path: "{{ (zuul.projects.values() | json_query(sfinfo_path_query))[0] }}"
     # Get workspace path to run zuul_rpm_* commands
     sfnamespace_path: "{{ sfinfo_path | dirname | dirname }}"
   tasks:
