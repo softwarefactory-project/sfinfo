@@ -489,6 +489,66 @@ packages:
     source: external
     scl: rh-python35
 
+  # Doc stuff
+  - name: scl/python-imagesize
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-olefile
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-fixtures
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-snowballstemmer
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-sphinx_rtd_theme
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-sphinx-theme-alabaster
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-sphinxcontrib-websupport
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-sphinx
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-zuul-sphinx
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-pillow
+    source: external
+    scl: rh-python35
+  - name: scl/python-webcolors
+    source: external
+    scl: rh-python35
+  - name: scl/python-funcparserlib
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-blockdiag
+    source: external
+    scl: rh-python35
+  - name: scl/python-sphinxcontrib-blockdiag
+    source: external
+    scl: rh-python35
+  - name: scl/python-sphinxcontrib-programoutput
+    source: external
+    scl: rh-python35
+  - name: scl/python-sphinx-autodoc-typehints
+    source: external
+    scl: rh-python35
+
 # ZuulV3
   - name: software-factory/bubblewrap
     source: external

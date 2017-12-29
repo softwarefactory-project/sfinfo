@@ -75,7 +75,7 @@
     name: sf-incubation-jobs
     check:
       jobs:
-        - sf-rpm-build
+        - noop
     gate:
       queue: sf
       jobs:
