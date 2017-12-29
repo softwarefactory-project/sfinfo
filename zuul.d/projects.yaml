@@ -37,3 +37,70 @@
 #    name: software-factory/sf-config
 #    templates:
 #      - sf-jobs
+
+
+# Zuul sphinx req
+- project:
+    name: scl/python-imagesize
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-olefile
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-fixtures
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-snowballstemmer
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-sphinx_rtd_theme
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-sphinx-theme-alabaster
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-sphinxcontrib-websupport
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-sphinx
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-zuul-sphinx
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-pillow
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-webcolors
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-funcparserlib
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-blockdiag
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-sphinxcontrib-blockdiag
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-sphinxcontrib-programoutput
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-sphinx-autodoc-typehints
+    templates:
+      - sf-incubtation-jobs
