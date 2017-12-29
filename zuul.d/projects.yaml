@@ -33,7 +33,7 @@
     templates:
       - sf-jobs-light
 
-- project:
-    name: software-factory/sf-config
-    templates:
-      - sf-jobs
+#- project:
+#    name: software-factory/sf-config
+#    templates:
+#      - sf-jobs
