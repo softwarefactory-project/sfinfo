@@ -37,3 +37,70 @@
 #    name: software-factory/sf-config
 #    templates:
 #      - sf-jobs
+
+
+# Zuul sphinx req
+- project:
+    name: scl/python-imagesize-distgit
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-olefile-distgit
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-fixtures-distgit
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-snowballstemmer-distgit
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-sphinx_rtd_theme-distgit
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-sphinx-theme-alabaster-distgit
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-sphinxcontrib-websupport-distgit
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-sphinx-distgit
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-zuul-sphinx-distgit
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-pillow-distgit
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-webcolors-distgit
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-funcparserlib-distgit
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-blockdiag-distgit
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-sphinxcontrib-blockdiag-distgit
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-sphinxcontrib-programoutput-distgit
+    templates:
+      - sf-incubtation-jobs
+- project:
+    name: scl/python-sphinx-autodoc-typehints-distgit
+    templates:
+      - sf-incubtation-jobs
