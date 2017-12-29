@@ -31,4 +31,9 @@
 - project:
     name: software-factory/haveged-distgit
     templates:
-      - sf-incubation-jobs
+      - sf-jobs-light
+
+- project:
+    name: software-factory/sf-config
+    templates:
+      - sf-jobs

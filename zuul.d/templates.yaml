@@ -1,25 +1,75 @@
 ---
-# - project-template:
-#     name: sf-jobs
-#     check:
-#       jobs:
-#         - sf-rpm-build
-#         - sf-ci-functional-minimal:
-#             dependencies:
-#               - sf-rpm-build
-#     gate:
-#       queue: sf
-#       jobs:
-#         - sf-rpm-build
-#         - sf-ci-functional-minimal:
-#             dependencies:
-#               - sf-rpm-build
-#         - sf-rpm-publish:
-#             dependencies:
-#               - sf-ci-functional-minimal
-#     release:
-#       jobs:
-#         - sf-rpm-publish
+- project-template:
+    name: sf-jobs
+    check:
+      jobs:
+        - sf-rpm-build
+        - sf-ci-functional-minimal:
+            dependencies:
+              - sf-rpm-build
+        - sf-ci-upgrade-minimal:
+            dependencies:
+              - sf-rpm-build
+        - sf-ci-functional-allinone:
+            dependencies:
+              - sf-rpm-build
+        - sf-ci-upgrade-allinone:
+            dependencies:
+              - sf-rpm-build
+    gate:
+      queue: sf
+      jobs:
+        - sf-rpm-build
+        - sf-ci-functional-minimal:
+            dependencies:
+              - sf-rpm-build
+        - sf-ci-upgrade-minimal:
+            dependencies:
+              - sf-rpm-build
+        - sf-ci-functional-allinone:
+            dependencies:
+              - sf-rpm-build
+        - sf-ci-upgrade-allinone:
+            dependencies:
+              - sf-rpm-build
+        - sf-rpm-publish:
+            dependencies:
+              - sf-ci-functional-minimal
+              - sf-ci-upgrade-minimal
+              - sf-ci-functional-allinone
+              - sf-ci-upgrade-allinone
+    release:
+      jobs:
+        - sf-rpm-publish
+
+- project-template:
+    name: sf-jobs-light
+    check:
+      jobs:
+        - sf-rpm-build
+        - sf-ci-functional-allinone:
+            dependencies:
+              - sf-rpm-build
+        - sf-ci-upgrade-allinone:
+            dependencies:
+              - sf-rpm-build
+    gate:
+      queue: sf
+      jobs:
+        - sf-rpm-build
+        - sf-ci-functional-allinone:
+            dependencies:
+              - sf-rpm-build
+        - sf-ci-upgrade-allinone:
+            dependencies:
+              - sf-rpm-build
+        - sf-rpm-publish:
+            dependencies:
+              - sf-ci-functional-allinone
+              - sf-ci-upgrade-allinone
+    release:
+      jobs:
+        - sf-rpm-publish
 
 - project-template:
     name: sf-incubation-jobs
