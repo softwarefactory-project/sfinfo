@@ -263,6 +263,10 @@ packages:
     source: external
     scl: rh-python35
 
+  - name: scl/zuul-jobs
+    source: external
+    scl: rh-python35
+
 #os-client-config
   - name: scl/python-stevedore
     source: external
@@ -555,8 +559,6 @@ packages:
   - name: software-factory/nodepool3
     source: external
   - name: software-factory/python-os-client-config
-    source: external
-  - name: software-factory/zuul-jobs
     source: external
   - name: software-factory/haveged
     source: external

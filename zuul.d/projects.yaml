@@ -24,7 +24,7 @@
       - sf-incubation-jobs
 
 - project:
-    name: software-factory/zuul-jobs-distgit
+    name: scl/zuul-jobs-distgit
     templates:
       - sf-incubation-jobs
 
