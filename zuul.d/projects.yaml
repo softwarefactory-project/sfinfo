@@ -44,6 +44,17 @@
 #    templates:
 #      - sf-python-jobs
 #      - sf-jobs
+#    check:
+#      jobs:
+#        - swagger-lint
+#    gate:
+#      queue: sf
+#      jobs:
+#        - swagger-lint
+#        - swagger-publish:
+#            vars:
+#              swagger_api: manageSF
+#              swagger_file: "docs/swagger/managesf.v2.yaml"
 #
 #- project:
 #    name: software-factory/pysflib
