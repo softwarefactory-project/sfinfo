@@ -26,7 +26,7 @@
 - project:
     name: scl/zuul-jobs-distgit
     templates:
-      - sf-incubation-jobs
+      - sf-jobs-light
 
 - project:
     name: software-factory/haveged-distgit
