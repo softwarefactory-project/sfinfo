@@ -1,0 +1,13 @@
+---
+- hosts: all
+  tasks:
+    - name: Publish swagger file
+      uri:
+        url: "https://api.swaggerhub.com/api/{{ swagger_secret.owner }}/{{ swagger_api }}?version={{ zuul.branch }}"
+        method: POST
+        body_format: raw
+        body: "{{lookup('file', swagger_file) }}"
+        headers:
+          Authorization: swagger_secret.key
+        args:
+          chdir: src_dir

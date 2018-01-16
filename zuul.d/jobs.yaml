@@ -23,3 +23,23 @@
       nodes:
         - name: mock-host
           label: dib-centos-7
+
+- job:
+    name: swagger-lint
+    description: Run the swagger linter
+    run: playbooks/swagger-lint.yaml
+    nodeset:
+      nodes:
+        - name: test-host
+          label: dib-centos-7
+
+- job:
+    name: swagger-publish
+    description: Publish the swagger file
+    run: playbooks/swagger-publish.yaml
+    secrets:
+      - swagger_secret
+    nodeset:
+      nodes:
+        - name: publish-host
+          label: dib-centos-7
