@@ -784,17 +784,41 @@ packages:
     source: external
   - name: software-factory/git-review
     source: external
+  - name: software-factory/graphite-api
+    source: external
   - name: software-factory/libtomcrypt
     source: external
   - name: software-factory/libtommath
     source: external
   - name: software-factory/libwebsockets
     source: external
+  - name: software-factory/lyx-fonts
+    source: external
   - name: software-factory/monit
     source: external
   - name: software-factory/mosquitto
     source: external
+  - name: software-factory/python-appdirs
+    source: external
+  - name: software-factory/python-args
+    source: external
+  - name: software-factory/python-carbon
+    source: external
+  - name: software-factory/python-clint
+    source: external
+  - name: software-factory/python-colorama
+    source: external
+  - name: software-factory/python-cookies
+    source: external
+  - name: software-factory/python-feedparser
+    source: external
+  - name: software-factory/python-flask-cache
+    source: external
+  - name: software-factory/python-funcparserlib
+    source: external
   - name: software-factory/python-gear
+    source: external
+  - name: software-factory/python-httpretty
     source: external
   - name: software-factory/python-jenkins
     source: external
@@ -802,39 +826,27 @@ packages:
     source: external
   - name: software-factory/python-paho-mqtt
     source: external
-  - name: software-factory/uwsgi
-    source: external
-  - name: software-factory/uthash
+  - name: software-factory/python-pelican
     source: external
   - name: software-factory/python-pkginfo
     source: external
-  - name: software-factory/python-twine
-    source: external
-  - name: software-factory/python-colorama
-    source: external
-  - name: software-factory/python-appdirs
-    source: external
-  - name: software-factory/python-args
-    source: external
-  - name: software-factory/python-clint
-    source: external
   - name: software-factory/python-requests-toolbelt
-    source: external
-  - name: software-factory/python-sure
-    source: external
-  - name: software-factory/python-httpretty
     source: external
   - name: software-factory/python-responses
     source: external
-  - name: software-factory/python-cookies
+  - name: software-factory/python-structlog
     source: external
-  - name: software-factory/python-funcparserlib
+  - name: software-factory/python-sure
+    source: external
+  - name: software-factory/python-twine
     source: external
   - name: software-factory/python-unidecode
     source: external
-  - name: software-factory/python-pelican
+  - name: software-factory/python-whisper
     source: external
-  - name: software-factory/python-feedparser
+  - name: software-factory/uthash
+    source: external
+  - name: software-factory/uwsgi
     source: external
 
 chrootpackages: "@buildsys-build buildsys-macros-el7 make gcc shadow-utils rpm-build python2-devel openstack-macros scl-utils-build rh-python35 rh-python35-build rh-python35-runtime"
