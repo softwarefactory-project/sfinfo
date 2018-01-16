@@ -38,6 +38,30 @@
 #    templates:
 #      - sf-jobs
 
+# Internal SF python projects
+#- project:
+#    name: software-factory/managesf
+#    templates:
+#      - sf-python-jobs
+#      - sf-jobs
+#
+#- project:
+#    name: software-factory/pysflib
+#    templates:
+#      - sf-python-jobs
+#      - sf-jobs
+#
+#- project:
+#    name: software-factory/cauth
+#    templates:
+#      - sf-python-jobs
+#      - sf-jobs
+#
+#- project:
+#    name: software-factory/sfmanager
+#    templates:
+#      - sf-python-jobs
+#      - sf-jobs
 
 # Zuul sphinx req
 - project:
