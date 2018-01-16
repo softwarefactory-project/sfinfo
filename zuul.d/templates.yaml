@@ -86,3 +86,15 @@
     release:
       jobs:
         - sf-rpm-publish
+
+- project-template:
+    name: sf-python-jobs
+    check:
+      jobs:
+        - tox-pep8
+        - tox-py27
+    gate:
+      queue: sf
+      jobs:
+        - tox-pep8
+        - tox-py27
