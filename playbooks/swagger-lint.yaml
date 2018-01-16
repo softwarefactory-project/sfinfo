@@ -1,0 +1,30 @@
+---
+- hosts: all
+  tasks:
+    - name: Get setup_8.x setup script
+      get_url:
+        url: https://rpm.nodesource.com/setup_8.x
+        mode: 0700
+        dest: /tmp/setup_8.x
+
+    - name: Add NodeJS repository via the setup script
+      command: /tmp/setup_8.x
+      become: yes
+
+    - name: Install NodeJS
+      yum:
+        name:
+        - gcc-c++
+        - make
+        - nodejs
+        state: lastest
+      become: yes
+
+    - name: Install swagger
+      command: npm install -g swagger-cli
+      become: yes
+
+    - name: "Run the swagger linter on {{ swagger_file }}"
+      command: "swagger-cli validate {{ swagger_file }}"
+      args:
+        chdir: src_dir
