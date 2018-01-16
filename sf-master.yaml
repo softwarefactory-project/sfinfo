@@ -792,7 +792,7 @@ packages:
     source: external
   - name: software-factory/libwebsockets
     source: external
-  - name: software-factory/lyx-fonts
+  - name: software-factory/lyx
     source: external
   - name: software-factory/monit
     source: external
