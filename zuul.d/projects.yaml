@@ -85,6 +85,12 @@
 #    templates:
 #      - sf-python-jobs
 #      - sf-jobs
+#
+#- project:
+#    name: software-factory/sf-docs
+#    check:
+#      jobs:
+#        - sf-docs-build
 
 # Zuul sphinx req
 - project:

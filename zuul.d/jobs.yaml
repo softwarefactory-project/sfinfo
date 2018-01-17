@@ -43,3 +43,10 @@
       nodes:
         - name: publish-host
           label: dib-centos-7
+
+- job:
+    name: sf-docs-build
+    description: Build the sf docs
+    run: playbooks/build.yaml
+    post-run: playbooks/publish.yaml
+    success-url: 'docs-html/index.html'
