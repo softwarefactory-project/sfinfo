@@ -94,7 +94,12 @@
 #    check:
 #      jobs:
 #        - sf-docs-build
-
+#
+#- project:
+#    name: software-factory/sf-desktop-notifications
+#    templates:
+#      - sf-python-jobs
+#
 # Zuul sphinx req
 - project:
     name: scl/python-imagesize-distgit
