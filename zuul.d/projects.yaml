@@ -37,6 +37,9 @@
 #    name: software-factory/sf-config
 #    templates:
 #      - sf-jobs
+#    check:
+#      jobs:
+#        - linters
 
 # Internal SF python projects
 #- project:
