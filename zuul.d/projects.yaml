@@ -22,6 +22,14 @@
         - linters
 
 - project:
+    name: software-factory/sf-ci
+    templates:
+      - sf-jobs
+    check:
+      jobs:
+        - linters
+
+- project:
     name: software-factory/sf-distgit
     templates:
       - sf-packaging-jobs
