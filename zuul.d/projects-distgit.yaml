@@ -1,0 +1,615 @@
+---
+- project:
+    name: software-factory/acme-tiny-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/ansible-lint-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/ara-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/bashate-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/bubblewrap-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/buck-distgit
+    templates:
+      - sf-incubation-jobs
+
+- project:
+    name: software-factory/cauth-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/elasticsearch-curator-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/etherpad-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/germqtt-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/gerrit-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/gerritbot-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/git-review-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/gitweb-theme-kogakure-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/graphite-api-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/grafyaml-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/haveged-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/lecm-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/libtomcrypt-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/libtommath-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/libwebsockets-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/lodgeit-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/mirror2swift-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/mod_auth_pubtkt-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/monit-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/mosquitto-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/nodepool-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/os-loganalyze-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/pysflib-distgit
+    templates:
+      - sf-jobs
+
+- project:
+    name: software-factory/python-XStatic-Bootstrap-SCSS-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-XStatic-DataTables-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-XStatic-Patternfly-Bootstrap-Treeview-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-XStatic-Patternfly-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-alabaster-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-appdirs-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-args-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-backports-functools-lru-cache-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-basicauth-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-carbon-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-clint-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-colorama-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-cookies-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-cryptodomex-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-decorator-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-deepdiff-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-email-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-feedparser-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-flask-cache-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-flask-frozen-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-flask-migrate-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-flask-script-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-flask-sqlalchemy-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-funcparserlib-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-future-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-gear-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-gerritlib-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-glob2-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-grafyaml-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-htpasswd-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-httmock-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-httpretty-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-inflect-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-irc-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-jaraco-classes-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-jaraco-collections-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-jaraco-functools-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-jaraco-itertools-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-jaraco-logging-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-jaraco-stream-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-jaraco-text-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-jenkins-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-jenkins-job-builder-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-jinja2-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-junit_xml-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-jwkest-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-log2gearman-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-markupsafe-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-mockldap-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-more-itertools-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-nose-htmloutput-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-nose-timer-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-oic-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-openid-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-orderedmultidict-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-os-client-config-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-paho-mqtt-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-pelican-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-pkginfo-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-pluggy-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-py-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-pyfakefs-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-pygerrit-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-redmine-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-requests-toolbelt-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-responses-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-slugify-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-sqlalchemy-fulltext-search-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-storyboardclient-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-structlog-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-sure-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-taiga-distgit
+    templates:
+      - sf-incubation-jobs
+
+- project:
+    name: software-factory/python-tempora-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-testfixtures-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-testinfra-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-tox-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-twine-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-unidecode-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-virtualenv-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-whisper-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/python-wsgiref-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/repoxplorer-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/sf-web-assets-distgit
+    templates:
+      - sf-incubation-jobs
+
+- project:
+    name: software-factory/shade-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/storyboard-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/storyboard-webclient-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/umurmur-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/uthash-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/uwsgi-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/yamllint-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/zookeeper-lite-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/zuul-dashboard
+    templates:
+      - sf-incubation-jobs
+
+- project:
+    name: software-factory/zuul-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/zuul-swift-upload-distgit
+    templates:
+      - sf-jobs-light

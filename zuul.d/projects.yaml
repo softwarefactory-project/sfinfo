@@ -11,27 +11,7 @@
 - project:
     name: software-factory/firehooks
     templates:
-      - sf-incubation-jobs
-
-- project:
-    name: software-factory/python-taiga-distgit
-    templates:
-      - sf-incubation-jobs
-
-- project:
-    name: software-factory/grafyaml-distgit
-    templates:
-      - sf-incubation-jobs
-
-- project:
-    name: scl/zuul-jobs-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: software-factory/haveged-distgit
-    templates:
-      - sf-jobs-light
+      - sf-packaging-jobs
 
 - project:
     name: software-factory/sf-config
@@ -40,6 +20,41 @@
     check:
       jobs:
         - linters
+
+- project:
+    name: software-factory/sf-distgit
+    templates:
+      - sf-packaging-jobs
+
+- project:
+    name: software-factory/sf-elements
+    templates:
+      - sf-packaging-jobs
+
+- project:
+    name: software-factory/sf-heat-templates
+    templates:
+      - sf-noop
+
+- project:
+    name: software-factory/sf-release
+    templates:
+      - sf-packaging-jobs
+
+- project:
+    name: software-factory/sf-selinux
+    templates:
+      - sf-packaging-jobs
+
+- project:
+    name: software-factory/wait4service
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: www.softwarefactory-project.io
+    templates:
+      - sf-noop
 
 # Internal SF python projects
 - project:
@@ -93,6 +108,8 @@
 
 - project:
     name: software-factory/sf-docs
+    templates:
+      - sf-packaging-jobs
     check:
       jobs:
         - sf-docs-build
@@ -101,69 +118,3 @@
 #    name: software-factory/sf-desktop-notifications
 #    templates:
 #      - sf-python-jobs
-
-# Zuul sphinx req
-- project:
-    name: scl/python-imagesize-distgit
-    templates:
-      - sf-incubation-jobs
-- project:
-    name: scl/python-olefile-distgit
-    templates:
-      - sf-incubation-jobs
-- project:
-    name: scl/python-fixtures-distgit
-    templates:
-      - sf-incubation-jobs
-- project:
-    name: scl/python-snowballstemmer-distgit
-    templates:
-      - sf-incubation-jobs
-- project:
-    name: scl/python-sphinx_rtd_theme-distgit
-    templates:
-      - sf-incubation-jobs
-- project:
-    name: scl/python-sphinx-theme-alabaster-distgit
-    templates:
-      - sf-incubation-jobs
-- project:
-    name: scl/python-sphinxcontrib-websupport-distgit
-    templates:
-      - sf-incubation-jobs
-- project:
-    name: scl/python-sphinx-distgit
-    templates:
-      - sf-incubation-jobs
-- project:
-    name: scl/python-zuul-sphinx-distgit
-    templates:
-      - sf-incubation-jobs
-- project:
-    name: scl/python-pillow-distgit
-    templates:
-      - sf-incubation-jobs
-- project:
-    name: scl/python-webcolors-distgit
-    templates:
-      - sf-incubation-jobs
-- project:
-    name: scl/python-funcparserlib-distgit
-    templates:
-      - sf-incubation-jobs
-- project:
-    name: scl/python-blockdiag-distgit
-    templates:
-      - sf-incubation-jobs
-- project:
-    name: scl/python-sphinxcontrib-blockdiag-distgit
-    templates:
-      - sf-incubation-jobs
-- project:
-    name: scl/python-sphinxcontrib-programoutput-distgit
-    templates:
-      - sf-incubation-jobs
-- project:
-    name: scl/python-sphinx-autodoc-typehints-distgit
-    templates:
-      - sf-incubation-jobs
