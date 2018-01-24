@@ -24,10 +24,7 @@
 - project:
     name: software-factory/sf-ci
     templates:
-      - sf-jobs
-    check:
-      jobs:
-        - linters
+      - sf-ci-jobs
 
 - project:
     name: software-factory/sf-distgit
@@ -122,7 +119,7 @@
       jobs:
         - sf-docs-build
 
-#- project:
-#    name: software-factory/sf-desktop-notifications
-#    templates:
-#      - sf-python-jobs
+- project:
+    name: software-factory/sf-desktop-notifications
+    templates:
+      - sf-python-jobs

@@ -43,6 +43,41 @@
         - sf-rpm-publish
 
 - project-template:
+    name: sf-ci-jobs
+    check:
+      jobs:
+        - linters
+        - sf-rpm-build
+        - sf-ci-functional-minimal:
+            dependencies:
+              - sf-rpm-build
+        - sf-ci-upgrade-minimal:
+            dependencies:
+              - sf-rpm-build
+        - sf-ci-functional-allinone:
+            dependencies:
+              - sf-rpm-build
+        - sf-ci-upgrade-allinone:
+            dependencies:
+              - sf-rpm-build
+    gate:
+      queue: sf
+      jobs:
+        - sf-rpm-build
+        - sf-ci-functional-minimal:
+            dependencies:
+              - sf-rpm-build
+        - sf-ci-upgrade-minimal:
+            dependencies:
+              - sf-rpm-build
+        - sf-ci-functional-allinone:
+            dependencies:
+              - sf-rpm-build
+        - sf-ci-upgrade-allinone:
+            dependencies:
+              - sf-rpm-build
+
+- project-template:
     name: sf-jobs-light
     check:
       jobs:
