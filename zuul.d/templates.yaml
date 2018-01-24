@@ -72,7 +72,7 @@
         - sf-rpm-publish
 
 - project-template:
-    name: sf-incubation-jobs
+    name: sf-packaging-jobs
     check:
       jobs:
         - noop
@@ -98,3 +98,12 @@
       jobs:
         - tox-pep8
         - tox-py27
+
+- project-template:
+    name: sf-noop
+    check:
+      jobs:
+        - noop
+    gate:
+      jobs:
+        - noop
