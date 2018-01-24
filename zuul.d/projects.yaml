@@ -33,73 +33,75 @@
     templates:
       - sf-jobs-light
 
-#- project:
-#    name: software-factory/sf-config
-#    templates:
-#      - sf-jobs
-#    check:
-#      jobs:
-#        - linters
+- project:
+    name: software-factory/sf-config
+    templates:
+      - sf-jobs
+    check:
+      jobs:
+        - linters
 
 # Internal SF python projects
-#- project:
-#    name: software-factory/managesf
-#    templates:
-#      - sf-python-jobs
-#      - sf-jobs
-#    check:
-#      jobs:
-#        - swagger-lint
-#    gate:
-#      queue: sf
-#      jobs:
-#        - swagger-lint
-#        - swagger-publish:
-#            vars:
-#              swagger_api: manageSF
-#              swagger_file: "docs/swagger/managesf.v2.yaml"
-#
-#- project:
-#    name: software-factory/pysflib
-#    templates:
-#      - sf-python-jobs
-#      - sf-jobs
-#
-#- project:
-#    name: software-factory/cauth
-#    templates:
-#      - sf-python-jobs
-#      - sf-jobs
-#
-#- project:
-#    name: software-factory/python-sfmanager
-#    templates:
-#      - sf-python-jobs
-#      - sf-jobs
-#
-#- project:
-#    name: software-factory/hydrant
-#    templates:
-#      - sf-python-jobs
-#      - sf-jobs
-#
-#- project:
-#    name: software-factory/ochlero
-#    templates:
-#      - sf-python-jobs
-#      - sf-jobs
-#
-#- project:
-#    name: software-factory/sf-docs
-#    check:
-#      jobs:
-#        - sf-docs-build
-#
+- project:
+    name: software-factory/managesf
+    templates:
+      - sf-python-jobs
+      - sf-jobs
+    check:
+      jobs:
+        - swagger-lint
+    gate:
+      queue: sf
+      jobs:
+        - swagger-lint
+        - swagger-publish:
+            dependencies:
+              - swagger-lint
+            vars:
+              swagger_api: manageSF
+              swagger_file: "docs/swagger/managesf.v2.yaml"
+
+- project:
+    name: software-factory/pysflib
+    templates:
+      - sf-python-jobs
+      - sf-jobs
+
+- project:
+    name: software-factory/cauth
+    templates:
+      - sf-python-jobs
+      - sf-jobs
+
+- project:
+    name: software-factory/python-sfmanager
+    templates:
+      - sf-python-jobs
+      - sf-jobs
+
+- project:
+    name: software-factory/hydrant
+    templates:
+      - sf-python-jobs
+      - sf-jobs
+
+- project:
+    name: software-factory/ochlero
+    templates:
+      - sf-python-jobs
+      - sf-jobs
+
+- project:
+    name: software-factory/sf-docs
+    check:
+      jobs:
+        - sf-docs-build
+
 #- project:
 #    name: software-factory/sf-desktop-notifications
 #    templates:
 #      - sf-python-jobs
-#
+
 # Zuul sphinx req
 - project:
     name: scl/python-imagesize-distgit
