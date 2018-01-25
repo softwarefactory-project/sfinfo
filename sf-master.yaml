@@ -574,6 +574,12 @@ packages:
   - name: software-factory/yamllint
     source: external
 
+  - name: software-factory/python-restructuredtext-lint
+    source: external
+
+  - name: software-factory/doc8
+    source: external
+
   - name: software-factory/bashate
     source: external
 
