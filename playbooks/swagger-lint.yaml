@@ -24,7 +24,7 @@
       command: npm install -g swagger-cli
       become: yes
 
-    - name: "Run the swagger linter on {{ swagger_file }}"
-      command: "swagger-cli validate {{ swagger_file }}"
+    - name: Run the swagger linter
+      command: swagger-cli validate {{ swagger_file }}
       args:
         chdir: src_dir
