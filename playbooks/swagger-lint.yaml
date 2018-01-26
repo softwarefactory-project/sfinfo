@@ -27,4 +27,4 @@
     - name: Run the swagger linter
       command: swagger-cli validate {{ swagger_file }}
       args:
-        chdir: src_dir
+        chdir: zuul.project.src_dir
