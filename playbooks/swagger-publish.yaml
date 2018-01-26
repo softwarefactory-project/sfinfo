@@ -10,4 +10,4 @@
         headers:
           Authorization: swagger_secret.key
         args:
-          chdir: src_dir
+          chdir: zuul.project.src_dir
