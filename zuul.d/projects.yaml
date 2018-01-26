@@ -69,11 +69,15 @@
       - sf-jobs
     check:
       jobs:
-        - swagger-lint
+        - swagger-lint:
+            vars:
+              swagger_file: "docs/swagger/managesf.v2.yaml"
     gate:
       queue: sf
       jobs:
-        - swagger-lint
+        - swagger-lint:
+            vars:
+              swagger_file: "docs/swagger/managesf.v2.yaml"
         - swagger-publish:
             dependencies:
               - swagger-lint
