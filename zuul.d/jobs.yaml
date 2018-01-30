@@ -47,6 +47,6 @@
 - job:
     name: sf-docs-build
     description: Build the sf docs
-    run: playbooks/build.yaml
-    post-run: playbooks/publish.yaml
+    run: playbooks/sfdocbuild.yaml
+    post-run: playbooks/sfdocpublish.yaml
     success-url: 'docs-html/index.html'
