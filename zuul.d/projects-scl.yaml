@@ -1,5 +1,20 @@
 ---
 - project:
+    name: scl/python-scikit-learn-distgit
+    templates:
+      - sf-packaging-jobs
+
+- project:
+    name: scl/python-joblib-distgit
+    templates:
+      - sf-packaging-jobs
+
+- project:
+    name: scl/scipy-distgit
+    templates:
+      - sf-packaging-jobs
+
+- project:
     name: scl/GitPython-distgit
     templates:
       - sf-jobs-light

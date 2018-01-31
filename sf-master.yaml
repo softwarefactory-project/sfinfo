@@ -265,6 +265,18 @@ packages:
     source: external
     scl: rh-python35
 
+  - name: scl/python-scikit-learn
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-joblib
+    source: external
+    scl: rh-python35
+
+  - name: scl/scipy
+    source: external
+    scl: rh-python35
+
   - name: scl/python-paste
     source: external
     scl: rh-python35
