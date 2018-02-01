@@ -35,6 +35,11 @@
       - sf-jobs-light
 
 - project:
+    name: software-factory/doc8-distgit
+    templates:
+      - sf-packaging-jobs
+
+- project:
     name: software-factory/elasticsearch-curator-distgit
     templates:
       - sf-jobs-light
@@ -473,6 +478,11 @@
     name: software-factory/python-responses-distgit
     templates:
       - sf-jobs-light
+
+- project:
+    name: software-factory/python-restructuredtext-lint-distgit
+    templates:
+      - sf-packaging-jobs
 
 - project:
     name: software-factory/python-slugify-distgit
