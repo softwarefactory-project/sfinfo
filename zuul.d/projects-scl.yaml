@@ -460,6 +460,11 @@
       - sf-jobs-light
 
 - project:
+    name: scl/python-psutil-distgit
+    templates:
+      - sf-packaging-jobs
+
+- project:
     name: scl/python-pyasn1-distgit
     templates:
       - sf-jobs-light
