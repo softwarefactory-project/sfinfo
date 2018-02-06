@@ -1,6 +1,8 @@
 ---
 - hosts: all
   tasks:
+    # Is there a reason why we can't use the nodejs packaged
+    # by opstool?
     - name: Get setup_8.x setup script
       get_url:
         url: https://rpm.nodesource.com/setup_8.x
