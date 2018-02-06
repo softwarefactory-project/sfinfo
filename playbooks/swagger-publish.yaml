@@ -1,13 +1,19 @@
 ---
 - hosts: all
   tasks:
+    - name: Load swagger file
+      command: "cat {{ swagger_file }}"
+      args:
+        chdir: "{{ zuul.project.src_dir }}"
+      register: swagger_file_content
+
     - name: Publish swagger file
       uri:
         url: "https://api.swaggerhub.com/api/{{ swagger_secret.owner }}/{{ swagger_api }}?version={{ zuul.branch }}"
         method: POST
         body_format: raw
-        body: "{{lookup('file', swagger_file) }}"
+        body: "{{ swagger_file_content.stdout }}"
         headers:
-          Authorization: swagger_secret.key
+          Authorization: "{{ swagger_secret.key }}"
         args:
-          chdir: zuul.project.src_dir
+          chdir: "{{ zuul.project.src_dir }}"

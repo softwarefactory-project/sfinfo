@@ -42,7 +42,7 @@
     nodeset:
       nodes:
         - name: publish-host
-          label: dib-centos-7
+          label: centos-oci
 
 - job:
     name: sf-docs-build
