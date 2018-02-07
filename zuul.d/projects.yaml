@@ -58,8 +58,11 @@
 
 - project:
     name: www.softwarefactory-project.io
-    templates:
-      - sf-noop
+    check:
+      jobs:
+        - build-pages:
+            vars:
+              src_dir: website
 
 # Internal SF python projects
 - project:
