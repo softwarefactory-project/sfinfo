@@ -75,11 +75,6 @@
       - sf-jobs-light
 
 - project:
-    name: software-factory/graphite-api-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
     name: software-factory/grafyaml-distgit
     templates:
       - sf-jobs-light
@@ -191,11 +186,6 @@
 
 - project:
     name: software-factory/python-basicauth-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: software-factory/python-carbon-distgit
     templates:
       - sf-jobs-light
 
@@ -500,11 +490,6 @@
       - sf-jobs-light
 
 - project:
-    name: software-factory/python-structlog-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
     name: software-factory/python-sure-distgit
     templates:
       - sf-jobs-light
@@ -546,11 +531,6 @@
 
 - project:
     name: software-factory/python-virtualenv-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: software-factory/python-whisper-distgit
     templates:
       - sf-jobs-light
 

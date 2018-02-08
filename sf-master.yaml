@@ -119,9 +119,6 @@ packages:
     spec: included
 
   # Status
-  - name: software-factory/graphite-api
-    source: external
-
   - name: software-factory/grafyaml
     source: external
 
@@ -845,8 +842,6 @@ packages:
     source: external
   - name: software-factory/python-args
     source: external
-  - name: software-factory/python-carbon
-    source: external
   - name: software-factory/python-clint
     source: external
   - name: software-factory/python-colorama
@@ -875,15 +870,11 @@ packages:
     source: external
   - name: software-factory/python-responses
     source: external
-  - name: software-factory/python-structlog
-    source: external
   - name: software-factory/python-sure
     source: external
   - name: software-factory/python-twine
     source: external
   - name: software-factory/python-unidecode
-    source: external
-  - name: software-factory/python-whisper
     source: external
   - name: software-factory/uthash
     source: external
