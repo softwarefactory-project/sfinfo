@@ -157,9 +157,6 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
             self.log.info("SUCCESS: %s is populated" % tag)
 
     def main(self, args):
-        if self.distro_info["branch"] == "master":
-            self.log.error("Couldn't populate master branch...")
-            exit(1)
         base_dir = os.path.expanduser(args.local_git_dir)
         if not os.path.isdir(base_dir):
             os.mkdir(base_dir, 0700)
