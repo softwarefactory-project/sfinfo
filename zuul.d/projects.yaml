@@ -63,6 +63,8 @@
         - build-pages:
             vars:
               src_dir: website
+      gate:
+        - wwwsf-build-and-publish-pages
 
 # Internal SF python projects
 - project:
