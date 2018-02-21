@@ -25,6 +25,10 @@
     name: software-factory/sf-ci
     templates:
       - sf-ci-jobs
+    check:
+      jobs:
+        - sf-deploy-stable
+        - sf-deploy-stable-cr
     periodic:
       jobs:
         - sf-deploy-stable
