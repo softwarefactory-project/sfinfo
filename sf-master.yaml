@@ -878,8 +878,6 @@ packages:
     source: external
   - name: software-factory/uthash
     source: external
-  - name: software-factory/uwsgi
-    source: external
 
 chrootpackages: "@buildsys-build buildsys-macros-el7 make gcc shadow-utils rpm-build python2-devel openstack-macros scl-utils-build rh-python35 rh-python35-build rh-python35-runtime"
 
