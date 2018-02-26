@@ -39,6 +39,8 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
         p.add_argument("--update", action='store_true', help='Update repo')
         p.add_argument("--project",
                        help="Restrict action to a single project")
+        p.add_argument("--branch",
+                       help="Override the branch to use")
         p.add_argument("--internal", action='store_true',
                        help="Restrict to internal project")
         return p
@@ -46,7 +48,7 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
     def clone(self, repo, base_dir, git_server, update):
         dirname = "%s/%s" % (base_dir, repo)
         if not os.path.isdir(os.path.dirname(dirname)):
-            os.mkdir(os.path.dirname(dirname), 0700)
+            os.mkdir(os.path.dirname(dirname), 0o700)
         repourl = "%s/%s" % (git_server, repo)
         branch = self.distro_info["branch"]
         if not os.path.isdir(dirname):
@@ -160,9 +162,11 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
         if self.distro_info["branch"] == "master":
             self.log.error("Couldn't populate master branch...")
             exit(1)
+        if args.branch:
+            self.distro_info["branch"] = args.branch
         base_dir = os.path.expanduser(args.local_git_dir)
         if not os.path.isdir(base_dir):
-            os.mkdir(base_dir, 0700)
+            os.mkdir(base_dir, 0o700)
         if args.project:
             pkgs = [pkg for pkg in self.distro_info["packages"] if
                     pkg['name'] == args.project]
