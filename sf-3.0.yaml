@@ -5,7 +5,7 @@ koji-target: sf-3.0-el7
 signing_key: 1c3bae4b
 arch: x86_64
 koji-url: https://softwarefactory-project.io/kojifiles/repos/sf-3.0-el7-build/latest/x86_64/
-branch: master
+branch: 3.0
 packages:
   # ===========================================================================
   # Services packages
