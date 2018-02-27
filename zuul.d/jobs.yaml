@@ -5,6 +5,8 @@
     run: playbooks/rpmbuild.yaml
     required-projects:
       - software-factory/sfinfo
+      - software-factory/cauth-distgit
+      - software-factory/pysflib-distgit
     nodeset:
       nodes:
         - name: mock-host
