@@ -109,12 +109,42 @@
     templates:
       - sf-python-jobs
       - sf-jobs
+    check:
+      jobs:
+        - sf-rpm-build:
+            required-projects:
+              - software-factory/pysflib-distgit
+    gate:
+      jobs:
+        - sf-rpm-build:
+            required-projects:
+              - software-factory/pysflib-distgit
+    release:
+      jobs:
+        - sf-rpm-publish:
+            required-projects:
+              - software-factory/pysflib-distgit
 
 - project:
     name: software-factory/cauth
     templates:
       - sf-python-jobs
       - sf-jobs
+    check:
+      jobs:
+        - sf-rpm-build:
+            required-projects:
+              - software-factory/cauth-distgit
+    gate:
+      jobs:
+        - sf-rpm-build:
+            required-projects:
+              - software-factory/cauth-distgit
+    release:
+      jobs:
+        - sf-rpm-publish:
+            required-projects:
+              - software-factory/cauth-distgit
 
 - project:
     name: software-factory/python-sfmanager
