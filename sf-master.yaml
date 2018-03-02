@@ -144,6 +144,14 @@ packages:
   - name: software-factory/repoxplorer
     source: external
 
+  # DLRN/rdopkg
+  - name: scl/rdopkg
+    source: external
+    scl: rh-python35
+  - name: scl/dlrn
+    source: external
+    scl: rh-python35
+
   # Storyboard
   - name: software-factory/storyboard
     source: external
@@ -430,6 +438,50 @@ packages:
   - name: scl/python-rcssmin
     source: external
     scl: rh-python35
+
+  # dlrn/rdopkg
+  - name: scl/python-sh
+    source: external
+    scl: rh-python35
+  - name: scl/python-renderspec
+    source: external
+    scl: rh-python35
+  - name: scl/python-packaging
+    source: external
+    scl: rh-python35
+#  - name: scl/git-review
+#    source: external
+#    scl: rh-python35
+  - name: scl/python-bunch
+    source: external
+    scl: rh-python35
+  - name: scl/python-pymod2pkg
+    source: external
+    scl: rh-python35
+#  - name: scl/python-koji
+#    source: external
+#    scl: rh-python35
+#  - name: scl/python-rpm
+#    source: external
+#    scl: rh-python35
+#  - name: scl/python-pycurl
+#    source: external
+#    scl: rh-python35
+#  - name: scl/python-bottle
+#    source: external
+#    scl: rh-python35
+#  - name: scl/python-kerberos
+#    source: external
+#    scl: rh-python35
+#  - name: scl/python-requests-kerberos
+#    source: external
+#    scl: rh-python35
+#  - name: scl/python-libcomps
+#    source: external
+#    scl: rh-python35
+#  - name: scl/python-rpm-py-installer
+#    source: external
+#    scl: rh-python35
 
   #os-client-config
   - name: scl/python-stevedore

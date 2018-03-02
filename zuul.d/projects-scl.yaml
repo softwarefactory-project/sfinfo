@@ -1,5 +1,34 @@
 ---
 - project:
+    name: scl/rdopkg-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/dlrn-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-sh-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-renderspec-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-packaging-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-bunch-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-pymod2pkg-distgit
+    templates:
+      - sf-packaging-jobs
+
+- project:
     name: scl/python-scikit-learn-distgit
     templates:
       - sf-packaging-jobs
