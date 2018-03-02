@@ -94,6 +94,11 @@ packages:
   - name: software-factory/zookeeper-lite
     source: external
 
+  - name: logreduce
+    source: internal
+    spec: included
+    scl: rh-python35
+
   # Nodepool
   - name: scl/diskimage-builder
     source: external
