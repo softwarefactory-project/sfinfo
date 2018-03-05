@@ -152,6 +152,10 @@ packages:
     source: external
     scl: rh-python35
 
+  # Codesearch
+  - name: software-factory/hound
+    source: external
+
   # Storyboard
   - name: software-factory/storyboard
     source: external
