@@ -43,7 +43,8 @@ class ZuulRpmBuild(zuul_koji_lib.App):
                        default=[os.environ.get('ZUUL_PROJECT')],
                        help="Specify project name when running outside"
                             " of Zuul context"),
-        p.add_argument("--source", default=os.environ.get('GIT_SERVER'),
+        p.add_argument("--source",
+                       default="https://softwarefactory-project.io/r/",
                        help="The git server to fetch projects from")
         p.add_argument("--output", default=os.environ.get('RPM_REPO'),
                        help="The repository to publish package")
@@ -215,7 +216,10 @@ class ZuulRpmBuild(zuul_koji_lib.App):
         # Fetch the distgit repository
         if not os.path.isdir(distgit):
             if not self.args.zuulv3:
-                self.execute(["zuul-cloner", self.args.source, distgit])
+                os.makedirs(os.path.dirname(distgit), exist_ok=True)
+                self.execute(["git", "clone",
+                              os.path.join(self.args.source, distgit),
+                              distgit])
             else:
                 raise RuntimeError("%s: not found, "
                                    "please add to required_projects" % distgit)
@@ -223,8 +227,10 @@ class ZuulRpmBuild(zuul_koji_lib.App):
         if package_info.get("source") == "internal":
             if not os.path.isdir(project):
                 if not self.args.zuulv3:
-                    # Fetch repository with zuul-cloner
-                    self.execute(["zuul-cloner", self.args.source, project])
+                    os.makedirs(os.path.dirname(project), exist_ok=True)
+                    self.execute(["git", "clone",
+                                  os.path.join(self.args.source, project),
+                                  project])
                 else:
                     raise RuntimeError("%s: not found, please add to "
                                        "required_projects" % project)
