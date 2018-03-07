@@ -216,7 +216,8 @@ class ZuulRpmBuild(zuul_koji_lib.App):
         # Fetch the distgit repository
         if not os.path.isdir(distgit):
             if not self.args.zuulv3:
-                os.makedirs(os.path.dirname(distgit), exist_ok=True)
+                if not os.path.isdir(os.path.dirname(distgit)):
+                    os.makedirs(os.path.dirname(distgit))
                 self.execute(["git", "clone",
                               os.path.join(self.args.source, distgit),
                               distgit])
@@ -227,7 +228,8 @@ class ZuulRpmBuild(zuul_koji_lib.App):
         if package_info.get("source") == "internal":
             if not os.path.isdir(project):
                 if not self.args.zuulv3:
-                    os.makedirs(os.path.dirname(project), exist_ok=True)
+                    if not os.path.isdir(os.path.dirname(project)):
+                        os.makedirs(os.path.dirname(project))
                     self.execute(["git", "clone",
                                   os.path.join(self.args.source, project),
                                   project])
