@@ -27,6 +27,14 @@
     name: scl/python-pymod2pkg-distgit
     templates:
       - sf-packaging-jobs
+- project:
+    name: scl/python-passlib-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-flask-httpauth-distgit
+    templates:
+      - sf-packaging-jobs
 
 - project:
     name: scl/python-scikit-learn-distgit
