@@ -462,6 +462,12 @@ packages:
   - name: scl/python-pymod2pkg
     source: external
     scl: rh-python35
+  - name: scl/python-passlib
+    source: external
+    scl: rh-python35
+  - name: scl/python-flask-httpauth
+    source: external
+    scl: rh-python35
 #  - name: scl/python-koji
 #    source: external
 #    scl: rh-python35
