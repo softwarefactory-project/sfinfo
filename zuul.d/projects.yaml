@@ -9,6 +9,11 @@
         - linters
 
 - project:
+    name: software-factory/hound-distgit
+    templates:
+      - sf-packaging-jobs
+
+- project:
     name: logreduce
     release:
       jobs:
