@@ -33,6 +33,21 @@
     name: software-factory/cauth-distgit
     templates:
       - sf-jobs-light
+    check:
+      jobs:
+        - sf-rpm-build:
+            required-projects:
+              - software-factory/cauth
+    gate:
+      jobs:
+        - sf-rpm-build:
+            required-projects:
+              - software-factory/cauth
+    release:
+      jobs:
+        - sf-rpm-publish:
+            required-projects:
+              - software-factory/cauth
 
 - project:
     name: software-factory/doc8-distgit
@@ -143,6 +158,21 @@
     name: software-factory/pysflib-distgit
     templates:
       - sf-jobs
+    check:
+      jobs:
+        - sf-rpm-build:
+            required-projects:
+              - software-factory/pysflib
+    gate:
+      jobs:
+        - sf-rpm-build:
+            required-projects:
+              - software-factory/pysflib
+    release:
+      jobs:
+        - sf-rpm-publish:
+            required-projects:
+              - software-factory/pysflib
 
 - project:
     name: software-factory/python-XStatic-Bootstrap-SCSS-distgit
