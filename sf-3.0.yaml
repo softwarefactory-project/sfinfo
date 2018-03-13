@@ -135,6 +135,18 @@ packages:
   - name: software-factory/repoxplorer
     source: external
 
+  # DLRN/rdopkg
+  - name: scl/rdopkg
+    source: external
+    scl: rh-python35
+  - name: scl/dlrn
+    source: external
+    scl: rh-python35
+
+  # Codesearch
+  - name: software-factory/hound
+    source: external
+
   # Storyboard
   - name: software-factory/storyboard
     source: external
@@ -419,6 +431,29 @@ packages:
     scl: rh-python35
 
   - name: scl/python-rcssmin
+    source: external
+    scl: rh-python35
+
+  # dlrn/rdopkg
+  - name: scl/python-sh
+    source: external
+    scl: rh-python35
+  - name: scl/python-renderspec
+    source: external
+    scl: rh-python35
+  - name: scl/python-packaging
+    source: external
+    scl: rh-python35
+  - name: scl/python-bunch
+    source: external
+    scl: rh-python35
+  - name: scl/python-pymod2pkg
+    source: external
+    scl: rh-python35
+  - name: scl/python-passlib
+    source: external
+    scl: rh-python35
+  - name: scl/python-flask-httpauth
     source: external
     scl: rh-python35
 
