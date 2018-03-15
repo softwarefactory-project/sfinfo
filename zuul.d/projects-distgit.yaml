@@ -2,7 +2,7 @@
 - project:
     name: software-factory/acme-tiny-distgit
     templates:
-      - sf-jobs-light
+      - sf-packaging-jobs
 
 - project:
     name: software-factory/ansible-lint-distgit
