@@ -811,6 +811,9 @@ packages:
   - name: software-factory/python-testinfra
     source: external
 
+  # python-grafyaml depends
+  - name: software-factory/python-slugify
+    source: external
 
   # Gerritbot
   - name: software-factory/python-backports-functools-lru-cache
