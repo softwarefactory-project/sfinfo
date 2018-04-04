@@ -289,7 +289,7 @@
 - project:
     name: scl/python-github3-distgit
     templates:
-      - sf-jobs-light
+      - sf-packaging-jobs
 
 - project:
     name: scl/python-glanceclient-distgit

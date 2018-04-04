@@ -947,6 +947,8 @@ packages:
     source: external
   - name: software-factory/python-twine
     source: external
+  - name: software-factory/python-tqdm
+    source: external
   - name: software-factory/python-unidecode
     source: external
   - name: software-factory/uthash

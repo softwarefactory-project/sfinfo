@@ -462,7 +462,7 @@
 - project:
     name: software-factory/python-pkginfo-distgit
     templates:
-      - sf-jobs-light
+      - sf-packaging-jobs
 
 - project:
     name: software-factory/python-pluggy-distgit
@@ -492,7 +492,7 @@
 - project:
     name: software-factory/python-requests-toolbelt-distgit
     templates:
-      - sf-jobs-light
+      - sf-packaging-jobs
 
 - project:
     name: software-factory/python-responses-distgit
@@ -552,7 +552,12 @@
 - project:
     name: software-factory/python-twine-distgit
     templates:
-      - sf-jobs-light
+      - sf-packaging-jobs
+
+- project:
+    name: software-factory/python-tqdm-distgit
+    templates:
+      - sf-packaging-jobs
 
 - project:
     name: software-factory/python-unidecode-distgit
