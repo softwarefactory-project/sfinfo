@@ -151,6 +151,9 @@ packages:
   - name: scl/dlrn
     source: external
     scl: rh-python35
+  - name: scl/dlrnapi-client
+    source: external
+    scl: rh-python35
 
   # Codesearch
   - name: software-factory/hound

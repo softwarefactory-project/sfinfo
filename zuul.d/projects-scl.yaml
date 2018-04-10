@@ -8,6 +8,10 @@
     templates:
       - sf-packaging-jobs
 - project:
+    name: scl/dlrnapi-client-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
     name: scl/python-sh-distgit
     templates:
       - sf-packaging-jobs
