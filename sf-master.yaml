@@ -31,10 +31,6 @@ packages:
     source: internal
     spec: included
 
-  - name: software-factory/pysflib
-    source: internal
-    distgit: software-factory/pysflib-distgit
-
   - name: software-factory/cauth
     source: internal
     distgit: software-factory/cauth-distgit
@@ -852,8 +848,6 @@ packages:
     source: external
   - name: software-factory/buck
     source: external
-  - name: software-factory/python-pygerrit
-    source: external
   - name: software-factory/python-storyboardclient
     source: external
   - name: software-factory/python-basicauth
@@ -863,8 +857,6 @@ packages:
   - name: software-factory/python-htpasswd
     source: external
   - name: software-factory/python-orderedmultidict
-    source: external
-  - name: software-factory/python-redmine
     source: external
   - name: software-factory/python-gerritlib
     source: external
