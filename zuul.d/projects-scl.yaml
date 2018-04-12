@@ -12,6 +12,10 @@
     templates:
       - sf-packaging-jobs
 - project:
+    name: scl/python-future-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
     name: scl/python-sh-distgit
     templates:
       - sf-packaging-jobs

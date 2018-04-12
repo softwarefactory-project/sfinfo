@@ -471,6 +471,9 @@ packages:
   - name: scl/python-flask-httpauth
     source: external
     scl: rh-python35
+  - name: scl/python-future
+    source: external
+    scl: rh-python35
 #  - name: scl/python-koji
 #    source: external
 #    scl: rh-python35
