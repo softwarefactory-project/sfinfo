@@ -1,5 +1,10 @@
 ---
 - project:
+    name: software-factory/re2-distgit
+    templates:
+      - sf-packaging-jobs
+
+- project:
     name: software-factory/acme-tiny-distgit
     templates:
       - sf-packaging-jobs

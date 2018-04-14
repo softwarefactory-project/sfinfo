@@ -1,5 +1,17 @@
 ---
 - project:
+    name: scl/python-reno-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-dulwich-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-re2-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
     name: scl/rdopkg-distgit
     templates:
       - sf-packaging-jobs

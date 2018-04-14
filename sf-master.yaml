@@ -80,6 +80,13 @@ packages:
     source: external
     scl: rh-python35
 
+  - name: software-factory/re2
+    source: external
+
+  - name: scl/python-re2
+    source: external
+    scl: rh-python35
+
   - name: scl/zuul-jobs
     source: external
     scl: rh-python35
@@ -215,6 +222,14 @@ packages:
     #    scl: rh-python35
 
   - name: scl/python-pytest-runner
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-dulwich
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-reno
     source: external
     scl: rh-python35
 
