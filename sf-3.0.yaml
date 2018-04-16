@@ -206,6 +206,14 @@ packages:
     source: external
     scl: rh-python35
 
+  - name: scl/python-dulwich
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-reno
+    source: external
+    scl: rh-python35
+
   - name: scl/python-multidict
     source: external
     scl: rh-python35
