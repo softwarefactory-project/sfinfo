@@ -38,8 +38,10 @@
       - sf-ci-jobs
     periodic:
       jobs:
-        - sf-deploy-stable
-        - sf-deploy-stable-cr
+        - sf-deploy-stable:
+            branch: master
+        - sf-deploy-stable-cr:
+            branch: master
 
 - project:
     name: software-factory/sf-distgit
