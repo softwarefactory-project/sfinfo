@@ -61,8 +61,9 @@ priority=%(kojipriority)s
                     "gpgcheck": 0,
                     "kojipriority": 110}
             self.write_repo(of, conf)
-            for extrepo in self.distro_info['extrarepos']:
-                self.write_repo(of, extrepo)
+            if self.distro_info['extrarepos']:
+                for extrepo in self.distro_info['extrarepos']:
+                    self.write_repo(of, extrepo)
             if args.testing_repo:
                 conf = {"name": "sftesting",
                         "baseurl": args.testing_repo,
