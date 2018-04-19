@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa1b9901_bad571ba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2018-04-19T17:36:13Z",
+      "side": 1,
+      "message": "ok but do we still need these repos in case of RPM build deps ? The repos are injected in the mock config see mock.cfg.j2.",
+      "revId": "a32c2ab45ebe2fa46d7144ca951b27fe795db471",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    }
+  ]
+}
