@@ -1006,14 +1006,8 @@ baserepos:
     kojipriority: 9
 
 extrarepos:
-  - name: openstack-pike
-    baseurl: http://mirror.centos.org/centos/7/cloud/x86_64/openstack-pike/
+  - name: openstack-queens
+    baseurl: http://mirror.centos.org/centos/7/cloud/x86_64/openstack-queens/
     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Cloud
     gpgcheck: 1
     kojipriority: 5
-
-  - name: centos-opstools
-    baseurl: http://mirror.centos.org/centos/7/opstools/x86_64/
-    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-OpsTools
-    gpgcheck: 1
-    kojipriority: 7
