@@ -46,6 +46,10 @@ packages:
     source: internal
     spec: included
 
+  # Git
+  - name: software-factory/cgit
+    source: external
+
   # Auth
   - name: software-factory/mod_auth_pubtkt
     source: external

@@ -5,6 +5,11 @@
       - sf-packaging-jobs
 
 - project:
+    name: software-factory/cgit-distgit
+    templates:
+      - sf-packaging-jobs
+
+- project:
     name: software-factory/acme-tiny-distgit
     templates:
       - sf-packaging-jobs
