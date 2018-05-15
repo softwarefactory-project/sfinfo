@@ -81,13 +81,7 @@
     name: sf-jobs-light
     check:
       jobs:
-        - sf-rpm-build
-        - sf-ci-functional-allinone:
-            dependencies:
-              - sf-rpm-build
-        - sf-ci-upgrade-allinone:
-            dependencies:
-              - sf-rpm-build
+        - noop
     gate:
       queue: sf
       jobs:
