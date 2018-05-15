@@ -220,6 +220,50 @@ packages:
     source: external
     scl: rh-python35
 
+  - name: scl/python-kubernetes
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-oauth2client
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-pyOpenSSL
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-gflags
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-fasteners
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-httplib2
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-keyring
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-SecretStorage
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-jeepney
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-rsa
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-websocket-client
+    source: external
+    scl: rh-python35
+
     # TODO: check if this is still needed
     #  - name: scl/python-setuptools
     #    source: external
