@@ -1,5 +1,45 @@
 ---
 - project:
+    name: scl/python-kubernetes-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-oauth2client-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-gflags-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-fasteners-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-httplib2-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-keyring-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-SecretStorage-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-jeepney-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-rsa-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-websocket-client-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
     name: scl/python-reno-distgit
     templates:
       - sf-packaging-jobs
