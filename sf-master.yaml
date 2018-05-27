@@ -236,6 +236,22 @@ packages:
     source: external
     scl: rh-python35
 
+  - name: scl/python-google-auth
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-cachetools
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-oauthlib
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-requests-oauthlib
+    source: external
+    scl: rh-python35
+
   - name: scl/python-kubernetes
     source: external
     scl: rh-python35

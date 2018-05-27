@@ -16,6 +16,22 @@
     templates:
       - sf-packaging-jobs
 - project:
+    name: scl/python-google-auth-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-cachetools-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-oauthlib-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-requests-oauthlib-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
     name: scl/python-kubernetes-distgit
     templates:
       - sf-packaging-jobs
