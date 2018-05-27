@@ -1,5 +1,21 @@
 ---
 - project:
+    name: scl/python-openshift-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-dictdiffer-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-ruamel-yaml-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-string-utils-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
     name: scl/python-kubernetes-distgit
     templates:
       - sf-packaging-jobs

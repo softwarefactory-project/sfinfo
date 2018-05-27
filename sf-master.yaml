@@ -220,6 +220,22 @@ packages:
     source: external
     scl: rh-python35
 
+  - name: scl/python-openshift
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-dictdiffer
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-ruamel-yaml
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-string-utils
+    source: external
+    scl: rh-python35
+
   - name: scl/python-kubernetes
     source: external
     scl: rh-python35
