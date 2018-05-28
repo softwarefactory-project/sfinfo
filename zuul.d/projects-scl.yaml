@@ -1,5 +1,9 @@
 ---
 - project:
+    name: scl/python-os-service-types-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
     name: scl/python-openshift-distgit
     templates:
       - sf-packaging-jobs

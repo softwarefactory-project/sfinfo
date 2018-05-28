@@ -673,6 +673,9 @@ packages:
   - name: scl/python-openstacksdk
     source: external
     scl: rh-python35
+  - name: scl/python-os-service-types
+    source: external
+    scl: rh-python35
 
   - name: scl/python-pyperclip
     source: external
