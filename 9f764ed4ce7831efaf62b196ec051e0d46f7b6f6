@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a2fa921_b656dd04",
+        "filename": "playbooks/csvdepcheck.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7
+      },
+      "writtenOn": "2018-05-29T11:45:43Z",
+      "side": 1,
+      "message": "I think this going to run on sf-ci source code. How is this tools supposed to be used, can it works with python library?\n\nShould we run it on the spec files instead?",
+      "revId": "9f764ed4ce7831efaf62b196ec051e0d46f7b6f6",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    }
+  ]
+}
