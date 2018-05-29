@@ -16,6 +16,24 @@
       "revId": "9f764ed4ce7831efaf62b196ec051e0d46f7b6f6",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a2fa921_b66d7dce",
+        "filename": "playbooks/csvdepcheck.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2018-05-29T12:44:49Z",
+      "side": 1,
+      "message": "Also, I wanted to try it but in the archive I don\u0027t have the file bin/dependency-check.sh. tar -tzf v3.2.1.tar.gz | grep dependency-check.sh -\u003e nothing",
+      "parentUuid": "7a2fa921_b656dd04",
+      "revId": "9f764ed4ce7831efaf62b196ec051e0d46f7b6f6",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
     }
   ]
 }
