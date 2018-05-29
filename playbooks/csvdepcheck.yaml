@@ -1,0 +1,11 @@
+---
+- hosts: all
+  tasks:
+    - name: Get dependency check tool
+      unarchive:
+        src: https://github.com/jeremylong/DependencyCheck/archive/v3.2.1.tar.gz
+        remote_src: yes
+        dest: /tmp/depcheck
+
+    - name: run dependency check tool
+      command: "/tmp/depcheck/bin/dependency-check.sh --format ALL --enableExperimental --project SoftwareFactory --scan {{ zuul.executor.work_root }} --out {{ zuul.executor.log_root }}"

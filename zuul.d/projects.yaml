@@ -42,6 +42,8 @@
             branches: master
         - sf-deploy-stable-cr:
             branches: master
+        - cvs-dependency-check:
+            branches: master
 
 - project:
     name: software-factory/sf-distgit

@@ -50,3 +50,8 @@
     run: playbooks/sfdocbuild.yaml
     post-run: playbooks/sfdocpublish.yaml
     success-url: 'docs-html/index.html'
+
+- job:
+    name: cvs-dependency-check
+    description: CVS dependency check
+    run: playbooks/csvdepcheck.yaml
