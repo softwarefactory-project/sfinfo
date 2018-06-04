@@ -1,5 +1,45 @@
 ---
 - project:
+    name: scl/python-cherrypy-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-ws4py-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-routes-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-repoze-lru-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-tornado-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/Cython-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-gevent-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-greenlet-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-pycurl-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-bottle-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
     name: scl/python-os-service-types-distgit
     templates:
       - sf-packaging-jobs

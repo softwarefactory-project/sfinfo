@@ -91,6 +91,46 @@ packages:
     source: external
     scl: rh-python35
 
+  - name: scl/python-cherrypy
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-ws4py
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-routes
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-repoze-lru
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-tornado
+    source: external
+    scl: rh-python35
+
+  - name: scl/Cython
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-gevent
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-greenlet
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-pycurl
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-bottle
+    source: external
+    scl: rh-python35
+
   - name: scl/zuul-jobs
     source: external
     scl: rh-python35
@@ -572,9 +612,6 @@ packages:
 #    source: external
 #    scl: rh-python35
 #  - name: scl/python-pycurl
-#    source: external
-#    scl: rh-python35
-#  - name: scl/python-bottle
 #    source: external
 #    scl: rh-python35
 #  - name: scl/python-kerberos
