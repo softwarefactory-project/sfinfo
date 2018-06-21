@@ -32,7 +32,7 @@
 - project:
     name: software-factory/bubblewrap-distgit
     templates:
-      - sf-jobs-light
+      - sf-jobs
 
 - project:
     name: software-factory/buck-distgit
