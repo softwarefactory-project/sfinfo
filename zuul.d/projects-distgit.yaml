@@ -412,7 +412,7 @@
 - project:
     name: software-factory/python-log2gearman-distgit
     templates:
-      - sf-jobs-light
+      - sf-jobs
 
 - project:
     name: software-factory/python-markupsafe-distgit
