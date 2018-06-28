@@ -14,7 +14,6 @@
     name: sf-rpm-publish
     description: Publish sf rpm to koji
     run: playbooks/rpmpublish.yaml
-    hold-following-changes: true
     required-projects:
       - software-factory/sfinfo
     secrets:

@@ -32,12 +32,15 @@
         - sf-ci-upgrade-allinone:
             dependencies:
               - sf-rpm-build
-        - sf-rpm-publish:
+        - wait-for-changes-ahead:
             dependencies:
               - sf-ci-functional-minimal
               - sf-ci-upgrade-minimal
               - sf-ci-functional-allinone
               - sf-ci-upgrade-allinone
+        - sf-rpm-publish:
+            dependencies:
+              - wait-for-changes-ahead
     release:
       jobs:
         - sf-rpm-publish
@@ -92,10 +95,13 @@
         - sf-ci-upgrade-allinone:
             dependencies:
               - sf-rpm-build
-        - sf-rpm-publish:
+        - wait-for-changes-ahead:
             dependencies:
               - sf-ci-functional-allinone
               - sf-ci-upgrade-allinone
+        - sf-rpm-publish:
+            dependencies:
+              - wait-for-changes-ahead
     release:
       jobs:
         - sf-rpm-publish
@@ -109,9 +115,12 @@
       queue: sf
       jobs:
         - sf-rpm-build
-        - sf-rpm-publish:
+        - wait-for-changes-ahead:
             dependencies:
               - sf-rpm-build
+        - sf-rpm-publish:
+            dependencies:
+              - wait-for-changes-ahead
     release:
       jobs:
         - sf-rpm-publish
