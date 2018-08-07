@@ -31,6 +31,7 @@ def most_recent(rpms):
 class ZuulKojiPopulateTarget(zuul_koji_lib.App):
     def usage(self):
         p = argparse.ArgumentParser(description='Zuul Koji Populate Target')
+        p.add_argument("--rst", action="store_true")
         p.add_argument("src_tag")
         p.add_argument("dst_tag")
         return p
@@ -44,8 +45,10 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
         rpms = map(lambda x: (x, splitFilename(x)),
                    filter(lambda x: "9999" not in x, tag_content))
         pkgs = set()
+        pkgs_list = {}
         for _, inf in rpms:
             pkgs.add(inf[0])
+            pkgs_list[inf[0]] = inf
         nvrs = []
         for name in sorted(list(pkgs)):
             pkgs = [rpm for rpm in rpms if rpm[1][0] == name]
@@ -55,13 +58,31 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
             elif len(pkgs) == 1:
                 pkg = pkgs[0][0]
             nvrs.append(pkg)
-        return nvrs
+        return nvrs, pkgs_list
 
     def main(self, args):
-        src = self.list_tag(args.src_tag)
-        dst = self.list_tag(args.dst_tag)
-        for diff in difflib.ndiff(src, dst):
-            print(diff)
+        src, src_pkgs = self.list_tag(args.src_tag)
+        dst, dst_pkgs = self.list_tag(args.dst_tag)
+        if args.rst:
+            new_pkgs = []
+            updated_pkgs = []
+            for pkg, inf in dst_pkgs.items():
+                pkg_name = "%s-%s-%s.%s" % (inf[0], inf[1], inf[2], inf[4])
+                if pkg not in src_pkgs:
+                    new_pkgs.append(pkg_name)
+                elif pkg_name not in src:
+                    updated_pkgs.append(pkg_name)
+            print("Updated Packages")
+            print("~~~~~~~~~~~~~~~~\n")
+            for pkg in sorted(updated_pkgs):
+                print("- %s" % pkg)
+            print("\n\nNew Packages")
+            print("~~~~~~~~~~~~\n")
+            for pkg in sorted(new_pkgs):
+                print("- %s" % pkg)
+        else:
+            for diff in difflib.ndiff(src, dst):
+                print(diff)
 
 
 if __name__ == "__main__":
