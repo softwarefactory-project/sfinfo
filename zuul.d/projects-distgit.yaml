@@ -7,7 +7,7 @@
 - project:
     name: software-factory/cgit-distgit
     templates:
-      - sf-packaging-jobs
+      - sf-jobs-light
 
 - project:
     name: software-factory/acme-tiny-distgit
