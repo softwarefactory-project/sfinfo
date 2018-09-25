@@ -31,6 +31,12 @@
     check:
       jobs:
         - linters
+    experimental:
+      jobs:
+        - sf-rpm-build
+        - sf-ci-openshift-integration:
+            dependencies:
+              - sf-rpm-build
 
 - project:
     name: software-factory/sf-distgit
