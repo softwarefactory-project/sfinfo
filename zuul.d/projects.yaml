@@ -31,6 +31,9 @@
     check:
       jobs:
         - linters
+    experimental:
+      jobs:
+        - sf-ci-openshift-integration
 
 - project:
     name: software-factory/sf-distgit
