@@ -74,8 +74,14 @@ packages:
 #  - name: software-factory/sf-selinux
 #    source: internal
 #    spec: included
+#
+  - name: software-factory/patternfly-react-ui-deps
+    source: external
 
   # Zuul
+  - name: software-factory/patternfly-react-ui-deps
+    source: external
+
   - name: scl/zuul
     source: external
     scl: rh-python35
