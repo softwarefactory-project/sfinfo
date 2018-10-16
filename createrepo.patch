@@ -1,0 +1,13 @@
+in /usr/lib/python2.7/site-packages/createrepo/__init__.py
+
+Change: raise MDError, _('Old data directory exists, please remove: %s') % self.conf.olddir
+With:
+
+        if os.path.exists(os.path.join(self.conf.outputdir, self.conf.olddir)):
+            if not os.listdir(os.path.join(self.conf.outputdir, self.conf.olddir)):
+                print("Removing empty olddir")
+                os.rmdir(os.path.join(self.conf.outputdir, self.conf.olddir))
+            else:
+                raise MDError, _('Old data directory exists, please remove: %s') % self.conf.olddir
+
+

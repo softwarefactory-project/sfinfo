@@ -47,7 +47,10 @@ koji clone-tag tdpw-1.0-centos7-candidate tdpw-1.0-centos7-release
 
 ### Step7 - mash repo
 
-TBD
+zuul_koji_mash.py
+
+If the command failed with: Old data directory exists, please remove: .olddata
+Apply: createrepo.patch
 
 
 ## Tag process:
