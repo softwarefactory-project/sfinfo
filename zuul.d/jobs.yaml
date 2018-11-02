@@ -2,6 +2,7 @@
 - job:
     name: sf-rpm-build
     description: Build sf rpm
+    pre-run: playbooks/install_requirements.yaml
     run: playbooks/rpmbuild.yaml
     required-projects:
       - software-factory/sfinfo
@@ -13,6 +14,7 @@
 - job:
     name: sf-rpm-publish
     description: Publish sf rpm to koji
+    pre-run: playbooks/install_requirements.yaml
     run: playbooks/rpmpublish.yaml
     required-projects:
       - software-factory/sfinfo
@@ -26,6 +28,7 @@
 - job:
     name: swagger-lint
     description: Run the swagger linter
+    pre-run: playbooks/install_requirements.yaml
     run: playbooks/swagger-lint.yaml
     nodeset:
       nodes:
@@ -35,6 +38,7 @@
 - job:
     name: swagger-publish
     description: Publish the swagger file
+    pre-run: playbooks/install_requirements.yaml
     run: playbooks/swagger-publish.yaml
     secrets:
       - swagger_secret
@@ -46,6 +50,7 @@
 - job:
     name: sf-docs-build
     description: Build the sf docs
+    pre-run: playbooks/install_requirements.yaml
     run: playbooks/sfdocbuild.yaml
     post-run: playbooks/sfdocpublish.yaml
     success-url: 'docs-html/index.html'
