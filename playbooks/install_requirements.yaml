@@ -1,0 +1,23 @@
+---
+- hosts: all
+  gather_facts: no
+  tasks:
+    - name: Prepare nodepool instance
+      block:
+        - name: Install required packages
+          yum:
+            name:
+              - createrepo
+              - koji
+              - mock
+              - python-jinja2
+              - python2-koji
+              - rpm-build
+              - rpmdevtools
+
+        - name: Add ci users in mock group
+          user:
+            name: zuul-worker
+            group: mock
+            append: yes
+      become: true
