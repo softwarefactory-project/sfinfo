@@ -8,7 +8,7 @@
     nodeset:
       nodes:
         - name: mock-host
-          label: dib-centos-7
+          label: sf-centos-7
 
 - job:
     name: sf-rpm-publish
@@ -21,7 +21,7 @@
     nodeset:
       nodes:
         - name: mock-host
-          label: dib-centos-7
+          label: sf-centos-7
 
 - job:
     name: swagger-lint
@@ -30,7 +30,7 @@
     nodeset:
       nodes:
         - name: test-host
-          label: dib-centos-7
+          label: sf-centos-7
 
 - job:
     name: swagger-publish
