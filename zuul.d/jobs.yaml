@@ -2,17 +2,19 @@
 - job:
     name: sf-rpm-build
     description: Build sf rpm
+    pre-run: playbooks/install_requirements.yaml
     run: playbooks/rpmbuild.yaml
     required-projects:
       - software-factory/sfinfo
     nodeset:
       nodes:
         - name: mock-host
-          label: dib-centos-7
+          label: sf-centos-7
 
 - job:
     name: sf-rpm-publish
     description: Publish sf rpm to koji
+    pre-run: playbooks/install_requirements.yaml
     run: playbooks/rpmpublish.yaml
     required-projects:
       - software-factory/sfinfo
@@ -21,7 +23,7 @@
     nodeset:
       nodes:
         - name: mock-host
-          label: dib-centos-7
+          label: sf-centos-7
 
 - job:
     name: swagger-lint
@@ -30,7 +32,7 @@
     nodeset:
       nodes:
         - name: test-host
-          label: dib-centos-7
+          label: sf-centos-7
 
 - job:
     name: swagger-publish
