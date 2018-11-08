@@ -216,6 +216,12 @@
     name: scl/nodepool-distgit
     templates:
       - sf-jobs
+    experimental:
+      jobs:
+        - sf-rpm-build
+        - sf-ci-openshift-integration:
+            dependencies:
+              - sf-rpm-build
 
 - project:
     name: scl/pyflakes-distgit
@@ -826,6 +832,12 @@
     name: scl/zuul-distgit
     templates:
       - sf-jobs
+    experimental:
+      jobs:
+        - sf-rpm-build
+        - sf-ci-openshift-integration:
+            dependencies:
+              - sf-rpm-build
 
 - project:
     name: scl/zuul-jobs-distgit
