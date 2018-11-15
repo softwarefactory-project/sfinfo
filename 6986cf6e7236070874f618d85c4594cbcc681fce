@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e8157e5_33a62290",
+        "filename": "playbooks/install_requirements.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2018-11-15T09:02:07Z",
+      "side": 1,
+      "message": "Could you also perform that 3 last steps:\nsudo mkdir /var/lib/sf\nsudo ln -s /home/$SUDO_USER/zuul-rpm-build /var/lib/sf/zuul-rpm-build\nsudo sed -i \u0027s/\\(%dist .el7\\).*/\\1/\u0027 /etc/rpm/macros.dist",
+      "revId": "6986cf6e7236070874f618d85c4594cbcc681fce",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    }
+  ]
+}
