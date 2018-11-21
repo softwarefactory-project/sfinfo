@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3eaa9e8d_2088975a",
+        "filename": "zuul.d/jobs.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7
+      },
+      "writtenOn": "2018-11-21T04:32:26Z",
+      "side": 1,
+      "message": "It doesn\u0027t seems like this job has been tested, but that can be fixed later if something got broken.",
+      "revId": "0437077fde89f4c69ed5ae107f51bb98f4b47e4a",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    }
+  ]
+}
