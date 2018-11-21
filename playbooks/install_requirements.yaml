@@ -7,6 +7,7 @@
         - name: Install required packages
           yum:
             name:
+              - git
               - createrepo
               - koji
               - mock
