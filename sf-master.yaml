@@ -735,12 +735,6 @@ packages:
   - name: scl/python-jsonschema
     source: external
     scl: rh-python35
-  - name: scl/python-glanceclient
-    source: external
-    scl: rh-python35
-  - name: scl/python-openstackclient
-    source: external
-    scl: rh-python35
   - name: scl/python-deprecation
     source: external
     scl: rh-python35
