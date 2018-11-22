@@ -434,6 +434,11 @@
       - sf-packaging-jobs
 
 - project:
+    name: scl/python-jwcrypto-distgit
+    templates:
+      - sf-packaging-jobs
+
+- project:
     name: scl/python-glanceclient-distgit
     templates:
       - sf-jobs-light
