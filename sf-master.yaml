@@ -499,6 +499,10 @@ packages:
     source: external
     scl: rh-python35
 
+  - name: scl/python-pure-sasl
+    source: external
+    scl: rh-python35
+
   - name: scl/python-mako
     source: external
     scl: rh-python35

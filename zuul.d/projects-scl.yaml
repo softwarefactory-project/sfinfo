@@ -509,6 +509,11 @@
       - sf-jobs-light
 
 - project:
+    name: scl/python-pure-sasl-distgit
+    templates:
+      - sf-packaging-jobs
+
+- project:
     name: scl/python-keystoneauth1-distgit
     templates:
       - sf-jobs-light
