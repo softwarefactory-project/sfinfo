@@ -35,6 +35,11 @@ pip_to_rpm_map = {
     "Paste": "python-paste",
     "WebOb": "python-webob",
     "dogpile.cache": "python-dogpile-cache",
+    "repoze.lru": "python-repoze-lru",
+    "CherryPy": "python-cherrypy",
+    "MarkupSafe": "python-markupsafe",
+    "Routes": "python-routes",
+    "backports.functools-lru-cache": "python-backports-functools-lru-cache",
 }
 
 
