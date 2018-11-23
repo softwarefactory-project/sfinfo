@@ -736,7 +736,7 @@
 - project:
     name: scl/python-setuptools-distgit
     templates:
-      - sf-jobs-light
+      - sf-packaging-jobs
 
 - project:
     name: scl/python-setuptools-scm-distgit

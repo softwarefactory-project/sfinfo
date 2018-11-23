@@ -334,10 +334,9 @@ packages:
     source: external
     scl: rh-python35
 
-    # TODO: check if this is still needed
-    #  - name: scl/python-setuptools
-    #    source: external
-    #    scl: rh-python35
+  - name: scl/python-setuptools
+    source: external
+    scl: rh-python35
 
   - name: scl/python-pytest-runner
     source: external
