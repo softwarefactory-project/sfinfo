@@ -2,6 +2,30 @@
 - project:
     name: scl/python-cherrypy-distgit
     templates:
+      - sf-jobs-light
+- project:
+    name: scl/python-cheroot-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-portend-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-tempora-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-more-itertools-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-zc-lockfile-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-jaraco-functools-distgit
+    templates:
       - sf-packaging-jobs
 - project:
     name: scl/python-ws4py-distgit
@@ -735,6 +759,11 @@
 
 - project:
     name: scl/python-setuptools-distgit
+    templates:
+      - sf-packaging-jobs
+
+- project:
+    name: scl/python-six-distgit
     templates:
       - sf-packaging-jobs
 

@@ -97,6 +97,30 @@ packages:
     source: external
     scl: rh-python35
 
+  - name: scl/python-cheroot
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-portend
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-tempora
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-jaraco-functools
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-more-itertools
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-zc-lockfile
+    source: external
+    scl: rh-python35
+
   - name: scl/python-ws4py
     source: external
     scl: rh-python35
@@ -335,6 +359,10 @@ packages:
     scl: rh-python35
 
   - name: scl/python-setuptools
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-six
     source: external
     scl: rh-python35
 

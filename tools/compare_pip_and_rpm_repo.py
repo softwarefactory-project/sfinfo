@@ -40,6 +40,8 @@ pip_to_rpm_map = {
     "MarkupSafe": "python-markupsafe",
     "Routes": "python-routes",
     "backports.functools-lru-cache": "python-backports-functools-lru-cache",
+    "jaraco.functools": "python-jaraco-functools",
+    "zc.lockfile": "python-zc-lockfile",
 }
 
 
