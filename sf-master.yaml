@@ -664,7 +664,16 @@ packages:
 #    source: external
 #    scl: rh-python35
 
-  #os-client-config
+
+  ################
+  # openstacksdk #
+  ################
+  # since openstacksdk doesn't require clients, some of those requirements may not be needed
+  # TODO: use rpmreq to check what can be removed
+  - name: scl/python-openstacksdk
+    source: external
+    scl: rh-python35
+  # os-client-config
   - name: scl/python-stevedore
     source: external
     scl: rh-python35
@@ -687,7 +696,7 @@ packages:
     source: external
     scl: rh-python35
 
-  #keystoneclient
+  # keystoneauth
   - name: scl/python-debtcollector
     source: external
     scl: rh-python35
@@ -715,11 +724,8 @@ packages:
   - name: scl/python-oslo-utils
     source: external
     scl: rh-python35
-  - name: scl/python-keystoneclient
-    source: external
-    scl: rh-python35
 
-  #openstackclient
+  # openstack clients (was *client)
   - name: scl/python-warlock
     source: external
     scl: rh-python35
@@ -738,13 +744,9 @@ packages:
   - name: scl/python-deprecation
     source: external
     scl: rh-python35
-  - name: scl/python-openstacksdk
-    source: external
-    scl: rh-python35
   - name: scl/python-os-service-types
     source: external
     scl: rh-python35
-
   - name: scl/python-pyperclip
     source: external
     scl: rh-python35
@@ -761,7 +763,7 @@ packages:
     source: external
     scl: rh-python35
 
-  #shade
+  # openstacksdk (was shade)
   - name: scl/python-jsonpointer
     source: external
     scl: rh-python35
