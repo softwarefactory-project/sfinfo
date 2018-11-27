@@ -1,11 +1,11 @@
 ---
 name: software-factory
 
-koji-target: sf-master-el7
+koji-target: sf-3.2-el7
 signing_key: 1c3bae4b
 arch: x86_64
-koji-url: https://softwarefactory-project.io/kojifiles/repos/sf-master-el7-build/latest/x86_64/
-branch: master
+koji-url: https://softwarefactory-project.io/kojifiles/repos/sf-3.2-el7-build/latest/x86_64/
+branch: 3.2
 packages:
   # ===========================================================================
   # Services packages
@@ -67,10 +67,6 @@ packages:
     source: internal
     spec: included
 
-#  - name: software-factory/sf-selinux
-#    source: internal
-#    spec: included
-#
   # Zuul
   - name: software-factory/patternfly-react-ui-deps
     source: external
@@ -188,10 +184,6 @@ packages:
 
   - name: software-factory/germqtt
     source: external
-
-  - name: software-factory/firehooks
-    source: internal
-    spec: included
 
   # Status
   - name: software-factory/grafyaml
