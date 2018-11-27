@@ -128,8 +128,8 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
         self.log.info("===== Adding package to target")
         if candidate:
             tag += "-candidate"
-        missing_packages = []
         tag_content = self.execute(["koji", "list-tagged", tag], capture=True)
+        to_tag = []
         for package in packages:
             name = os.path.basename(package["name"])
             if package.get("scl"):
@@ -144,19 +144,15 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
                 continue
             self.log.info("Package %s not in %s" % (name, tag))
             self.execute(["koji", "add-pkg", tag, name, "--owner=sfci"])
-            self.log.info("Adding %s to %s" % (package["nvr"], tag))
-            try:
-                self.execute(["koji", "tag-build", tag, package["nvr"]])
-                package["populated"] = True
-            except RuntimeError:
-                self.log.warning("Couldn't tag build for %s" % package["nvr"])
-                missing_packages.append(package["nvr"])
-        if missing_packages:
-            self.log.error("Failed to populate target, it's missing %s" %
-                           " ".join(missing_packages))
+            to_tag.append(package["nvr"])
+        try:
+            self.log.info("Tagging %s for %s", tag, to_tag)
+            self.execute(["koji", "tag-build", tag] + to_tag)
+            package["populated"] = True
+        except RuntimeError:
+            self.log.warning("Couldn't tag build for %s", to_tag)
             exit(1)
-        else:
-            self.log.info("SUCCESS: %s is populated" % tag)
+        self.log.info("SUCCESS: %s is populated" % tag)
 
     def main(self, args):
         if self.distro_info["branch"] == "master":
