@@ -1,11 +1,11 @@
 ---
 name: software-factory
 
-koji-target: sf-master-el7
+koji-target: sf-3.2-el7
 signing_key: 1c3bae4b
 arch: x86_64
-koji-url: https://softwarefactory-project.io/kojifiles/repos/sf-master-el7-build/latest/x86_64/
-branch: master
+koji-url: https://softwarefactory-project.io/kojifiles/repos/sf-3.2-el7-build/latest/x86_64/
+branch: 3.2
 packages:
   # ===========================================================================
   # Services packages
@@ -15,13 +15,13 @@ packages:
     source: internal
     spec: included
 
-  - name: software-factory/sf-docs
-    source: internal
-    spec: included
+  #- name: software-factory/sf-docs
+  #  source: internal
+  #  spec: included
 
-  - name: software-factory/sf-config
-    source: internal
-    spec: included
+  #- name: software-factory/sf-config
+  #  source: internal
+  #  spec: included
 
   - name: software-factory/python-sfmanager
     source: internal
@@ -31,9 +31,9 @@ packages:
     source: internal
     spec: included
 
-  - name: software-factory/cauth
-    source: internal
-    distgit: software-factory/cauth-distgit
+  #- name: software-factory/cauth
+  #  source: internal
+  #  distgit: software-factory/cauth-distgit
 
   - name: software-factory/sf-web-assets
     source: external
@@ -67,17 +67,13 @@ packages:
     source: internal
     spec: included
 
-#  - name: software-factory/sf-selinux
-#    source: internal
-#    spec: included
-#
   # Zuul
   - name: software-factory/patternfly-react-ui-deps
     source: external
 
-  - name: scl/zuul
-    source: external
-    scl: rh-python35
+  #- name: scl/zuul
+  #  source: external
+  #  scl: rh-python35
 
   - name: software-factory/re2
     source: external
@@ -174,9 +170,9 @@ packages:
     source: external
     scl: rh-python35
 
-  - name: scl/nodepool
-    source: external
-    scl: rh-python35
+  #- name: scl/nodepool
+  #  source: external
+  #  scl: rh-python35
 
   # Log server
   - name: software-factory/os-loganalyze
@@ -188,10 +184,6 @@ packages:
 
   - name: software-factory/germqtt
     source: external
-
-  - name: software-factory/firehooks
-    source: internal
-    spec: included
 
   # Status
   - name: software-factory/grafyaml
