@@ -147,8 +147,9 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
             self.execute(["koji", "add-pkg", tag, name, "--owner=sfci"])
             to_tag.append(package["nvr"])
         try:
-            self.log.info("Tagging %s for %s", tag, to_tag)
-            self.execute(["koji", "tag-build", tag] + to_tag)
+            if to_tag:
+                self.log.info("Tagging %s for %s", tag, to_tag)
+                self.execute(["koji", "tag-build", tag] + to_tag)
             package["populated"] = True
         except RuntimeError:
             self.log.warning("Couldn't tag build for %s", to_tag)
