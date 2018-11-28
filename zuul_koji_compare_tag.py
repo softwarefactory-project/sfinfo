@@ -66,12 +66,17 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
         if args.rst:
             new_pkgs = []
             updated_pkgs = []
+            deleted_pkgs = []
             for pkg, inf in dst_pkgs.items():
                 pkg_name = "%s-%s-%s.%s" % (inf[0], inf[1], inf[2], inf[4])
                 if pkg not in src_pkgs:
                     new_pkgs.append(pkg_name)
                 elif pkg_name not in src:
                     updated_pkgs.append(pkg_name)
+            for pkg, inf in src_pkgs.items():
+                pkg_name = "%s-%s-%s.%s" % (inf[0], inf[1], inf[2], inf[4])
+                if pkg not in dst_pkgs:
+                    deleted_pkgs.append(pkg_name)
             print("Updated Packages")
             print("~~~~~~~~~~~~~~~~\n")
             for pkg in sorted(updated_pkgs):
@@ -79,6 +84,10 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
             print("\n\nNew Packages")
             print("~~~~~~~~~~~~\n")
             for pkg in sorted(new_pkgs):
+                print("- %s" % pkg)
+            print("\n\nRemoved Packages")
+            print("~~~~~~~~~~~~~~~~\n")
+            for pkg in sorted(deleted_pkgs):
                 print("- %s" % pkg)
         else:
             for diff in difflib.ndiff(src, dst):
