@@ -82,6 +82,9 @@ packages:
   - name: software-factory/re2
     source: external
 
+  - name: software-factory/libgit2
+    source: external
+
   - name: scl/python-re2
     source: external
     scl: rh-python35
