@@ -85,6 +85,24 @@ packages:
   - name: software-factory/libgit2
     source: external
 
+  - name: software-factory/gitolite3
+    source: external
+
+  - name: software-factory/perl-generators
+    source: external
+
+  - name: software-factory/perl-Redis
+    source: external
+
+  - name: software-factory/perl-IO-Socket-Timeout
+    source: external
+
+  - name: software-factory/perl-PerlIO-via-Timeout
+    source: external
+
+  - name: software-factory/perl-Test-TCP
+    source: external
+
   - name: scl/python-re2
     source: external
     scl: rh-python35
