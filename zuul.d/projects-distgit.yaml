@@ -10,6 +10,11 @@
       - sf-packaging-jobs
 
 - project:
+    name: software-factory/gitolite3-distgit
+    templates:
+      - sf-packaging-jobs
+
+- project:
     name: software-factory/cgit-distgit
     templates:
       - sf-jobs-light
