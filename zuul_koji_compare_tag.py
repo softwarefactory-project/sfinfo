@@ -67,16 +67,16 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
             new_pkgs = []
             updated_pkgs = []
             deleted_pkgs = []
-            for pkg, inf in dst_pkgs.items():
-                pkg_name = "%s-%s-%s.%s" % (inf[0], inf[1], inf[2], inf[4])
-                if pkg not in src_pkgs:
-                    new_pkgs.append(pkg_name)
-                elif pkg_name not in src:
-                    updated_pkgs.append(pkg_name)
-            for pkg, inf in src_pkgs.items():
-                pkg_name = "%s-%s-%s.%s" % (inf[0], inf[1], inf[2], inf[4])
-                if pkg not in dst_pkgs:
-                    deleted_pkgs.append(pkg_name)
+            for nvr in dst:
+                pkg_name = splitFilename(nvr)[0]
+                if pkg_name not in src_pkgs:
+                    new_pkgs.append(nvr)
+                elif nvr not in src:
+                    updated_pkgs.append(nvr)
+            for nvr in src:
+                pkg_name = splitFilename(nvr)[0]
+                if pkg_name not in dst_pkgs:
+                    deleted_pkgs.append(nvr)
             print("Updated Packages")
             print("~~~~~~~~~~~~~~~~\n")
             for pkg in sorted(updated_pkgs):
