@@ -38,30 +38,18 @@
             dependencies:
               - sf-rpm-build
 
-- project:
-    name: software-factory/sf-distgit
-    templates:
-      - sf-packaging-jobs
 
 - project:
     name: software-factory/sf-elements
     templates:
       - sf-packaging-jobs
 
-- project:
-    name: software-factory/sf-heat-templates
-    templates:
-      - sf-noop
 
 - project:
     name: software-factory/sf-release
     templates:
       - sf-packaging-jobs
 
-- project:
-    name: software-factory/sf-selinux
-    templates:
-      - sf-packaging-jobs
 
 - project:
     name: software-factory/wait4service
