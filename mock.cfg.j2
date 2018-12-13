@@ -19,6 +19,7 @@ assumeyes=1
 syslog_ident=mock
 syslog_device=
 mdpolicy=group:primary
+ip_resolve=4
 
 # repos
 {% for repo in repos %}
@@ -32,6 +33,7 @@ baseurl={{ repo.baseurl }}
 gpgkey={{ repo.gpgkey }}
 gpgcheck={{ repo.gpgcheck }}
 enabled=1
+ip_resolve=4
 
 {% endfor %}
 """
