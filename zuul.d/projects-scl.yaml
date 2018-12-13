@@ -222,6 +222,11 @@
       - sf-jobs
 
 - project:
+    name: scl/python-selinux-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
     name: scl/ara-distgit
     templates:
       - sf-jobs
