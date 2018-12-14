@@ -5,6 +5,18 @@ config_opts['chroot_setup_cmd'] = 'install {{ chrootpackages }}'
 config_opts['dist'] = 'el7'  # only useful for --resultdir variable subst
 config_opts['releasever'] = '7'
 config_opts['use_host_resolv'] = False
+config_opts['files']['etc/gai.conf'] = """
+label       ::1/128        0
+label       ::/0           1
+label       2002::/16      2
+label       ::/96          3
+label       ::ffff:0:0/96  4
+precedence  ::1/128        50
+precedence  ::/0           40
+precedence  2002::/16      30
+precedence  ::/96          20
+precedence  ::ffff:0:0/96  100
+"""
 
 config_opts['yum.conf'] = """
 [main]
