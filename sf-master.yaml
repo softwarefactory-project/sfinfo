@@ -1140,21 +1140,21 @@ chrootpackages: "@buildsys-build buildsys-macros-el7 make gcc shadow-utils rpm-b
 baserepos:
   - name: centos7-os
     baseurl: http://mirror.centos.org/centos/7/os/x86_64/
-    mirror: http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=os
+    # mirror: http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=os
     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
     gpgcheck: 1
     kojipriority: 12
 
   - name: centos7-updates
     baseurl: http://mirror.centos.org/centos/7/updates/x86_64/
-    mirror: http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=updates
+    # mirror: http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=updates
     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
     gpgcheck: 1
     kojipriority: 11
 
   - name: centos7-extras
     baseurl: http://mirror.centos.org/centos/7/extras/x86_64/
-    mirror: http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=extras
+    # mirror: http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=extras
     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
     gpgcheck: 1
     kojipriority: 10
