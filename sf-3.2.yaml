@@ -1111,36 +1111,35 @@ chrootpackages: "@buildsys-build buildsys-macros-el7 make gcc shadow-utils rpm-b
 
 baserepos:
   - name: centos7-os
-    baseurl: http://mirror.regionone.rdo-cloud.rdoproject.org/centos/7/os/x86_64/
-    # mirror: http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=os
+    baseurl: http://mirror.centos.org/centos/7/os/x86_64/
+    mirror: http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=os
     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
     gpgcheck: 1
     kojipriority: 12
 
   - name: centos7-updates
-    baseurl: http://mirror.regionone.rdo-cloud.rdoproject.org/centos/7/updates/x86_64/
-    # mirror: http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=updates
+    baseurl: http://mirror.centos.org/centos/7/updates/x86_64/
+    mirror: http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=updates
     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
     gpgcheck: 1
     kojipriority: 11
 
   - name: centos7-extras
-    baseurl: http://mirror.regionone.rdo-cloud.rdoproject.org/centos/7/extras/x86_64/
-    # mirror: http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=extras
+    baseurl: http://mirror.centos.org/centos/7/extras/x86_64/
+    mirror: http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=extras
     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
     gpgcheck: 1
     kojipriority: 10
 
   - name: centos-sclo-rh
-    # baseurl: http://mirror.centos.org/centos/7/sclo/x86_64/rh/
-    baseurl: http://centos.mirror.vexxhost.com/7/sclo/x86_64/rh/
+    baseurl: http://mirror.centos.org/centos/7/sclo/x86_64/rh/
     gpgcheck: 1
     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-SCLo
     kojipriority: 9
 
 extrarepos:
   - name: openstack-queens
-    baseurl: http://mirror.regionone.rdo-cloud.rdoproject.org/centos/7/cloud/x86_64/openstack-queens/
+    baseurl: http://mirror.centos.org/centos/7/cloud/x86_64/openstack-queens/
     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Cloud
     gpgcheck: 1
     kojipriority: 5
