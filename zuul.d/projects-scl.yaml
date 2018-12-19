@@ -352,10 +352,6 @@
     templates:
       - sf-jobs-light
 
-- project:
-    name: scl/python-cinderclient-distgit
-    templates:
-      - sf-jobs-light
 
 - project:
     name: scl/python-click-distgit
@@ -482,10 +478,6 @@
     templates:
       - sf-jobs-light
 
-- project:
-    name: scl/python-ironicclient-distgit
-    templates:
-      - sf-jobs-light
 
 - project:
     name: scl/python-iso8601-distgit
@@ -602,10 +594,6 @@
     templates:
       - sf-jobs-light
 
-- project:
-    name: scl/python-novaclient-distgit
-    templates:
-      - sf-jobs-light
 
 - project:
     name: scl/python-openstackclient-distgit

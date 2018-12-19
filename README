@@ -13,47 +13,11 @@ sudo mkdir /var/lib/sf
 sudo ln -s /home/$SUDO_USER/zuul-rpm-build /var/lib/sf/zuul-rpm-build
 sudo sed -i 's/\(%dist .el7\).*/\1/' /etc/rpm/macros.dist
 
-## Packaging ci:
+## Release process
 
-zuul_rpm_build:   build package, whenever distgit or source change
-zuul_rpm_publish: publish package to koji target
-zuul_rpm_setup:   setup yum.repo.d file of the distrib repos
+Check create-release.org from the www.softwarefactory-project.io repository.
 
-## Release process:
+## Cleanup zuul config and resources
 
-### Step1 - prepare the distro info
-
-cp tdpw-master.yaml tdpw-1.0.yaml
-Update koji-target and branch
-
-### Step2 - create branch and tag (optional at that point)
-
-./zuul_set_distro_branch.py
-
-### Step3 - create koji target (with kojiadmin account)
-
-./zuul_koji_set_target --distro-info tdpw-1.0.yaml
-
-### Step4 - populate 1.0 target
-
-./zuul_koji_populate_target.py --distro-info tdpw-1.0.yaml
-
-### Step5 - populate candidate target (all package needs to be tagged at this point)
-
-./zuul_koji_populate_target.py --distro-info tdpw-1.0.yaml --candidate
-
-### Step6 - once candidate is valid, create release:
-
-koji clone-tag tdpw-1.0-centos7-candidate tdpw-1.0-centos7-release
-
-### Step7 - mash repo
-
-zuul_koji_mash.py
-
-If the command failed with: Old data directory exists, please remove: .olddata
-Apply: createrepo.patch
-
-
-## Tag process:
-
-zuul_discover_tag_branch: discover which target to build a tag against
+./tools/get_package_lists.py sf-*.yaml | ./tools/clean_zuul_config.py ./zuul.d/*
+./tools/get_package_lists.py sf-*.yaml | ./tools/clean_sf_resources.py ../config/resources/scl.yaml

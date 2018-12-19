@@ -194,10 +194,6 @@
     templates:
       - sf-jobs-light
 
-- project:
-    name: software-factory/nodepool-distgit
-    templates:
-      - sf-jobs-light
 
 - project:
     name: software-factory/os-loganalyze-distgit
@@ -244,10 +240,6 @@
     templates:
       - sf-jobs-light
 
-- project:
-    name: software-factory/python-alabaster-distgit
-    templates:
-      - sf-jobs-light
 
 - project:
     name: software-factory/python-appdirs-distgit
@@ -359,10 +351,6 @@
     templates:
       - sf-jobs-light
 
-- project:
-    name: software-factory/python-grafyaml-distgit
-    templates:
-      - sf-jobs-light
 
 - project:
     name: software-factory/python-htpasswd-distgit
@@ -494,10 +482,6 @@
     templates:
       - sf-jobs-light
 
-- project:
-    name: software-factory/python-os-client-config-distgit
-    templates:
-      - sf-jobs-light
 
 - project:
     name: software-factory/python-paho-mqtt-distgit
@@ -519,10 +503,6 @@
     templates:
       - sf-jobs-light
 
-- project:
-    name: software-factory/python-py-distgit
-    templates:
-      - sf-jobs-light
 
 - project:
     name: software-factory/python-pyfakefs-distgit
@@ -634,10 +614,6 @@
     templates:
       - sf-packaging-jobs
 
-- project:
-    name: software-factory/shade-distgit
-    templates:
-      - sf-jobs-light
 
 - project:
     name: software-factory/storyboard-distgit
@@ -659,10 +635,6 @@
     templates:
       - sf-jobs-light
 
-- project:
-    name: software-factory/uwsgi-distgit
-    templates:
-      - sf-jobs-light
 
 - project:
     name: software-factory/yamllint-distgit
@@ -674,17 +646,5 @@
     templates:
       - sf-jobs-light
 
-- project:
-    name: software-factory/zuul-dashboard
-    templates:
-      - sf-packaging-jobs
 
-- project:
-    name: software-factory/zuul-distgit
-    templates:
-      - sf-jobs-light
 
-- project:
-    name: software-factory/zuul-swift-upload-distgit
-    templates:
-      - sf-jobs-light
