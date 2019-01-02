@@ -379,6 +379,10 @@ packages:
     source: external
     scl: rh-python35
 
+  - name: scl/python-sqlalchemy
+    source: external
+    scl: rh-python35
+
   - name: scl/python-six
     source: external
     scl: rh-python35

@@ -756,6 +756,11 @@
       - sf-packaging-jobs
 
 - project:
+    name: scl/python-sqlalchemy-distgit
+    templates:
+      - sf-packaging-jobs
+
+- project:
     name: scl/python-six-distgit
     templates:
       - sf-packaging-jobs
