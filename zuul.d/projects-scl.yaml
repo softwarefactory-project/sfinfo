@@ -68,6 +68,18 @@
     templates:
       - sf-packaging-jobs
 - project:
+    name: scl/python-boto3-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-botocore-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
+    name: scl/python-s3transfer-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
     name: scl/python-openshift-distgit
     templates:
       - sf-packaging-jobs
