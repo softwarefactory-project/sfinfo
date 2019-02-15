@@ -978,3 +978,28 @@
     name: scl/python-sphinx-autodoc-typehints-distgit
     templates:
       - sf-packaging-jobs
+
+- project:
+    name: scl/python-logutils-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: scl/python-pecan-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: scl/python-elasticsearch-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: scl/python-gunicorn-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: scl/repoxplorer-distgit
+    templates:
+      - sf-packaging-jobs

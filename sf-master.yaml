@@ -964,6 +964,22 @@ packages:
     source: external
     scl: rh-python35
 
+  # repoXplorer scl
+  - name: scl/repoxplorer
+    scl: rh-python35
+  - name: scl/python-pecan
+    source: external
+    scl: rh-python35
+  - name: scl/python-logutils
+    source: external
+    scl: rh-python35
+  - name: scl/python-elasticsearch
+    source: external
+    scl: rh-python35
+  - name: scl/python-gunicorn
+    source: external
+    scl: rh-python35
+
   - name: software-factory/python-pluggy
     source: external
 
