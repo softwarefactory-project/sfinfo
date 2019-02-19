@@ -70,6 +70,14 @@ def main():
             print("Couldn't find target %s" % patches["target"])
             exit(1)
 
+    if "not nodepool/tests" in patches["paths"]:
+        # Special trick to get everything but nodepool/tests
+        patches["paths"] = patches["paths"].replace(
+            "not nodepool/tests", " ".join(list(
+                map(lambda x: "nodepool/" + x,
+                    filter(lambda x: x != "tests",
+                           os.listdir("nodepool/nodepool"))))))
+
     # Get refs
     print("Fetching all refs...")
     changes = {}
@@ -96,11 +104,11 @@ def main():
 
     # Generate spec file instruction
     idx = 10
-    cat = None
+    note = None
     for change in patches["changes"]:
-        if cat != change["cat"]:
-            cat = change["cat"]
-            print("\n# %s" % cat)
+        if note != change.get("note", "Tech preview"):
+            note = change.get("note", "Tech preview")
+            print("\n# %s" % note)
         print("Patch%2d:         %s" % (idx, change["filename"]))
         idx += 1
 
