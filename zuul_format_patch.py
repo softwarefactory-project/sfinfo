@@ -95,6 +95,10 @@ def main():
         nr = os.path.basename(change["url"])
         ref = "refs/changes/%s/%s/%s" % (nr[-2:], nr, changes[nr])
         git("fetch %s %s" % (patches["project"], ref))
+        if "master" in git("branch --contains FETCH_HEAD", read=True):
+            change["merged"] = True
+            continue
+        change["merged"] = False
         git("cherry-pick FETCH_HEAD")
         change["filename"] = git(
             "format-patch -1 %s" % patches["paths"], read=True).strip()
@@ -105,13 +109,16 @@ def main():
     # Generate spec file instruction
     idx = 10
     note = None
-    for change in patches["changes"]:
+    for change in filter(lambda x: not x["merged"], patches["changes"]):
         if note != change.get("note", "Tech preview"):
             note = change.get("note", "Tech preview")
             print("\n# %s" % note)
         print("Patch%2d:         %s" % (idx, change["filename"]))
         idx += 1
 
+    print("\n\n")
+    for change in filter(lambda x: x["merged"], patches["changes"]):
+        print("%s is already" % change)
 
 if __name__ == "__main__":
     main()
