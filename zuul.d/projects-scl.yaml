@@ -1000,6 +1000,16 @@
       - sf-jobs-light
 
 - project:
+    name: scl/python-webtest-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: scl/python-beautifulsoup-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
     name: scl/repoxplorer-distgit
     templates:
       - sf-packaging-jobs

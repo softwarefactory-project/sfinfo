@@ -979,6 +979,12 @@ packages:
   - name: scl/python-gunicorn
     source: external
     scl: rh-python35
+  - name: scl/python-webtest
+    source: external
+    scl: rh-python35
+  - name: scl/python-beautifulsoup
+    source: external
+    scl: rh-python35
 
   - name: software-factory/python-pluggy
     source: external
