@@ -248,6 +248,9 @@ packages:
   - name: scl/dlrnapi-client
     source: external
     scl: rh-python35
+  - name: scl/python-distroinfo
+    source: external
+    scl: rh-python35
 
   # Codesearch
   - name: software-factory/hound
