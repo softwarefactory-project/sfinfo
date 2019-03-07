@@ -541,6 +541,11 @@
       - sf-jobs-light
 
 - project:
+    name: scl/python-jsonpath-rw-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
     name: scl/python-kazoo-distgit
     templates:
       - sf-jobs-light
