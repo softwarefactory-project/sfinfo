@@ -55,8 +55,8 @@ def main():
     # Clone the project
     if not os.path.isdir(project):
         execute("git clone %s" % patches["project"])
-        git("config --global user.name SF")
-        git("config --global user.email zuul@sf")
+        git("config user.name SF")
+        git("config user.email zuul@sf")
 
     # Checkout target
     try:
