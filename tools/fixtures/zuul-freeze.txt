@@ -56,3 +56,4 @@ voluptuous==0.11.1
 yarl==1.2.4
 zuul==3.0.3
 jsonpath-rw==1.4.0
+ply==3.11

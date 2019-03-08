@@ -28,6 +28,7 @@ pip_to_rpm_map = {
     "pycrypto": "python-crypto",
     "PyJWT": "python-jwt",
     "jsonpath-rw": "python-jsonpath-rw",
+    "ply": "python-ply",
     "PyNaCl": "python-pynacl",
     "PyYAML": "PyYAML",
     "smmap2": "python-smmap",

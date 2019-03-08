@@ -546,6 +546,11 @@
       - sf-jobs-light
 
 - project:
+    name: scl/python-ply-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
     name: scl/python-kazoo-distgit
     templates:
       - sf-jobs-light

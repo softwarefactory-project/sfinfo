@@ -618,6 +618,10 @@ packages:
     source: external
     scl: rh-python35
 
+  - name: scl/python-ply
+    source: external
+    scl: rh-python35
+
   - name: scl/python-iso8601
     source: external
     scl: rh-python35
