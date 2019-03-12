@@ -271,6 +271,18 @@ packages:
     source: external
     scl: rh-python35
 
+  - name: scl/python-boto3
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-botocore
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-s3transfer
+    source: external
+    scl: rh-python35
+
   - name: scl/python-openshift
     source: external
     scl: rh-python35
