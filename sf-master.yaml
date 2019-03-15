@@ -79,6 +79,18 @@ packages:
     source: external
     scl: rh-python35
 
+  - name: scl/zuul-executor-ansible-25
+    source: external
+    scl: rh-python35
+
+  - name: scl/zuul-executor-ansible-26
+    source: external
+    scl: rh-python35
+
+  - name: scl/zuul-executor-ansible-27
+    source: external
+    scl: rh-python35
+
   - name: software-factory/re2
     source: external
 

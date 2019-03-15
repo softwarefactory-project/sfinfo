@@ -4,6 +4,10 @@
     templates:
       - sf-jobs-light
 - project:
+    name: ^scl/zuul-executor-ansible-.*-distgit$
+    templates:
+      - sf-jobs-light
+- project:
     name: scl/python-cheroot-distgit
     templates:
       - sf-packaging-jobs
