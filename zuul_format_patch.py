@@ -159,16 +159,44 @@ def main():
     # Generate spec file instruction
     idx = 10
     note = None
-    for change in filter(lambda x: not x["merged"], patches["changes"]):
-        if note != change.get("note", "Tech preview"):
-            note = change.get("note", "Tech preview")
-            print("\n# %s" % note)
-        print("Patch%2d:        %s" % (idx, change["filename"]))
-        idx += 1
+    spec = open("%s.spec" % project).readlines()
+    spec_pos = 0
+    with open("%s.spec" % project, "w") as of:
+        for line in spec:
+            of.write(line)
+            spec_pos += 1
+            if "-BEGIN PATCH SECTION-" in line:
+                break
 
-    print("\n\n")
+        if "-BEGIN PATCH SECTION-" in line:
+            for change in filter(lambda x: not x["merged"],
+                                 patches["changes"]):
+                if note != change.get("note", "Tech preview"):
+                    note = change.get("note", "Tech preview")
+                    of.write("# %s\n" % note)
+                of.write("Patch%2d:        %s\n" % (idx, change["filename"]))
+                idx += 1
+
+        if "-BEGIN PATCH SECTION-" in line:
+            note = "skip"
+        for line in spec[spec_pos:]:
+            if "-END PATCH SECTION-" in line:
+                note = None
+            if note != "skip":
+                of.write(line)
+
+    local_patches = list(filter(lambda x: x.endswith(".patch"),
+                                os.listdir(".")))
+    spec_patches = list(map(lambda x: x.split()[1],
+                            filter(lambda x: x.lower().startswith("patch"),
+                                   open("%s.spec" % project).readlines())))
+    for local_patch in local_patches:
+        if local_patch not in spec_patches:
+            print("Removing %s" % local_patch)
+            os.unlink(local_patch)
+
     for change in filter(lambda x: x["merged"], patches["changes"]):
-        print("%s is already" % change)
+        print("%s is already merged" % change)
 
 
 if __name__ == "__main__":
