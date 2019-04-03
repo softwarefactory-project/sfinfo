@@ -30,6 +30,8 @@ import subprocess
 import os
 import yaml
 
+os.environ["EDITOR"] = "/bin/true"
+
 
 def execute(cmd, cwd=None):
     if subprocess.Popen(cmd.split(), cwd=cwd).wait():
@@ -51,6 +53,42 @@ def main():
         if read:
             return pread(cmd, cwd=project)
         return execute(cmd, cwd=project)
+
+    def conflict_list():
+        return list(map(lambda x: x.split()[1],
+                        filter(lambda x: x.startswith("UU"),
+                               git("status --short", read=True).split('\n'))))
+
+    def solve_conflict(change):
+        solved = True
+        for conflict in conflict_list():
+            if "tests/" in conflict:
+                git("checkout --theirs %s" % conflict)
+                git("add %s" % conflict)
+            elif conflict in change.get("automerge", []):
+                content = open(os.path.join(project, conflict)).readlines()
+                with open(os.path.join(project, conflict), "w") as of:
+                    for line in content:
+                        if (line.startswith("<<<<<<<") or
+                            line.startswith(">>>>>>>") or
+                            line.startswith("=======")):
+                            continue
+                        of.write(line)
+                git("add %s" % conflict)
+            elif conflict in change.get("keep-ours", []):
+                git("checkout --ours %s" % conflict)
+                git("add %s" % conflict)
+            elif conflict in change.get("autopatch", {}):
+                p = subprocess.Popen(["patch", "-p0"], cwd=project, stdin=subprocess.PIPE)
+                p.communicate(change["autopatch"][conflict])
+                if p.wait():
+                    raise RuntimeError("Couldn't apply patch")
+                git("add %s" % conflict)
+            else:
+                solved = False
+        if solved:
+            git("cherry-pick --continue")
+        return solved
 
     # Clone the project
     if not os.path.isdir(project):
@@ -99,12 +137,23 @@ def main():
             change["merged"] = True
             continue
         change["merged"] = False
-        git("cherry-pick FETCH_HEAD")
+        try:
+            git("cherry-pick FETCH_HEAD")
+        except RuntimeError:
+            if not solve_conflict(change):
+                raw_input("Fix cherry-pick and press enter to continue...: ")
         change["filename"] = git(
             "format-patch -1 %s" % patches["paths"], read=True).strip()
         print("<= patch is %s" % change["filename"])
         os.rename(os.path.join(project, change["filename"]),
                   change["filename"])
+        # Remove useless From line
+        content = open(change["filename"]).readlines()
+        with open(change["filename"], "w") as of:
+            of.write("From 00000000000000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001\n")
+            for line in content[1:]:
+                of.write(line)
+        
 
     # Generate spec file instruction
     idx = 10
@@ -113,7 +162,7 @@ def main():
         if note != change.get("note", "Tech preview"):
             note = change.get("note", "Tech preview")
             print("\n# %s" % note)
-        print("Patch%2d:         %s" % (idx, change["filename"]))
+        print("Patch%2d:        %s" % (idx, change["filename"]))
         idx += 1
 
     print("\n\n")
