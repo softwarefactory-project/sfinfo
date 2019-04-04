@@ -78,6 +78,9 @@ def main():
             elif conflict in change.get("keep-ours", []):
                 git("checkout --ours %s" % conflict)
                 git("add %s" % conflict)
+            elif conflict in change.get("keep-theirs", []):
+                git("checkout --theirs %s" % conflict)
+                git("add %s" % conflict)
             elif conflict in change.get("autopatch", {}):
                 p = subprocess.Popen(["patch", "-p0"], cwd=project, stdin=subprocess.PIPE)
                 p.communicate(change["autopatch"][conflict])
@@ -150,7 +153,7 @@ def main():
         # Remove useless From line
         content = open(change["filename"]).readlines()
         with open(change["filename"], "w") as of:
-            of.write("From 00000000000000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001\n")
+            of.write("From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001\n")
             for line in content[1:]:
                 of.write(line)
         
