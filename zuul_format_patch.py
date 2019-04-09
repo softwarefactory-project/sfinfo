@@ -69,17 +69,23 @@ def main():
                 content = open(os.path.join(project, conflict)).readlines()
                 with open(os.path.join(project, conflict), "w") as of:
                     for line in content:
-                        if (line.startswith("<<<<<<<") or
-                            line.startswith(">>>>>>>") or
-                            line.startswith("=======")):
+                        is_conflict = (line.startswith("<<<<<<<") or
+                                       line.startswith(">>>>>>>") or
+                                       line.startswith("======="))
+                        if is_conflict:
                             continue
                         of.write(line)
                 git("add %s" % conflict)
             elif conflict in change.get("keep-ours", []):
                 git("checkout --ours %s" % conflict)
                 git("add %s" % conflict)
+            elif conflict in change.get("keep-theirs", []):
+                git("checkout --theirs %s" % conflict)
+                git("add %s" % conflict)
             elif conflict in change.get("autopatch", {}):
-                p = subprocess.Popen(["patch", "-p0"], cwd=project, stdin=subprocess.PIPE)
+                p = subprocess.Popen(["patch", "-p0"],
+                                     cwd=project,
+                                     stdin=subprocess.PIPE)
                 p.communicate(change["autopatch"][conflict])
                 if p.wait():
                     raise RuntimeError("Couldn't apply patch")
@@ -150,10 +156,10 @@ def main():
         # Remove useless From line
         content = open(change["filename"]).readlines()
         with open(change["filename"], "w") as of:
-            of.write("From 00000000000000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001\n")
+            of.write("From 0000000000000000000000000000000000000000 "
+                     "Mon Sep 17 00:00:00 2001\n")
             for line in content[1:]:
                 of.write(line)
-        
 
     # Generate spec file instruction
     idx = 10
@@ -181,7 +187,8 @@ def main():
             if note != "skip":
                 of.write(line)
 
-    local_patches = list(filter(lambda x: x.endswith(".patch"), os.listdir(".")))
+    local_patches = list(filter(lambda x: x.endswith(".patch"),
+                                os.listdir(".")))
     spec_patches = list(map(lambda x: x.split()[1],
                             filter(lambda x: x.lower().startswith("patch"),
                                    open("%s.spec" % project).readlines())))
