@@ -80,8 +80,9 @@ def main():
                 git("checkout --theirs %s" % conflict)
                 git("add %s" % conflict)
             elif conflict in change.get("autopatch", {}):
-                p = subprocess.Popen(
-                    ["patch", "-p0"], cwd=project, stdin=subprocess.PIPE)
+                p = subprocess.Popen(["patch", "-p0"],
+                                     cwd=project,
+                                     stdin=subprocess.PIPE)
                 p.communicate(change["autopatch"][conflict])
                 if p.wait():
                     raise RuntimeError("Couldn't apply patch")
