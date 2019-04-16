@@ -77,6 +77,21 @@ class App:
     def get_spec_release(self, specfile):
         return self.get_spec_field(specfile, "Release")
 
+    def clone_package(self, package):
+        # TODO: handle internal source
+        repo = "%s-distgit" % package["name"]
+        repo_url = os.path.join(self.args.source, repo)
+        if not os.path.isdir(repo):
+            os.makedirs(repo)
+        if not os.path.isdir(os.path.join(repo, ".git")):
+            self.execute(["git", "clone", repo_url, repo])
+        else:
+            # TODO: support branch
+            self.execute(["git", "clean", "-xfd"], cwd=repo)
+            self.execute(["git", "fetch"], cwd=repo)
+            self.execute(["git", "reset", "--hard", "origin/master"], cwd=repo)
+        return repo
+
     def _load_distro_info(self, path):
         if not os.path.isfile(path):
             raise RuntimeError()

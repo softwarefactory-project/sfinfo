@@ -86,18 +86,26 @@ packages:
   - name: scl/zuul-executor-ansible-25
     source: external
     scl: rh-python35
+    upstream: https://github.com/ansible/ansible/
+    constrain: "<2.6"
 
   - name: scl/zuul-executor-ansible-26
     source: external
     scl: rh-python35
+    upstream: https://github.com/ansible/ansible/
+    constrain: "<2.7"
 
   - name: scl/zuul-executor-ansible-27
     source: external
     scl: rh-python35
+    upstream: https://github.com/ansible/ansible/
+    constrain: "<2.8"
 
   - name: scl/zuul-executor-ansible-28
     source: external
     scl: rh-python35
+    upstream: https://github.com/ansible/ansible/
+    constrain: "<2.9"
 
   - name: software-factory/re2
     source: external
