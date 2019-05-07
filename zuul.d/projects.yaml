@@ -131,16 +131,22 @@
         - sf-rpm-build:
             required-projects:
               - software-factory/cauth-distgit
+        - sf-rpm-build-scl:
+              - scl/python-cauth-distgit
     gate:
       jobs:
         - sf-rpm-build:
             required-projects:
               - software-factory/cauth-distgit
+        - sf-rpm-build-scl:
+              - scl/python-cauth-distgit
     release:
       jobs:
         - sf-rpm-publish:
             required-projects:
               - software-factory/cauth-distgit
+        - sf-rpm-publish-scl:
+              - scl/python-cauth-distgit
 
 - project:
     name: software-factory/python-sfmanager

@@ -12,6 +12,11 @@
           label: cloud-centos-7
 
 - job:
+    name: sf-rpm-build-scl
+    description: duplicate of sf-rpm-build so that it can be run twice for projects migrating from py2x to py3x
+    parent: sf-rpm-build
+
+- job:
     name: sf-rpm-publish
     description: Publish sf rpm to koji
     pre-run: playbooks/install_requirements.yaml
@@ -24,6 +29,11 @@
       nodes:
         - name: mock-host
           label: cloud-centos-7
+
+- job:
+    name: sf-rpm-publish-scl
+    description: duplicate of sf-rpm-publish so that it can be run concurrently for projects migrating from py2x to py3x
+    parent: sf-rpm-publish
 
 - job:
     name: swagger-lint
