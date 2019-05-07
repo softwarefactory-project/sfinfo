@@ -100,6 +100,26 @@
               - software-factory/cauth
 
 - project:
+    name: scl/python-cauth-distgit
+    templates:
+      - sf-jobs-light
+    check:
+      jobs:
+        - sf-rpm-build:
+            required-projects:
+              - software-factory/cauth
+    gate:
+      jobs:
+        - sf-rpm-build:
+            required-projects:
+              - software-factory/cauth
+    release:
+      jobs:
+        - sf-rpm-publish:
+            required-projects:
+              - software-factory/cauth
+
+- project:
     name: software-factory/doc8-distgit
     templates:
       - sf-packaging-jobs
@@ -645,6 +665,3 @@
     name: software-factory/zookeeper-lite-distgit
     templates:
       - sf-jobs-light
-
-
-
