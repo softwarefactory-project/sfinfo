@@ -1009,6 +1009,11 @@ packages:
     source: external
     scl: rh-python35
 
+  # Software Factory Core Libraries
+  - name: scl/python-cauth
+    source: external
+    scl: rh-python35
+
   - name: software-factory/python-pluggy
     source: external
 

@@ -645,6 +645,3 @@
     name: software-factory/zookeeper-lite-distgit
     templates:
       - sf-jobs-light
-
-
-
