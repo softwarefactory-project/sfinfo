@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba3f740b_13ca1875",
+        "filename": "zuul.d/projects-distgit.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2019-05-09T08:21:59Z",
+      "side": 1,
+      "message": "Could be better placed in projects-scl.yaml",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 38
+      },
+      "revId": "32175267e1bf3b196d7c49ee5b9c29387b0eebee",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    }
+  ]
+}
