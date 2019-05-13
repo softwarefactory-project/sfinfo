@@ -1,0 +1,1243 @@
+---
+name: software-factory
+
+koji-target: sf-3.3-el7
+signing_key: 1c3bae4b
+arch: x86_64
+koji-url: https://softwarefactory-project.io/kojifiles/repos/sf-3.3-el7-build/latest/x86_64/
+branch: 3.3
+packages:
+  # ===========================================================================
+  # Services packages
+  # ===========================================================================
+  # SF internals
+  - name: software-factory/sf-release
+    source: internal
+    spec: included
+
+  - name: software-factory/sf-docs
+    source: internal
+    spec: included
+
+  - name: software-factory/sf-config
+    source: internal
+    spec: included
+
+  - name: software-factory/python-sfmanager
+    source: internal
+    spec: included
+
+  - name: software-factory/managesf
+    source: internal
+    spec: included
+
+  - name: software-factory/cauth
+    source: internal
+    distgit: software-factory/cauth-distgit
+
+  - name: software-factory/sf-web-assets
+    source: external
+
+  - name: software-factory/sf-elements
+    source: internal
+    spec: included
+
+  # Git
+  - name: software-factory/cgit
+    source: external
+
+  # Auth
+  - name: software-factory/mod_auth_pubtkt
+    source: external
+
+  # System bits
+  - name: software-factory/haveged
+    source: external
+
+  - name: software-factory/lecm
+    source: external
+
+  - name: software-factory/monit
+    source: external
+
+  - name: software-factory/ara
+    source: external
+
+  - name: software-factory/wait4service
+    source: internal
+    spec: included
+
+#  - name: software-factory/sf-selinux
+#    source: internal
+#    spec: included
+#
+  # Zuul
+  - name: software-factory/patternfly-react-ui-deps
+    source: external
+
+  - name: scl/zuul
+    source: external
+    scl: rh-python35
+
+  - name: scl/zuul-executor-ansible-25
+    source: external
+    scl: rh-python35
+
+  - name: scl/zuul-executor-ansible-26
+    source: external
+    scl: rh-python35
+
+  - name: scl/zuul-executor-ansible-27
+    source: external
+    scl: rh-python35
+
+  - name: software-factory/re2
+    source: external
+
+  - name: software-factory/libgit2
+    source: external
+
+  - name: software-factory/gitolite3
+    source: external
+
+  - name: software-factory/perl-generators
+    source: external
+
+  - name: software-factory/perl-Redis
+    source: external
+
+  - name: software-factory/perl-IO-Socket-Timeout
+    source: external
+
+  - name: software-factory/perl-PerlIO-via-Timeout
+    source: external
+
+  - name: software-factory/perl-Test-TCP
+    source: external
+
+  - name: software-factory/perl-Test-SharedFork
+    source: external
+
+  - name: scl/python-re2
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-cherrypy
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-cheroot
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-portend
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-tempora
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-jaraco-functools
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-more-itertools
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-zc-lockfile
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-ws4py
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-routes
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-repoze-lru
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-tornado
+    source: external
+    scl: rh-python35
+
+  - name: scl/Cython
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-gevent
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-greenlet
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-pycurl
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-bottle
+    source: external
+    scl: rh-python35
+
+  - name: scl/zuul-jobs
+    source: external
+    scl: rh-python35
+
+  - name: scl/ara
+    source: external
+    scl: rh-python35
+
+  - name: software-factory/bubblewrap
+    source: external
+
+  - name: software-factory/zookeeper-lite
+    source: external
+
+  - name: logreduce
+    source: internal
+    spec: included
+    scl: rh-python35
+
+  # Nodepool
+  - name: scl/diskimage-builder
+    source: external
+    scl: rh-python35
+
+  - name: scl/nodepool
+    source: external
+    scl: rh-python35
+
+  # Log server
+  - name: software-factory/os-loganalyze
+    source: external
+
+  # MQTT
+  - name: software-factory/mosquitto
+    source: external
+
+  - name: software-factory/germqtt
+    source: external
+
+  - name: software-factory/firehooks
+    source: internal
+    spec: included
+
+  # Status
+  - name: software-factory/grafyaml
+    source: external
+
+  # Gerrit
+  - name: software-factory/gerrit
+    source: external
+
+  - name: software-factory/gitweb-theme-kogakure
+    source: external
+
+  - name: software-factory/git-review
+    source: external
+
+  - name: software-factory/gerritbot
+    source: external
+
+  # RepoXplorer
+  - name: software-factory/repoxplorer
+    source: external
+
+  # DLRN/rdopkg
+  - name: scl/rdopkg
+    source: external
+    scl: rh-python35
+  - name: scl/dlrn
+    source: external
+    scl: rh-python35
+  - name: scl/dlrnapi-client
+    source: external
+    scl: rh-python35
+  - name: scl/python-distroinfo
+    source: external
+    scl: rh-python35
+
+  # Codesearch
+  - name: software-factory/hound
+    source: external
+
+  # Storyboard
+  - name: software-factory/storyboard
+    source: external
+
+  - name: software-factory/storyboard-webclient
+    source: external
+
+  # Extra service
+  - name: software-factory/lodgeit
+    source: external
+
+  - name: software-factory/etherpad
+    source: external
+
+  - name: software-factory/umurmur
+    source: external
+
+  - name: software-factory/mirror2swift
+    source: external
+
+
+  # Test tools
+  - name: software-factory/ansible-lint
+    source: external
+
+  - name: software-factory/yamllint
+    source: external
+
+  - name: software-factory/python-restructuredtext-lint
+    source: external
+
+  - name: software-factory/doc8
+    source: external
+
+  - name: software-factory/bashate
+    source: external
+
+  - name: software-factory/python-tox
+    source: external
+
+  - name: software-factory/python-pelican
+    source: external
+
+  # ===========================================================================
+  # Requirements
+  # ===========================================================================
+  - name: scl/enable-py3
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-boto3
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-botocore
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-s3transfer
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-openshift
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-dictdiffer
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-ruamel-yaml
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-string-utils
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-google-auth
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-cachetools
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-oauthlib
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-requests-oauthlib
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-kubernetes
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-oauth2client
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-gflags
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-fasteners
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-httplib2
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-keyring
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-SecretStorage
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-jeepney
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-rsa
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-websocket-client
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-setuptools
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-sqlalchemy
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-six
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-pytest-runner
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-dulwich
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-reno
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-multidict
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-async-timeout
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-yarl
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-aiohttp
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-uvloop
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-idna
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-asn1crypto
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-cffi
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-pycparser
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-cryptography
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-bcrypt
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-pynacl
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-pyasn1
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-paramiko
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-crypto
+    source: external
+    scl: rh-python35
+
+  - name: scl/ansible
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-selinux
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-scikit-learn
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-joblib
+    source: external
+    scl: rh-python35
+
+  - name: scl/scipy
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-paste
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-webob
+    source: external
+    scl: rh-python35
+
+  - name: scl/GitPython
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-pbr
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-lockfile
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-daemon
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-extras
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-statsd
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-voluptuous
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-gear
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-pytz
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-tzlocal
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-setuptools-scm
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-APScheduler
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-prettytable
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-psutil
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-paho-mqtt
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-kazoo
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-pure-sasl
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-mako
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-PyMySQL
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-dateutil
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-alembic
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-urllib3
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-chardet
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-certifi
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-requests
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-msgpack
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-CacheControl
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-jwt
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-jsonpath-rw
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-ply
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-iso8601
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-smmap
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-gitdb
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-uritemplate
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-pyopenssl
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-github3
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-jwcrypto
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-rjsmin
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-pyparsing
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-rcssmin
+    source: external
+    scl: rh-python35
+
+  # dlrn/rdopkg
+  - name: scl/python-sh
+    source: external
+    scl: rh-python35
+  - name: scl/python-renderspec
+    source: external
+    scl: rh-python35
+  - name: scl/python-packaging
+    source: external
+    scl: rh-python35
+#  - name: scl/git-review
+#    source: external
+#    scl: rh-python35
+  - name: scl/python-bunch
+    source: external
+    scl: rh-python35
+  - name: scl/python-pymod2pkg
+    source: external
+    scl: rh-python35
+  - name: scl/python-passlib
+    source: external
+    scl: rh-python35
+  - name: scl/python-flask-httpauth
+    source: external
+    scl: rh-python35
+  - name: scl/python-future
+    source: external
+    scl: rh-python35
+#  - name: scl/python-koji
+#    source: external
+#    scl: rh-python35
+#  - name: scl/python-rpm
+#    source: external
+#    scl: rh-python35
+#  - name: scl/python-pycurl
+#    source: external
+#    scl: rh-python35
+#  - name: scl/python-kerberos
+#    source: external
+#    scl: rh-python35
+#  - name: scl/python-requests-kerberos
+#    source: external
+#    scl: rh-python35
+#  - name: scl/python-libcomps
+#    source: external
+#    scl: rh-python35
+#  - name: scl/python-rpm-py-installer
+#    source: external
+#    scl: rh-python35
+
+
+  ################
+  # openstacksdk #
+  ################
+  # since openstacksdk doesn't require clients, some of those requirements may not be needed
+  # TODO: use rpmreq to check what can be removed
+  - name: scl/python-openstacksdk
+    source: external
+    scl: rh-python35
+  # os-client-config
+  - name: scl/python-stevedore
+    source: external
+    scl: rh-python35
+  - name: scl/python-requestsexceptions
+    source: external
+    scl: rh-python35
+  - name: scl/python-keystoneauth1
+    source: external
+    scl: rh-python35
+  - name: scl/python-appdirs
+    source: external
+    scl: rh-python35
+  - name: scl/python-wrapt
+    source: external
+    scl: rh-python35
+  - name: scl/python-positional
+    source: external
+    scl: rh-python35
+  - name: scl/python-os-client-config
+    source: external
+    scl: rh-python35
+
+  # keystoneauth
+  - name: scl/python-debtcollector
+    source: external
+    scl: rh-python35
+  - name: scl/python-babel
+    source: external
+    scl: rh-python35
+  - name: scl/python-oslo-i18n
+    source: external
+    scl: rh-python35
+  - name: scl/python-netaddr
+    source: external
+    scl: rh-python35
+  - name: scl/python-rfc3986
+    source: external
+    scl: rh-python35
+  - name: scl/python-oslo-config
+    source: external
+    scl: rh-python35
+  - name: scl/python-oslo-serialization
+    source: external
+    scl: rh-python35
+  - name: scl/python-monotonic
+    source: external
+    scl: rh-python35
+  - name: scl/python-oslo-utils
+    source: external
+    scl: rh-python35
+
+  # openstack clients (was *client)
+  - name: scl/python-warlock
+    source: external
+    scl: rh-python35
+  - name: scl/python-osc-lib
+    source: external
+    scl: rh-python35
+  - name: scl/python-dogpile-cache
+    source: external
+    scl: rh-python35
+  - name: scl/python-vcversioner
+    source: external
+    scl: rh-python35
+  - name: scl/python-jsonschema
+    source: external
+    scl: rh-python35
+  - name: scl/python-deprecation
+    source: external
+    scl: rh-python35
+  - name: scl/python-os-service-types
+    source: external
+    scl: rh-python35
+  - name: scl/python-pyperclip
+    source: external
+    scl: rh-python35
+  - name: scl/python-cliff
+    source: external
+    scl: rh-python35
+  - name: scl/python-cmd2
+    source: external
+    scl: rh-python35
+  - name: scl/python-unicodecsv
+    source: external
+    scl: rh-python35
+  - name: scl/python-simplejson
+    source: external
+    scl: rh-python35
+
+  # openstacksdk (was shade)
+  - name: scl/python-jsonpointer
+    source: external
+    scl: rh-python35
+  - name: scl/python-jsonpatch
+    source: external
+    scl: rh-python35
+  - name: scl/python-jmespath
+    source: external
+    scl: rh-python35
+  - name: scl/python-decorator
+    source: external
+    scl: rh-python35
+  - name: scl/python-munch
+    source: external
+    scl: rh-python35
+  - name: scl/python-ipaddress
+    source: external
+    scl: rh-python35
+  - name: scl/python-netifaces
+    source: external
+    scl: rh-python35
+
+  # diskimage-builder
+  - name: scl/python-flake8
+    source: external
+    scl: rh-python35
+  - name: scl/python-mccabe
+    source: external
+    scl: rh-python35
+  - name: scl/python-pycodestyle
+    source: external
+    scl: rh-python35
+  - name: scl/python-networkx
+    source: external
+    scl: rh-python35
+  - name: scl/pyflakes
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-jinja2
+    source: external
+    scl: rh-python35
+  - name: scl/python-testtools
+    source: external
+    scl: rh-python35
+  - name: scl/python-subunit
+    source: external
+    scl: rh-python35
+  - name: scl/python-pygments
+    source: external
+    scl: rh-python35
+  - name: scl/python-junit-xml
+    source: external
+    scl: rh-python35
+  - name: scl/python-pyfakefs
+    source: external
+    scl: rh-python35
+  - name: scl/python-itsdangerous
+    source: external
+    scl: rh-python35
+  - name: scl/python-click
+    source: external
+    scl: rh-python35
+  - name: scl/python-werkzeug
+    source: external
+    scl: rh-python35
+  - name: scl/python-flask
+    source: external
+    scl: rh-python35
+  - name: scl/python-flask-sqlalchemy
+    source: external
+    scl: rh-python35
+  - name: scl/python-flask-frozen
+    source: external
+    scl: rh-python35
+  - name: scl/python-flask-migrate
+    source: external
+    scl: rh-python35
+  - name: scl/python-flask-script
+    source: external
+    scl: rh-python35
+  - name: scl/python-XStatic
+    source: external
+    scl: rh-python35
+  - name: scl/python-XStatic-Bootstrap-SCSS
+    source: external
+    scl: rh-python35
+  - name: scl/python-XStatic-DataTables
+    source: external
+    scl: rh-python35
+  - name: scl/python-XStatic-jQuery
+    source: external
+    scl: rh-python35
+  - name: scl/python-XStatic-Patternfly
+    source: external
+    scl: rh-python35
+  - name: scl/python-XStatic-Patternfly-Bootstrap-Treeview
+    source: external
+    scl: rh-python35
+
+  # Doc stuff
+  - name: scl/python-imagesize
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-olefile
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-fixtures
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-snowballstemmer
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-sphinx_rtd_theme
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-sphinx-theme-alabaster
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-sphinxcontrib-websupport
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-sphinx
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-zuul-sphinx
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-pillow
+    source: external
+    scl: rh-python35
+  - name: scl/python-webcolors
+    source: external
+    scl: rh-python35
+  - name: scl/python-funcparserlib
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-blockdiag
+    source: external
+    scl: rh-python35
+  - name: scl/python-sphinxcontrib-blockdiag
+    source: external
+    scl: rh-python35
+  - name: scl/python-sphinxcontrib-programoutput
+    source: external
+    scl: rh-python35
+  - name: scl/python-sphinxcontrib-httpdomain
+    source: external
+    scl: rh-python35
+  - name: scl/python-sphinx-autodoc-typehints
+    source: external
+    scl: rh-python35
+
+  # repoXplorer scl
+  - name: scl/repoxplorer
+    scl: rh-python35
+  - name: scl/python-pecan
+    source: external
+    scl: rh-python35
+  - name: scl/python-logutils
+    source: external
+    scl: rh-python35
+  - name: scl/python-elasticsearch
+    source: external
+    scl: rh-python35
+  - name: scl/python-gunicorn
+    source: external
+    scl: rh-python35
+  - name: scl/python-webtest
+    source: external
+    scl: rh-python35
+  - name: scl/python-beautifulsoup
+    source: external
+    scl: rh-python35
+
+  # Software Factory Core Libraries
+  - name: scl/python-cauth
+    source: external
+    scl: rh-python35
+
+  - name: software-factory/python-pluggy
+    source: external
+
+  - name: software-factory/python-virtualenv
+    source: external
+
+  - name: software-factory/python-decorator
+    source: external
+
+  - name: software-factory/python-flask-sqlalchemy
+    source: external
+
+  - name: software-factory/python-flask-script
+    source: external
+
+  - name: software-factory/python-flask-migrate
+    source: external
+
+  - name: software-factory/python-flask-frozen
+    source: external
+
+  - name: software-factory/python-junit_xml
+    source: external
+
+  - name: software-factory/python-pyfakefs
+    source: external
+
+  - name: software-factory/python-XStatic-DataTables
+    source: external
+
+  - name: software-factory/python-XStatic-Patternfly
+    source: external
+
+  - name: software-factory/python-XStatic-Bootstrap-SCSS
+    source: external
+
+  - name: software-factory/python-XStatic-Patternfly-Bootstrap-Treeview
+    source: external
+
+  - name: software-factory/python-jinja2
+    source: external
+
+  - name: software-factory/python-markupsafe
+    source: external
+
+  - name: software-factory/python-nose-htmloutput
+    source: external
+
+  - name: software-factory/python-nose-timer
+    source: external
+
+  - name: software-factory/python-testinfra
+    source: external
+
+  # python-grafyaml depends
+  - name: software-factory/python-slugify
+    source: external
+
+  # Gerritbot
+  - name: software-factory/python-backports-functools-lru-cache
+    source: external
+  - name: software-factory/python-inflect
+    source: external
+  - name: software-factory/python-more-itertools
+    source: external
+  - name: software-factory/python-tempora
+    source: external
+  - name: software-factory/python-jaraco-classes
+    source: external
+  - name: software-factory/python-jaraco-collections
+    source: external
+  - name: software-factory/python-jaraco-functools
+    source: external
+  - name: software-factory/python-jaraco-itertools
+    source: external
+  - name: software-factory/python-jaraco-logging
+    source: external
+  - name: software-factory/python-jaraco-stream
+    source: external
+  - name: software-factory/python-jaraco-text
+    source: external
+  - name: software-factory/python-irc
+    source: external
+
+  - name: software-factory/python-email
+    source: external
+  - name: software-factory/python-sqlalchemy-fulltext-search
+    source: external
+  - name: software-factory/python-glob2
+    source: external
+  - name: software-factory/python-storyboardclient
+    source: external
+  - name: software-factory/python-basicauth
+    source: external
+  - name: software-factory/python-future
+    source: external
+  - name: software-factory/python-htpasswd
+    source: external
+  - name: software-factory/python-orderedmultidict
+    source: external
+  - name: software-factory/python-gerritlib
+    source: external
+  - name: software-factory/python-jenkins-job-builder
+    source: external
+  - name: software-factory/python-deepdiff
+    source: external
+  - name: software-factory/python-log2gearman
+    source: external
+
+  # cauth depends
+  - name: software-factory/python-oic
+    source: external
+  - name: software-factory/python-mockldap
+    source: external
+  - name: software-factory/python-httmock
+    source: external
+  - name: software-factory/python-wsgiref
+    source: external
+  # python-ioc depends (cauth)
+  - name: software-factory/python-jwkest
+    source: external
+  # python-ioc build depends (cauth)
+  - name: software-factory/python-testfixtures
+    source: external
+  - name: software-factory/python-cryptodomex
+    source: external
+  - name: software-factory/ochlero
+    source: internal
+    spec: included
+  - name: software-factory/hydrant
+    source: internal
+    spec: included
+  # firehooks dependencies
+  - name: software-factory/python-taiga
+    source: external
+  # EL curator
+  - name: software-factory/elasticsearch-curator
+    source: external
+
+  # Epel import
+  - name: software-factory/acme-tiny
+    source: external
+  - name: software-factory/libtomcrypt
+    source: external
+  - name: software-factory/libtommath
+    source: external
+  - name: software-factory/libwebsockets
+    source: external
+  - name: software-factory/python-appdirs
+    source: external
+  - name: software-factory/python-args
+    source: external
+  - name: software-factory/python-clint
+    source: external
+  - name: software-factory/python-colorama
+    source: external
+  - name: software-factory/python-cookies
+    source: external
+  - name: software-factory/python-feedparser
+    source: external
+  - name: software-factory/python-flask-cache
+    source: external
+  - name: software-factory/python-funcparserlib
+    source: external
+  - name: software-factory/python-gear
+    source: external
+  - name: software-factory/python-httpretty
+    source: external
+  - name: software-factory/python-jenkins
+    source: external
+  - name: software-factory/python-openid
+    source: external
+  - name: software-factory/python-paho-mqtt
+    source: external
+  - name: software-factory/python-pkginfo
+    source: external
+  - name: software-factory/python-requests-toolbelt
+    source: external
+  - name: software-factory/python-responses
+    source: external
+  - name: software-factory/python-sure
+    source: external
+  - name: software-factory/python-twine
+    source: external
+  - name: software-factory/python-tqdm
+    source: external
+  - name: software-factory/python-unidecode
+    source: external
+  - name: software-factory/uthash
+    source: external
+
+chrootpackages: "@buildsys-build buildsys-macros-el7 make gcc shadow-utils rpm-build python2-devel openstack-macros scl-utils-build rh-python35 rh-python35-build rh-python35-runtime"
+
+baserepos:
+  - name: centos7-os
+    baseurl: http://mirror.centos.org/centos/7/os/x86_64/
+    mirror: http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=os
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+    gpgcheck: 1
+    kojipriority: 12
+
+  - name: centos7-updates
+    baseurl: http://mirror.centos.org/centos/7/updates/x86_64/
+    mirror: http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=updates
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+    gpgcheck: 1
+    kojipriority: 11
+
+  - name: centos7-extras
+    baseurl: http://mirror.centos.org/centos/7/extras/x86_64/
+    mirror: http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=extras
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+    gpgcheck: 1
+    kojipriority: 10
+
+  - name: centos-sclo-rh
+    baseurl: http://mirror.centos.org/centos/7/sclo/x86_64/rh/
+    gpgcheck: 1
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-SCLo
+    kojipriority: 9
+
+extrarepos:
+  - name: openstack-queens
+    baseurl: http://mirror.centos.org/centos/7/cloud/x86_64/openstack-queens/
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Cloud
+    gpgcheck: 1
+    kojipriority: 5
