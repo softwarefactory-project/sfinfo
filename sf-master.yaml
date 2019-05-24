@@ -370,6 +370,10 @@ packages:
     source: external
     scl: rh-python35
 
+  - name: scl/python-adal
+    source: external
+    scl: rh-python35
+
   - name: scl/python-oauth2client
     source: external
     scl: rh-python35

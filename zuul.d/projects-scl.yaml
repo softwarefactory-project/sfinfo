@@ -126,6 +126,10 @@
     templates:
       - sf-packaging-jobs
 - project:
+    name: scl/python-adal-distgit
+    templates:
+      - sf-packaging-jobs
+- project:
     name: scl/python-oauth2client-distgit
     templates:
       - sf-packaging-jobs
