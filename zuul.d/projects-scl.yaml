@@ -87,6 +87,12 @@
     name: scl/python-openshift-distgit
     templates:
       - sf-packaging-jobs
+    experimental:
+      jobs:
+        - sf-rpm-build
+        - sf-ci-openshift-integration:
+            dependencies:
+              - sf-rpm-build
 - project:
     name: scl/python-dictdiffer-distgit
     templates:
