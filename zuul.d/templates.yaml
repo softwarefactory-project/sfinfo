@@ -16,6 +16,12 @@
         - sf-ci-upgrade-allinone:
             dependencies:
               - sf-rpm-build
+        - sf-ci-openshift-integration:
+            dependencies:
+              - sf-rpm-build
+        - sf-tenants:
+            dependencies:
+              - sf-rpm-build
     gate:
       queue: sf
       jobs:
@@ -32,12 +38,20 @@
         - sf-ci-upgrade-allinone:
             dependencies:
               - sf-rpm-build
+        - sf-ci-openshift-integration:
+            dependencies:
+              - sf-rpm-build
+        - sf-tenants:
+            dependencies:
+              - sf-rpm-build
         - wait-for-changes-ahead:
             dependencies:
               - sf-ci-functional-minimal
               - sf-ci-upgrade-minimal
               - sf-ci-functional-allinone
               - sf-ci-upgrade-allinone
+              - sf-ci-openshift-integration
+              - sf-tenants
         - sf-rpm-publish:
             dependencies:
               - wait-for-changes-ahead
@@ -63,6 +77,12 @@
         - sf-ci-upgrade-allinone:
             dependencies:
               - sf-rpm-build
+        - sf-ci-openshift-integration:
+            dependencies:
+              - sf-rpm-build
+        - sf-tenants:
+            dependencies:
+              - sf-rpm-build
     gate:
       queue: sf
       jobs:
@@ -77,6 +97,12 @@
             dependencies:
               - sf-rpm-build
         - sf-ci-upgrade-allinone:
+            dependencies:
+              - sf-rpm-build
+        - sf-ci-openshift-integration:
+            dependencies:
+              - sf-rpm-build
+        - sf-tenants:
             dependencies:
               - sf-rpm-build
 
@@ -95,10 +121,18 @@
         - sf-ci-upgrade-allinone:
             dependencies:
               - sf-rpm-build
+        - sf-ci-openshift-integration:
+            dependencies:
+              - sf-rpm-build
+        - sf-tenants:
+            dependencies:
+              - sf-rpm-build
         - wait-for-changes-ahead:
             dependencies:
               - sf-ci-functional-allinone
               - sf-ci-upgrade-allinone
+              - sf-ci-openshift-integration
+              - sf-tenants
         - sf-rpm-publish:
             dependencies:
               - wait-for-changes-ahead
