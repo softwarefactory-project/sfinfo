@@ -194,6 +194,11 @@
     templates:
       - sf-jobs-light
 
+- project:
+    name: software-factory/c-ares-distgit
+    templates:
+      - sf-jobs-light
+
 
 - project:
     name: software-factory/os-loganalyze-distgit
@@ -627,6 +632,11 @@
 
 - project:
     name: software-factory/umurmur-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
+    name: software-factory/protobuf-c-distgit:
     templates:
       - sf-jobs-light
 
