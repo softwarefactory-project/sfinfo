@@ -676,6 +676,36 @@
       - sf-jobs-light
 
 - project:
+    name: scl/python-oslo-log-distgit
+    templates:
+      - sf-packaging-jobs
+
+- project:
+    name: scl/python-oslo-context-distgit
+    templates:
+      - sf-packaging-jobs
+
+- project:
+    name: scl/python-oslo-policy-distgit
+    templates:
+      - sf-packaging-jobs
+
+- project:
+    name: scl/python-deepdiff-distgit
+    templates:
+      - sf-packaging-jobs
+
+- project:
+    name: scl/python-basicauth-distgit
+    templates:
+      - sf-packaging-jobs
+
+- project:
+    name: scl/python-storyboardclient-distgit
+    templates:
+      - sf-packaging-jobs
+
+- project:
     name: scl/python-paho-mqtt-distgit
     templates:
       - sf-packaging-jobs
