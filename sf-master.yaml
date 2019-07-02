@@ -1017,6 +1017,26 @@ packages:
     source: external
     scl: rh-python35
 
+  # Managesf deps scl
+  - name: scl/python-storyboardclient
+    source: external
+    scl: rh-python35
+  - name: scl/python-oslo-log
+    source: external
+    scl: rh-python35
+  - name: scl/python-oslo-context
+    source: external
+    scl: rh-python35
+  - name: scl/python-oslo-policy
+    source: external
+    scl: rh-python35
+  - name: scl/python-deepdiff
+    source: external
+    scl: rh-python35
+  - name: scl/python-basicauth
+    source: external
+    scl: rh-python35
+
   # Software Factory Core Libraries
   - name: scl/python-cauth
     source: external
