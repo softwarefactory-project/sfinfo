@@ -68,6 +68,9 @@ packages:
     source: internal
     spec: included
 
+  - name: software-factory/keycloak
+    source: external
+
 #  - name: software-factory/sf-selinux
 #    source: internal
 #    spec: included

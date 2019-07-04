@@ -267,6 +267,11 @@
       - sf-jobs-light
 
 - project:
+    name: software-factory/keycloak-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
     name: software-factory/python-clint-distgit
     templates:
       - sf-jobs-light
