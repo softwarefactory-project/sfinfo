@@ -971,6 +971,14 @@ packages:
     source: external
     scl: rh-python35
 
+  - name: scl/python-sphinxcontrib-httpdomain
+    source: external
+    scl: rh-python35
+
+  - name: scl/python-sphinxcontrib-openapi
+    source: external
+    scl: rh-python35
+
   - name: scl/python-sphinx
     source: external
     scl: rh-python35

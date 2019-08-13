@@ -988,6 +988,16 @@
       - sf-packaging-jobs
 
 - project:
+    name: scl/python-sphinxcontrib-openapi-distgit
+    templates:
+      - sf-packaging-jobs
+
+- project:
+    name: scl/python-sphinxcontrib-httpdomain-distgit
+    templates:
+      - sf-packaging-jobs
+
+- project:
     name: scl/python-sphinx-distgit
     templates:
       - sf-packaging-jobs
