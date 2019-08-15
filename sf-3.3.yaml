@@ -91,6 +91,10 @@ packages:
     source: external
     scl: rh-python35
 
+  - name: scl/zuul-executor-ansible-28
+    source: external
+    scl: rh-python35
+
   - name: software-factory/re2
     source: external
 
@@ -981,6 +985,9 @@ packages:
     source: external
     scl: rh-python35
   - name: scl/python-sphinxcontrib-httpdomain
+    source: external
+    scl: rh-python35
+  - name: scl/python-sphinxcontrib-openapi
     source: external
     scl: rh-python35
   - name: scl/python-sphinx-autodoc-typehints
