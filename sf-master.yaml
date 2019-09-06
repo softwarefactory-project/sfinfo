@@ -221,7 +221,7 @@ packages:
     spec: included
     scl: rh-python35
 
-  - name: scl/k1s-distgit
+  - name: scl/k1s
     source: external
     scl: rh-python35
 
