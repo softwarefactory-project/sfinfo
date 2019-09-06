@@ -272,6 +272,11 @@
       - sf-jobs-light
 
 - project:
+    name: scl/k1s-distgit
+    templates:
+      - sf-jobs-light
+
+- project:
     name: scl/nodepool-distgit
     templates:
       - sf-jobs
