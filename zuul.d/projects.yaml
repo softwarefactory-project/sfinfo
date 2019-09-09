@@ -9,11 +9,6 @@
         - linters
 
 - project:
-    name: software-factory/hound-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
     name: logreduce
     release:
       jobs:
@@ -22,12 +17,14 @@
 - project:
     name: software-factory/firehooks
     templates:
-      - sf-packaging-jobs
+      - imported-sf-ci-no-jobs
+      - imported-sf-ci-packages-publish
 
 - project:
     name: software-factory/sf-config
     templates:
-      - sf-jobs
+      - imported-sf-ci-jobs
+      - imported-sf-ci-packages-publish
     check:
       jobs:
         - linters
@@ -38,23 +35,23 @@
             dependencies:
               - sf-rpm-build
 
-
 - project:
     name: software-factory/sf-elements
     templates:
-      - sf-packaging-jobs
-
+      - imported-sf-ci-no-jobs
+      - imported-sf-ci-packages-publish
 
 - project:
     name: software-factory/sf-release
     templates:
-      - sf-packaging-jobs
-
+      - imported-sf-ci-no-jobs
+      - imported-sf-ci-packages-publish
 
 - project:
     name: software-factory/wait4service
     templates:
-      - sf-jobs-light
+      - imported-sf-ci-jobs-light
+      - imported-sf-ci-packages-publish
 
 - project:
     name: www.softwarefactory-project.io
@@ -74,8 +71,9 @@
 - project:
     name: software-factory/managesf
     templates:
-      - sf-python-jobs
-      - sf-jobs
+      - imported-sf-ci-jobs
+      - imported-sf-ci-packages-publish
+      - imported-sf-python-jobs
     check:
       jobs:
         - swagger-lint:
@@ -103,8 +101,9 @@
 - project:
     name: software-factory/pysflib
     templates:
-      - sf-python-jobs
-      - sf-jobs
+      - imported-sf-python-jobs
+      - imported-sf-ci-jobs
+      - imported-sf-ci-packages-publish
     check:
       jobs:
         - sf-rpm-build:
@@ -124,8 +123,9 @@
 - project:
     name: software-factory/cauth
     templates:
-      - sf-python-jobs
-      - sf-jobs
+      - imported-sf-python-jobs
+      - imported-sf-ci-jobs
+      - imported-sf-ci-packages-publish
     check:
       jobs:
         - sf-rpm-build:
@@ -154,25 +154,29 @@
 - project:
     name: software-factory/python-sfmanager
     templates:
-      - sf-python-jobs
-      - sf-jobs
+      - imported-sf-python-jobs
+      - imported-sf-ci-jobs
+      - imported-sf-ci-packages-publish
 
 - project:
     name: software-factory/hydrant
     templates:
-      - sf-python-jobs
-      - sf-jobs
+      - imported-sf-python-jobs
+      - imported-sf-ci-jobs-light
+      - imported-sf-ci-packages-publish
 
 - project:
     name: software-factory/ochlero
     templates:
-      - sf-python-jobs
-      - sf-jobs
+      - imported-sf-python-jobs
+      - imported-sf-ci-jobs-light
+      - imported-sf-ci-packages-publish
 
 - project:
     name: software-factory/sf-docs
     templates:
-      - sf-packaging-jobs
+      - imported-sf-ci-no-jobs
+      - imported-sf-ci-packages-publish
     check:
       jobs:
         - sf-docs-build
@@ -180,4 +184,4 @@
 - project:
     name: software-factory/sf-desktop-notifications
     templates:
-      - sf-python-jobs
+      - imported-sf-python-jobs

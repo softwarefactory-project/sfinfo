@@ -1,1097 +1,14 @@
 ---
 - project:
-    name: scl/python-cherrypy-distgit
+    name: ^scl/.*-distgit$
     templates:
-      - sf-jobs-light
-- project:
-    name: ^scl/zuul-executor-ansible-.*-distgit$
-    templates:
-      - sf-jobs-light
-- project:
-    name: scl/python-cheroot-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-portend-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-tempora-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-more-itertools-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-zc-lockfile-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-jaraco-functools-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-ws4py-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-routes-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-repoze-lru-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-tornado-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/Cython-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-gevent-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-greenlet-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-pycurl-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-bottle-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-os-service-types-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-boto3-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-botocore-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-s3transfer-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-openshift-distgit
-    templates:
-      - sf-packaging-jobs
-    experimental:
-      jobs:
-        - sf-rpm-build
-        - sf-ci-openshift-integration:
-            dependencies:
-              - sf-rpm-build
-- project:
-    name: scl/python-dictdiffer-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-ruamel-yaml-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-string-utils-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-google-auth-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-cachetools-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-oauthlib-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-requests-oauthlib-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-kubernetes-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-adal-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-oauth2client-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-gflags-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-fasteners-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-httplib2-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-keyring-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-SecretStorage-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-jeepney-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-rsa-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-websocket-client-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-reno-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-dulwich-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-re2-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/rdopkg-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/dlrn-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-distroinfo-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/dlrnapi-client-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-future-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-sh-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-renderspec-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-packaging-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-bunch-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-pymod2pkg-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-passlib-distgit
-    templates:
-      - sf-packaging-jobs
-- project:
-    name: scl/python-flask-httpauth-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-scikit-learn-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-joblib-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/scipy-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/GitPython-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/ansible-distgit
-    templates:
-      - sf-jobs
-
-- project:
-    name: scl/python-selinux-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/ara-distgit
-    templates:
-      - sf-jobs
-
-- project:
-    name: scl/diskimage-builder-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/enable-py3-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/k1s-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/nodepool-distgit
-    templates:
-      - sf-jobs
-    experimental:
-      jobs:
-        - sf-rpm-build
-        - sf-ci-openshift-integration:
-            dependencies:
-              - sf-rpm-build
-
-- project:
-    name: scl/pyflakes-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-APScheduler-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-CacheControl-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-PyMySQL-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-XStatic-Bootstrap-SCSS-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-XStatic-DataTables-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-XStatic-Patternfly-Bootstrap-Treeview-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-XStatic-Patternfly-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-XStatic-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-XStatic-jQuery-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-aiohttp-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-alembic-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-appdirs-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-asn1crypto-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-async-timeout-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-babel-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-bcrypt-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-certifi-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-cffi-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-chardet-distgit
-    templates:
-      - sf-jobs-light
-
-
-- project:
-    name: scl/python-click-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-cliff-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-cmd2-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-crypto-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-cryptography-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-daemon-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-dateutil-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-debtcollector-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-decorator-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-deprecation-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-dogpile-cache-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-extras-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-flake8-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-flask-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-flask-frozen-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-flask-migrate-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-flask-script-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-flask-sqlalchemy-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-gear-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-gitdb-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-github3-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-jwcrypto-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-glanceclient-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-idna-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-ipaddress-distgit
-    templates:
-      - sf-jobs-light
-
-
-- project:
-    name: scl/python-iso8601-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-itsdangerous-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-jinja2-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-jmespath-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-jsonpatch-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-jsonpointer-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-jsonschema-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-junit-xml-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-jwt-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-jsonpath-rw-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-ply-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-kazoo-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-pure-sasl-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-keystoneauth1-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-keystoneclient-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-lockfile-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-mako-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-mccabe-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-monotonic-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-msgpack-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-multidict-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-munch-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-netaddr-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-netifaces-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-networkx-distgit
-    templates:
-      - sf-jobs-light
-
-
-- project:
-    name: scl/python-openstackclient-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-openstacksdk-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-os-client-config-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-osc-lib-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-oslo-config-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-oslo-i18n-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-oslo-serialization-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-oslo-utils-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-oslo-log-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-oslo-context-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-oslo-policy-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-deepdiff-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-basicauth-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-storyboardclient-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-paho-mqtt-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-paramiko-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-paste-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-pbr-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-positional-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-prettytable-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-psutil-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-pyasn1-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-pycodestyle-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-pycparser-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-pyfakefs-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-pygments-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-pynacl-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-pyopenssl-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-pyparsing-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-pyperclip-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-pytest-runner-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-pytz-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-rcssmin-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-requests-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-requestsexceptions-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-rfc3986-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-rjsmin-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-setuptools-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-sqlalchemy-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-six-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-setuptools-scm-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-shade-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-simplejson-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-smmap-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-statsd-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-stevedore-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-subunit-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-testtools-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-tzlocal-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-unicodecsv-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-uritemplate-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-urllib3-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-uvloop-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-vcversioner-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-voluptuous-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-warlock-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-webob-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-werkzeug-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-wrapt-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-yarl-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/zuul-distgit
-    templates:
-      - sf-jobs
-    experimental:
-      jobs:
-        - sf-rpm-build
-        - sf-ci-openshift-integration:
-            dependencies:
-              - sf-rpm-build
-
-- project:
-    name: scl/zuul-jobs-distgit
-    templates:
-      - sf-jobs
-
-# Zuul sphinx req
-- project:
-    name: scl/python-imagesize-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-olefile-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-fixtures-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-snowballstemmer-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-sphinx_rtd_theme-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-sphinx-theme-alabaster-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-sphinxcontrib-websupport-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-sphinxcontrib-openapi-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-sphinxcontrib-httpdomain-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-sphinx-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-zuul-sphinx-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-pillow-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-webcolors-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-funcparserlib-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-blockdiag-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-sphinxcontrib-blockdiag-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-sphinxcontrib-programoutput-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-sphinxcontrib-httpdomain-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-sphinx-autodoc-typehints-distgit
-    templates:
-      - sf-packaging-jobs
-
-- project:
-    name: scl/python-logutils-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-pecan-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-elasticsearch-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-gunicorn-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-webtest-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/python-beautifulsoup-distgit
-    templates:
-      - sf-jobs-light
-
-- project:
-    name: scl/repoxplorer-distgit
-    templates:
-      - sf-packaging-jobs
-
+      - imported-sf-ci-packages-publish
 
+# Cauth
 - project:
     name: scl/python-cauth-distgit
     templates:
-      - sf-jobs-light
+      - imported-sf-ci-jobs-light
     check:
       jobs:
         - sf-rpm-build:
@@ -1107,3 +24,1142 @@
         - sf-rpm-publish:
             required-projects:
               - software-factory/cauth
+
+- project:
+    name: scl/python-cherrypy-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: ^scl/zuul-executor-ansible-.*-distgit$
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-cheroot-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-portend-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-tempora-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-more-itertools-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-zc-lockfile-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-jaraco-functools-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-ws4py-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-routes-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-repoze-lru-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-tornado-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/Cython-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-gevent-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-greenlet-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-pycurl-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-bottle-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-os-service-types-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-boto3-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-botocore-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-s3transfer-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-openshift-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+    experimental:
+      jobs:
+        - sf-rpm-build
+        - sf-ci-openshift-integration:
+            dependencies:
+              - sf-rpm-build
+
+- project:
+    name: scl/python-dictdiffer-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-ruamel-yaml-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-string-utils-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-google-auth-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-cachetools-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-oauthlib-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-requests-oauthlib-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-kubernetes-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-adal-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-oauth2client-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-gflags-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-fasteners-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-httplib2-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-keyring-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-SecretStorage-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-jeepney-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-rsa-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-websocket-client-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-reno-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-dulwich-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-re2-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/rdopkg-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/dlrn-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-distroinfo-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/dlrnapi-client-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-future-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-sh-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-renderspec-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-packaging-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-bunch-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-pymod2pkg-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-passlib-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-flask-httpauth-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-scikit-learn-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-joblib-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/scipy-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/GitPython-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/ansible-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-selinux-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/ara-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/diskimage-builder-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/enable-py3-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/k1s-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/nodepool-distgit
+    templates:
+      - imported-sf-ci-jobs
+    experimental:
+      jobs:
+        - sf-rpm-build
+        - sf-ci-openshift-integration:
+            dependencies:
+              - sf-rpm-build
+
+- project:
+    name: scl/pyflakes-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-APScheduler-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-CacheControl-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-PyMySQL-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-XStatic-Bootstrap-SCSS-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-XStatic-DataTables-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-XStatic-Patternfly-Bootstrap-Treeview-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-XStatic-Patternfly-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-XStatic-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-XStatic-jQuery-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-aiohttp-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-alembic-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-appdirs-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-asn1crypto-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-async-timeout-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-babel-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-bcrypt-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-certifi-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-cffi-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-chardet-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-click-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-cliff-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-cmd2-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-crypto-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-cryptography-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-daemon-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-dateutil-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-debtcollector-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-decorator-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-deprecation-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-dogpile-cache-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-extras-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-flake8-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-flask-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-flask-frozen-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-flask-migrate-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-flask-script-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-flask-sqlalchemy-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-gear-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-gitdb-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-github3-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-jwcrypto-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-glanceclient-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-idna-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-ipaddress-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-iso8601-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-itsdangerous-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-jinja2-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-jmespath-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-jsonpatch-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-jsonpointer-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-jsonschema-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-junit-xml-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-jwt-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-jsonpath-rw-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-ply-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-kazoo-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-pure-sasl-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-keystoneauth1-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-keystoneclient-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-lockfile-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-mako-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-mccabe-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-monotonic-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-msgpack-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-multidict-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-munch-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-netaddr-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-netifaces-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-networkx-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-openstackclient-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-openstacksdk-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-os-client-config-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-osc-lib-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-oslo-config-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-oslo-i18n-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-oslo-serialization-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-oslo-utils-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-oslo-log-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-oslo-context-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-oslo-policy-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-deepdiff-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-basicauth-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-storyboardclient-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-paho-mqtt-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-paramiko-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-paste-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-pbr-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-positional-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-prettytable-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-psutil-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-pyasn1-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-pycodestyle-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-pycparser-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-pyfakefs-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-pygments-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-pynacl-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-pyopenssl-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-pyparsing-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-pyperclip-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-pytest-runner-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-pytz-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-rcssmin-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-requests-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-requestsexceptions-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-rfc3986-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-rjsmin-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-setuptools-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-sqlalchemy-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-six-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-setuptools-scm-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-shade-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-simplejson-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-smmap-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-statsd-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-stevedore-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-subunit-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-testtools-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-tzlocal-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-unicodecsv-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-uritemplate-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-urllib3-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-uvloop-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-vcversioner-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-voluptuous-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-warlock-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-webob-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-werkzeug-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-wrapt-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-yarl-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/zuul-distgit
+    templates:
+      - imported-sf-ci-jobs
+    experimental:
+      jobs:
+        - sf-rpm-build
+        - sf-ci-openshift-integration:
+            dependencies:
+              - sf-rpm-build
+
+- project:
+    name: scl/zuul-jobs-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+# Zuul sphinx req
+- project:
+    name: scl/python-imagesize-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-olefile-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-fixtures-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-snowballstemmer-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-sphinx_rtd_theme-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-sphinx-theme-alabaster-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-sphinxcontrib-websupport-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-sphinxcontrib-openapi-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-sphinxcontrib-httpdomain-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-sphinx-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-zuul-sphinx-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-pillow-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-webcolors-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-funcparserlib-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-blockdiag-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-sphinxcontrib-blockdiag-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-sphinxcontrib-programoutput-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-sphinxcontrib-httpdomain-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-sphinx-autodoc-typehints-distgit
+    templates:
+      - imported-sf-ci-no-jobs
+
+- project:
+    name: scl/python-logutils-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-pecan-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-elasticsearch-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-gunicorn-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-webtest-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/python-beautifulsoup-distgit
+    templates:
+      - imported-sf-ci-jobs-light
+
+- project:
+    name: scl/repoxplorer-distgit
+    templates:
+      - imported-sf-ci-jobs-light
