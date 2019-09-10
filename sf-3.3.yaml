@@ -209,6 +209,10 @@ packages:
     spec: included
     scl: rh-python35
 
+  - name: scl/k1s
+    source: external
+    scl: rh-python35
+
   # Nodepool
   - name: scl/diskimage-builder
     source: external
