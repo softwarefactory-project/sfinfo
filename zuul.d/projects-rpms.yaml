@@ -1,0 +1,6 @@
+---
+- project:
+    name: ^rpms/.*$
+    templates:
+      - sf-ci-no-jobs
+      - sf-ci-packages-publish

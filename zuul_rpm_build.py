@@ -202,13 +202,21 @@ class ZuulRpmBuild(zuul_koji_lib.App):
             o_project = project
             project = project.replace('-distgit', '')
 
-        try:
-            package_info = self.get_package_info(project,
-                                                 fallback=o_project)
-        except IndexError:
-            self.log.warning("%s: project not found in info yaml" %
-                             project)
-            return False
+        if project.startswith("rpms/"):
+            project = project.strip('/')
+            package_info = {
+                'source': 'external',
+                'distgit': project,
+                'name': project
+            }
+        else:
+            try:
+                package_info = self.get_package_info(project,
+                                                     fallback=o_project)
+            except IndexError:
+                self.log.warning("%s: project not found in info yaml" %
+                                 project)
+                return False
 
         project = package_info["name"]
         distgit = package_info["distgit"]

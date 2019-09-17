@@ -79,7 +79,10 @@ class App:
 
     def clone_package(self, package):
         # TODO: handle internal source
-        repo = "%s-distgit" % package["name"]
+        if package["name"].startswith("rpms/"):
+            repo = package["name"]
+        else:
+            repo = "%s-distgit" % package["name"]
         repo_url = os.path.join(self.args.source, repo)
         if not os.path.isdir(repo):
             os.makedirs(repo)
@@ -109,7 +112,8 @@ class App:
         self.distro_info["branch"] = str(self.distro_info["branch"])
         # Update package infos
         for package in self.distro_info["packages"]:
-            if package.get("spec") == "included":
+            if package.get("spec") == "included" or \
+               package["name"].startswith("rpms/"):
                 package["distgit"] = package["name"]
             elif not package.get("distgit"):
                 package["distgit"] = "%s-distgit" % package["name"]
