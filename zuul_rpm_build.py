@@ -198,7 +198,7 @@ class ZuulRpmBuild(zuul_koji_lib.App):
 
     def build(self, project):
         o_project = None
-        if project.endswith("-distgit"):
+        if project.endswith("-distgit") or project.startswith("rpms/"):
             o_project = project
             project = project.replace('-distgit', '')
 
