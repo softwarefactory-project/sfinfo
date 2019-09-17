@@ -1294,6 +1294,12 @@ baserepos:
     kojipriority: 9
 
 extrarepos:
+  - name: rh-python35-mirror
+    baseurl: https://softwarefactory-project.io/mirrors/rh-python35/
+    gpgcheck: 1
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-SCLo
+    kojipriority: 9
+
   - name: openstack-queens
     baseurl: http://mirror.centos.org/centos/7/cloud/x86_64/openstack-queens/
     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Cloud
