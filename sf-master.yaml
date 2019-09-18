@@ -1263,7 +1263,7 @@ packages:
   - name: software-factory/uthash
     source: external
 
-chrootpackages: "@buildsys-build buildsys-macros-el7 make gcc shadow-utils rpm-build python2-devel openstack-macros scl-utils-build rh-python35 rh-python35-build rh-python35-runtime"
+chrootpackages: "@buildsys-build buildsys-macros-el7 python-rpm-macros make gcc shadow-utils rpm-build python2-devel openstack-macros scl-utils-build rh-python35 rh-python35-build rh-python35-runtime"
 
 baserepos:
   - name: centos7-os

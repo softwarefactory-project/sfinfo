@@ -1,6 +1,15 @@
 ---
 - project:
     name: ^rpms/.*$
-    templates:
-      - sf-ci-no-jobs
-      - sf-ci-packages-publish
+    check:
+      jobs:
+        - noop
+    gate:
+      jobs:
+        - sf-rpm-build
+        - wait-for-changes-ahead:
+            dependencies:
+              - sf-rpm-build
+        - sf-rpm-publish:
+            dependencies:
+              - wait-for-changes-ahead
