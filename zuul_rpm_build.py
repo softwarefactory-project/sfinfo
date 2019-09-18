@@ -94,6 +94,8 @@ class ZuulRpmBuild(zuul_koji_lib.App):
         for line in spec.split('\n'):
             if line.startswith("Name:"):
                 name = line.split()[1]
+                if specfile.startswith("rpms/python"):
+                    name = name.replace("python3-", "python-")
                 if project_name == name:
                     return True
                 self.log.error("Spec Name doesn't match project's name: "
