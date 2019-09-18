@@ -1,0 +1,39 @@
+---
+- hosts: all
+  vars:
+    # Set projects_args to a list of "--project project_name"
+    projects_args: "{% for item in zuul['items'] %}--project {{ item.project.name }} {% endfor %}"
+    # Get sfinfo location
+    sfinfo_path_query: "[?name=='software-factory/sfinfo'].src_dir"
+    sfinfo_path: "{{ (zuul.projects.values() | list | json_query(sfinfo_path_query))[0] }}"
+    # Get workspace path to run zuul_rpm_* commands
+    sfnamespace_path: "{{ sfinfo_path | dirname | dirname }}"
+  tasks:
+    - name: Copy rpm-gpg keys
+      become: yes
+      command: "rsync -a {{ sfinfo_path }}/rpm-gpg/ /etc/pki/rpm-gpg/"
+
+    - name: Run zuul_rpm_build.py
+      command: >
+        ./software-factory/sfinfo/zuul_rpm_build.py \
+            --distro-info ./software-factory/sfinfo/sf-{{ zuul.branch }}.yaml \
+            --project {{ zuul.project.name }}
+      args:
+        chdir: "{{ sfnamespace_path }}"
+
+    - name: "Write koji configuration tarball"
+      copy:
+        content: "{{ sf_koji_configuration.tarball }}"
+        dest: "{{ ansible_env.HOME }}/.koji.b64"
+
+    - name: "Extract koji configuration"
+      shell: "cat {{ ansible_env.HOME }}/.koji.b64 | base64 -d | tar -xzf - -C {{ ansible_env.HOME }}/"
+
+    - name: Publish buildset artifacts
+      command: >
+        ./software-factory/sfinfo/zuul_rpm_publish.py \
+            --distro-info ./software-factory/sfinfo/sf-{{ zuul.branch }}.yaml \
+            --pipeline local \
+            --project {{ zuul.project.name }}
+      args:
+        chdir: "{{ sfnamespace_path }}"

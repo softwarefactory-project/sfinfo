@@ -70,7 +70,7 @@ class ZuulRpmPublish(zuul_koji_lib.App):
     def main(self, args):
         package_name = self.get_package_name(args.project)
 
-        if args.pipeline == "tag":
+        if args.pipeline == "tag" or args.pipeline == "local":
             # srpm has been built locally
             srpms = glob.glob("zuul-rpm-build/*.src.rpm")
         else:
