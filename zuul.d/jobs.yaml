@@ -17,6 +17,20 @@
     parent: sf-rpm-build
 
 - job:
+    name: sf-rpm-build-and-publish
+    description: Build and publish sf rpm to koji
+    pre-run: playbooks/install_requirements.yaml
+    run: playbooks/rpmbuildpublish.yaml
+    required-projects:
+      - software-factory/sfinfo
+    secrets:
+      - sf_koji_configuration
+    nodeset:
+      nodes:
+        - name: mock-host
+          label: cloud-centos-7
+
+- job:
     name: sf-rpm-publish
     description: Publish sf rpm to koji
     pre-run: playbooks/install_requirements.yaml

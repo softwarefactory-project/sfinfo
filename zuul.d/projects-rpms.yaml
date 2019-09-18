@@ -6,10 +6,4 @@
         - noop
     gate:
       jobs:
-        - sf-rpm-build
-        - wait-for-changes-ahead:
-            dependencies:
-              - sf-rpm-build
-        - sf-rpm-publish:
-            dependencies:
-              - wait-for-changes-ahead
+        - sf-rpm-build-and-publish
