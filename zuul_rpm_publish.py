@@ -48,6 +48,8 @@ class ZuulRpmPublish(zuul_koji_lib.App):
             project = project[:-8]
         elif project.startswith("rpms/python-"):
             return project.replace("rpms/python-", "python3-")
+        else:
+            return project.replace("rpms/", "")
         for package in self.distro_info["packages"]:
             package_name = None
             if project == package["name"]:
