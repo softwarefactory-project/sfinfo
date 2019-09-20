@@ -21,6 +21,7 @@
     description: Build and publish sf rpm to koji
     pre-run: playbooks/install_requirements.yaml
     run: playbooks/rpmbuildpublish.yaml
+    timeout: 7200
     required-projects:
       - software-factory/sfinfo
     secrets:
