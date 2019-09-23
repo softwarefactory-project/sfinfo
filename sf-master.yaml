@@ -219,7 +219,6 @@ packages:
   - name: logreduce
     source: internal
     spec: included
-    scl: rh-python35
 
   - name: scl/k1s
     source: external
