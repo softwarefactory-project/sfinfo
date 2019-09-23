@@ -30,7 +30,6 @@ packages:
   - name: software-factory/managesf
     source: internal
     spec: included
-    scl: rh-python35
 
   - name: software-factory/cauth
     source: internal
