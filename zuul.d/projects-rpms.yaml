@@ -7,3 +7,21 @@
     gate:
       jobs:
         - sf-rpm-build-and-publish
+
+- project:
+    name: rpms/zuul
+    experimental:
+      jobs:
+        - sf-rpm-build
+        - sf-ci-openshift-integration:
+            dependencies:
+              - sf-rpm-build
+
+- project:
+    name: rpms/nodepool
+    experimental:
+      jobs:
+        - sf-rpm-build
+        - sf-ci-openshift-integration:
+            dependencies:
+              - sf-rpm-build
