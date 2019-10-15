@@ -598,7 +598,7 @@
 - project:
     name: software-factory/python-twine-distgit
     templates:
-      - sf-ci-no-jobs
+      - sf-ci-jobs-light
 
 - project:
     name: software-factory/python-tqdm-distgit
