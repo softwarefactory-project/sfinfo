@@ -10,6 +10,8 @@
 
 - project:
     name: rpms/zuul
+    templates:
+      - sf-ci-jobs
     experimental:
       jobs:
         - sf-rpm-build
@@ -19,6 +21,8 @@
 
 - project:
     name: rpms/nodepool
+    templates:
+      - sf-ci-jobs
     experimental:
       jobs:
         - sf-rpm-build
