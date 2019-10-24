@@ -3,7 +3,7 @@
     name: ^rpms/.*$
     check:
       jobs:
-        - noop
+        - sf-rpm-build
     gate:
       jobs:
         - sf-rpm-build-and-publish
