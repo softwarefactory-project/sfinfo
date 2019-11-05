@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/bin/env python3
 #
 # Copyright 2017 Red Hat
 #
@@ -79,7 +79,7 @@ class ZuulRpmPublish(zuul_koji_lib.App):
             srpms = glob.glob("zuul-rpm-build/*.src.rpm")
         else:
             srpms = self.get_srpms(args.testing_repo)
-            srpms = filter(lambda x: re.match("^%s-\d.*" % package_name, x),
+            srpms = filter(lambda x: re.match(r"^%s-\d.*" % package_name, x),
                            srpms)
 
         if len(srpms) != 1:
@@ -99,8 +99,8 @@ class ZuulRpmPublish(zuul_koji_lib.App):
             # If the build task was unable to build the pkg for other reason
             # that a "Build already exists" error then the following task will
             # fail too.
-            print "Build failed but if it was because of NVR already built"
-            print "then try to add it to the tag."
+            print("Build failed but if it was because of NVR already built")
+            print("then try to add it to the tag.")
             self.execute(["koji", "--authtype=ssl", "tag-build",
                           self.distro_info["koji-target"],
                           srpm.replace('.src.rpm', '')])

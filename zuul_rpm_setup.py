@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/bin/env python3
 #
 # Copyright 2017 Red Hat
 #
@@ -32,7 +32,7 @@ class ZuulRpmSetup(zuul_koji_lib.App):
             conf["repourl"] = "mirrorlist=%s" % conf["mirror"]
         elif "baseurl" in conf:
             conf["repourl"] = "baseurl=%s" % conf["baseurl"]
-        print conf
+        print(conf)
         of.write("""[%(name)s]
 name=%(name)s
 %(repourl)s
@@ -48,7 +48,7 @@ priority=%(kojipriority)s
             request.get_method = lambda: 'HEAD'
             response = urllib2.urlopen(request)
             return response.info().getheader('Content-Length') > 0
-        except:
+        except Exception:
             return False
 
     def main(self, args):
