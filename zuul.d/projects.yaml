@@ -27,7 +27,8 @@
       - sf-ci-packages-publish
     check:
       jobs:
-        - linters
+        - linters:
+            nodeset: fedora-latest-pod
     experimental:
       jobs:
         - sf-rpm-build
