@@ -33,7 +33,7 @@ packages:
 
   - name: software-factory/cauth
     source: internal
-    distgit: software-factory/cauth-distgit
+    spec: included
 
   - name: software-factory/sf-web-assets
     source: external
