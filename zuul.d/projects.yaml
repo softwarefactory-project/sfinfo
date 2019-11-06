@@ -92,37 +92,6 @@
               - software-factory/pysflib-distgit
 
 - project:
-    name: software-factory/cauth
-    templates:
-      - sf-ci-python-jobs
-      - sf-ci-jobs
-      - sf-ci-packages-publish
-    check:
-      jobs:
-        - sf-rpm-build:
-            required-projects:
-              - software-factory/cauth-distgit
-        - sf-rpm-build-scl:
-            required-projects:
-              - scl/python-cauth-distgit
-    gate:
-      jobs:
-        - sf-rpm-build:
-            required-projects:
-              - software-factory/cauth-distgit
-        - sf-rpm-build-scl:
-            required-projects:
-              - scl/python-cauth-distgit
-    release:
-      jobs:
-        - sf-rpm-publish:
-            required-projects:
-              - software-factory/cauth-distgit
-        - sf-rpm-publish-scl:
-            required-projects:
-              - scl/python-cauth-distgit
-
-- project:
     name: software-factory/python-sfmanager
     templates:
       - sf-ci-python-jobs
