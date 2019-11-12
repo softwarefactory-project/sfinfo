@@ -39,6 +39,7 @@ name=%(name)s
 gpgkey=%(gpgkey)s
 gpgcheck=%(gpgcheck)s
 priority=%(kojipriority)s
+exclude=sf-release
 
 """ % conf)
 
