@@ -9,6 +9,15 @@
         - linters
 
 - project:
+    name: software-factory/software-factory
+    check:
+      jobs:
+        - noop
+    gate:
+      jobs:
+        - noop
+
+- project:
     name: logreduce
     release:
       jobs:
