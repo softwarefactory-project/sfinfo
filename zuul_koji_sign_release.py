@@ -1,4 +1,4 @@
-#!/bin/env python3
+#!/bin/env python
 #
 # Copyright 2017 Red Hat
 #
@@ -65,7 +65,7 @@ class ZuulKojiSignRelease(zuul_koji_lib.App):
 
     def write_nvr_list_to_sign(self):
         self.to_sign_txt = os.path.join(self.td, 'to_sign.txt')
-        fd = open(self.to_sign_txt, 'w')
+        fd = file(self.to_sign_txt, 'w')
         for i in self.to_sign:
             pkg = re.sub('.el7.*$', '.el7', i)
             fd.write("%s\n" % pkg)
@@ -91,7 +91,6 @@ class ZuulKojiSignRelease(zuul_koji_lib.App):
 for nvr in $(cat %s); do
     koji write-signed-rpm 1c3bae4b $nvr;
 done""" % self.to_sign_txt)
-
 
 if __name__ == "__main__":
     ZuulKojiSignRelease()
