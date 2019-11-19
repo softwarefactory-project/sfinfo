@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/bin/env python3
 #
 # Copyright 2019 Red Hat
 #
@@ -144,7 +144,7 @@ def main():
             git("cherry-pick FETCH_HEAD")
         except RuntimeError:
             if not solve_conflict(change):
-                raw_input("Fix cherry-pick and press enter to continue...: ")
+                input("Fix cherry-pick and press enter to continue...: ")
         change["filename"] = git(
             "format-patch -1 %s" % patches["paths"], read=True).strip()
         print("<= patch is %s" % change["filename"])
