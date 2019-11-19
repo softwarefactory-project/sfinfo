@@ -1,4 +1,4 @@
-#!/bin/env python3
+#!/bin/env python
 #
 # Copyright 2016 Red Hat
 #
@@ -138,7 +138,7 @@ class ZuulRpmBuild(zuul_koji_lib.App):
 
     def check_postinstall_failed(self, project):
         pattern = "^WARNING .* Failed install built packages$"
-        rootlog = open(os.path.join(self.args.local_output, 'root.log')).read()
+        rootlog = file(os.path.join(self.args.local_output, 'root.log')).read()
         if re.findall(pattern, rootlog, re.MULTILINE):
             raise RuntimeError("%s: built packages failed to be installed" %
                                project)
@@ -186,7 +186,7 @@ class ZuulRpmBuild(zuul_koji_lib.App):
         rendered = self.render_mock_template()
         if not os.path.isdir(os.path.dirname(mockconf)):
             os.mkdir(os.path.dirname(mockconf))
-        open(mockconf, 'w').write(rendered)
+        file(mockconf, 'w').write(rendered)
 
     def get_package_info(self, project, fallback=None):
         package_info = [pi for pi in self.distro_info['packages']
