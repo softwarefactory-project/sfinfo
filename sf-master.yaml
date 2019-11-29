@@ -1285,18 +1285,6 @@ baserepos:
     gpgcheck: 1
     kojipriority: 10
 
-  - name: arh-python35-mirror
-    baseurl: https://softwarefactory-project.io/mirrors/rh-python35/
-    gpgcheck: 1
-    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-SCLo
-    kojipriority: 15
-
-  - name: aopenstack-queens
-    baseurl: https://softwarefactory-project.io/mirrors/openstack-queens
-    gpgcheck: 1
-    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Cloud
-    kojipriority: 16
-
   - name: centos-sclo-rh
     baseurl: http://mirror.centos.org/centos/7/sclo/x86_64/rh/
     gpgcheck: 1
