@@ -85,7 +85,10 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
                 package["version"] = self.get_spec_version(specfile)
 
             package["release"] = self.get_spec_release(specfile)
-            package["nvr"] = "%s-%s-%s" % (os.path.basename(package["name"]),
+            name = os.path.basename(package["name"])
+            if package["name"].startswith("rpms/python-"):
+                name = name.replace("python-", "python3-")
+            package["nvr"] = "%s-%s-%s" % (name,
                                            package["version"],
                                            package["release"])
             if package.get("scl"):
@@ -104,6 +107,8 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
             name = os.path.basename(package["name"])
             if package.get("scl"):
                 name = "%s-%s" % (package["scl"], name)
+            if package["name"].startswith("rpms/python-"):
+                name = name.replace("python-", "python3-")
             pkgs = [rpm for rpm in rpms if rpm[1][0] == name]
             if len(pkgs) > 1:
                 pkg = most_recent(pkgs)
@@ -135,6 +140,8 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
             name = os.path.basename(package["name"])
             if package.get("scl"):
                 name = "%s-%s" % (package["scl"], name)
+            if package["name"].startswith("rpms/python-"):
+                name = name.replace("python-", "python3-")
             if candidate and not package["valid_nvr"]:
                 missing_packages.append(name)
                 continue
