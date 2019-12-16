@@ -9,7 +9,7 @@
         - sf-rpm-build-and-publish
 
 - project:
-    name: rpms/zuul
+    name: ^rpms/zuul.*$
     templates:
       - sf-ci-jobs
     experimental:
