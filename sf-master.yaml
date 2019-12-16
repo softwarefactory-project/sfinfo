@@ -181,6 +181,8 @@ packages:
     source: external
   - name: software-factory/python-paho-mqtt
     source: external
+  - name: software-factory/python-zmq
+    source: external
 
   # Epel import
   - name: software-factory/acme-tiny
