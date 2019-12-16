@@ -116,13 +116,6 @@ packages:
   - name: software-factory/mosquitto
     source: external
 
-  - name: software-factory/germqtt
-    source: external
-
-  - name: software-factory/firehooks
-    source: internal
-    spec: included
-
   # Status
   - name: software-factory/python-slugify
     source: external
@@ -141,10 +134,6 @@ packages:
     source: external
 
   - name: software-factory/git-review
-    source: external
-
-  # RepoXplorer
-  - name: software-factory/repoxplorer
     source: external
 
   # Codesearch
@@ -224,8 +213,9 @@ packages:
     source: external
   - name: rpms/python-pbr
     source: external
-  - name: rpms/etherpad
-    source: external
+# TODO: remove sf/etherpad and replace by the rpms repo
+#  - name: rpms/etherpad
+#    source: external
   - name: rpms/google-roboto-slab-fonts
     source: external
   - name: rpms/ttembed
@@ -733,8 +723,6 @@ packages:
   - name: rpms/python-pathspec
     source: external
   - name: rpms/yamllint
-    source: external
-  - name: rpms/python-devnest
     source: external
   - name: rpms/python-colorlog
     source: external
