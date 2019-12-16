@@ -197,6 +197,10 @@ packages:
     source: external
   - name: rpms/web-assets
     source: external
+  - name: rpms/zeromq
+    source: external
+  - name: rpms/libsodium
+    source: external
   - name: rpms/python-setuptools
     source: external
   - name: rpms/python-Cython
