@@ -15,6 +15,7 @@
               - python2-koji
               - rpm-build
               - rpmdevtools
+              - centos-release-openstack-stein
 
         - name: Add ci users in mock group
           user:
