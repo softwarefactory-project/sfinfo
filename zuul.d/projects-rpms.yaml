@@ -1,12 +1,8 @@
 ---
 - project:
     name: ^rpms/.*$
-    check:
-      jobs:
-        - sf-rpm-build
-    gate:
-      jobs:
-        - sf-rpm-build-and-publish
+    templates:
+      - sf-ci-jobs-light
 
 - project:
     name: ^rpms/zuul.*$
