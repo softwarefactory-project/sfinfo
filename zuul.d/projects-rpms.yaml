@@ -3,11 +3,13 @@
     name: ^rpms/.*$
     templates:
       - sf-ci-jobs-light
+      - sf-ci-packages-publish
 
 - project:
     name: ^rpms/zuul.*$
     templates:
       - sf-ci-jobs
+      - sf-ci-packages-publish
     experimental:
       jobs:
         - sf-rpm-build
@@ -19,6 +21,7 @@
     name: rpms/nodepool
     templates:
       - sf-ci-jobs
+      - sf-ci-packages-publish
     experimental:
       jobs:
         - sf-rpm-build
