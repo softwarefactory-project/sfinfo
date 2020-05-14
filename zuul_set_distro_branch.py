@@ -34,7 +34,7 @@ class ZuulSetDistroBranch(zuul_koji_lib.App):
     def clone_config_repo(self, base_dir, git_server):
         dirname = "%s/%s" % (base_dir, 'config')
         if not os.path.isdir(os.path.dirname(dirname)):
-            os.mkdir(os.path.dirname(dirname), 0700)
+            os.mkdir(os.path.dirname(dirname), 0o700)
         repourl = "%s/config" % git_server
         if not os.path.isdir(dirname):
             self.log.info("Cloning %s to %s" % (repourl, dirname))
@@ -92,7 +92,7 @@ class ZuulSetDistroBranch(zuul_koji_lib.App):
         repo[name].setdefault('branches', {})
         repo[name]['branches'][branch] = bfrom
         repo_raw = yaml.dump(repo, default_flow_style=False).split('\n')
-        repo_raw = ['%s%s\n' % (" " * ioffset, l) for l in repo_raw]
+        repo_raw = ['%s%s\n' % (" " * ioffset, li) for li in repo_raw]
         del repo_raw[-1]
         # Insert new repo section
         raw_resources[start:start] = repo_raw
@@ -100,7 +100,7 @@ class ZuulSetDistroBranch(zuul_koji_lib.App):
     def main(self, args):
         base_dir = os.path.expanduser(args.local_git_dir)
         if not os.path.isdir(base_dir):
-            os.mkdir(base_dir, 0700)
+            os.mkdir(base_dir, 0o700)
         # Get repos list to act on
         packages = self.distro_info["packages"]
         bfrom = self.distro_info.get("from", "master")
@@ -119,8 +119,8 @@ class ZuulSetDistroBranch(zuul_koji_lib.App):
         self.clone_config_repo(base_dir, args.git_server)
         p_resources_path = os.path.join(
             base_dir, 'config', 'resources', args.project_resources)
-        raw_resources = file(p_resources_path).readlines()
-        resources = yaml.load(file(p_resources_path))
+        raw_resources = open(p_resources_path).readlines()
+        resources = yaml.load(open(p_resources_path))
         for name in repos_names:
             self.update_repo_def(
                 resources,
@@ -128,7 +128,7 @@ class ZuulSetDistroBranch(zuul_koji_lib.App):
                 name,
                 branch,
                 bfrom)
-        file(p_resources_path, 'w').writelines(raw_resources)
+        open(p_resources_path, 'w').writelines(raw_resources)
 
 
 if __name__ == "__main__":

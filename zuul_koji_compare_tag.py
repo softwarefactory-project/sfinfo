@@ -17,18 +17,12 @@
 import argparse
 import difflib
 
-import rpm
-from rpmUtils.miscutils import splitFilename
-
 import zuul_koji_lib
 
-
-def most_recent(rpms):
-    rpms.sort(cmp=rpm.labelCompare, key=lambda x: (x[1][3], x[1][1], x[1][2]))
-    return rpms[-1]
+from rpmUtils.miscutils import splitFilename  # type: ignore
 
 
-class ZuulKojiPopulateTarget(zuul_koji_lib.App):
+class ZuulKojiCompareTag(zuul_koji_lib.App):
     def usage(self):
         p = argparse.ArgumentParser(description='Zuul Koji Populate Target')
         p.add_argument("--rst", action="store_true")
@@ -36,33 +30,9 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
         p.add_argument("dst_tag")
         return p
 
-    def list_tag(self, tag):
-        self.log.info("===== Discovering package from koji")
-        tag_content = map(lambda x: x.split()[0],
-                          self.execute(["koji", "list-tagged", tag],
-                                       capture=True).splitlines()[2:])
-        # Remove 9999 package
-        rpms = map(lambda x: (x, splitFilename(x)),
-                   filter(lambda x: "9999" not in x, tag_content))
-        pkgs = set()
-        pkgs_list = {}
-        for _, inf in rpms:
-            pkgs.add(inf[0])
-            pkgs_list[inf[0]] = inf
-        nvrs = []
-        for name in sorted(list(pkgs)):
-            pkgs = [rpm for rpm in rpms if rpm[1][0] == name]
-            if len(pkgs) > 1:
-                pkg = most_recent(pkgs)[0]
-                self.log.info("Picked %s out of %s" % (pkg, pkgs))
-            elif len(pkgs) == 1:
-                pkg = pkgs[0][0]
-            nvrs.append(pkg)
-        return nvrs, pkgs_list
-
     def main(self, args):
-        src, src_pkgs = self.list_tag(args.src_tag)
-        dst, dst_pkgs = self.list_tag(args.dst_tag)
+        src, src_pkgs = zuul_koji_lib.list_tag(args.src_tag, self.log)
+        dst, dst_pkgs = zuul_koji_lib.list_tag(args.dst_tag, self.log)
         if args.rst:
             new_pkgs = []
             updated_pkgs = []
@@ -95,4 +65,4 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
 
 
 if __name__ == "__main__":
-    ZuulKojiPopulateTarget()
+    ZuulKojiCompareTag()

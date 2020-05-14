@@ -33,6 +33,12 @@ import yaml
 os.environ["EDITOR"] = "/bin/true"
 
 
+try:
+    raw_input
+except NameError:
+    raw_input = input
+
+
 def execute(cmd, cwd=None):
     if subprocess.Popen(cmd.split(), cwd=cwd).wait():
         raise RuntimeError("%s failed" % cmd)
@@ -144,7 +150,7 @@ def main():
             git("cherry-pick FETCH_HEAD")
         except RuntimeError:
             if not solve_conflict(change):
-                raw_input("Fix cherry-pick and press enter to continue...: ")
+                input("Fix cherry-pick and press enter to continue...: ")
         change["filename"] = git(
             "format-patch -1 %s" % patches["paths"], read=True).strip()
         print("<= patch is %s" % change["filename"])

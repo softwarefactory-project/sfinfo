@@ -18,8 +18,8 @@ import argparse
 import re
 import os
 
-import rpm
-from rpmUtils.miscutils import splitFilename
+import rpm  # type: ignore
+from rpmUtils.miscutils import splitFilename  # type: ignore
 
 import zuul_koji_lib
 

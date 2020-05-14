@@ -22,7 +22,7 @@ import time
 import json
 
 import requests
-from semantic_version import Version, SpecItem
+from semantic_version import Version, SpecItem  # type: ignore
 
 import zuul_koji_lib
 

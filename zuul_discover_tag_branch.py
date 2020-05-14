@@ -52,9 +52,10 @@ class ZuulDiscoverTagBranch(zuul_koji_lib.App):
             else:
                 self.log.info("Choosing '%s'" % valid_branch[0])
                 print(valid_branch[0])
-        except:
+        except Exception:
             self.log.error("Couldn't find branch for tag %s" % tag)
             exit(1)
+
 
 if __name__ == "__main__":
     ZuulDiscoverTagBranch()

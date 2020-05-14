@@ -20,6 +20,75 @@ import subprocess
 import sys
 import os
 
+import rpm  # type: ignore
+
+from rpmUtils.miscutils import splitFilename  # type: ignore
+
+
+def list_repos(distro_info):
+    return list(map(lambda s: s['pkg_name'], distro_info["packages"]))
+
+
+def execute(argv, log=None, capture=False, cwd=None, test=False):
+    if capture is True:
+        stdout = subprocess.PIPE
+    else:
+        stdout = None
+    if log:
+        log.debug("Running %s" % argv)
+    s = subprocess.Popen(argv, stdout=stdout, cwd=cwd)
+    out, _ = s.communicate()
+    code = s.wait()
+    if log:
+        log.debug("Command %s exited with code %s" % (argv, code))
+    if code:
+        if not test and log:
+            log.error("Command %s failed" % argv)
+        raise RuntimeError()
+    return out
+
+
+def most_recent(rpms):
+    rpms.sort(cmp=rpm.labelCompare, key=lambda x: (x[1][3], x[1][1], x[1][2]))
+    return rpms[-1]
+
+
+# import typing
+# TagNvrs = typing.List[str]
+# TagPkgs = typing.Dict[str, typing.Tuple[str, str, str, str, str]]
+# TagRepo = typing.Tuple[TagNvrs, TagPkgs]
+# def list_tag(tag: str, log=None) -> TagRepo:
+def list_tag(tag, log=None):
+    if log:
+        log.info("===== Discovering package from koji")
+    tag_content = map(lambda x: x.split()[0],
+                      execute(["koji", "list-tagged", tag], log,
+                              capture=True).splitlines()[2:])
+    # Remove 9999 package
+    rpms = map(lambda x: (x, splitFilename(x)),
+               filter(lambda x: "9999" not in x, tag_content))
+    pkgs = set()
+    pkgs_list = {}
+    for _, inf in rpms:
+        pkgs.add(inf[0])
+        pkgs_list[inf[0]] = inf
+    nvrs = []
+    for name in sorted(list(pkgs)):
+        pkgs = [rpm for rpm in rpms if rpm[1][0] == name]
+        if len(pkgs) > 1:
+            pkg = most_recent(pkgs)[0]
+            if log:
+                log.info("Picked %s out of %s" % (pkg, pkgs))
+        elif len(pkgs) == 1:
+            pkg = pkgs[0][0]
+        nvrs.append(pkg)
+    return nvrs, pkgs_list
+
+
+# def tag_to_packages(tagRepo: TagRepo) -> typing.List[str]:
+def tag_to_packages(tagRepo):
+    return list(tagRepo[1].keys())
+
 
 class App:
     # App needs usage() and main() method
@@ -29,20 +98,7 @@ class App:
         return cls.__name__
 
     def execute(self, argv, capture=False, cwd=None, test=False):
-        if capture is True:
-            stdout = subprocess.PIPE
-        else:
-            stdout = None
-        self.log.debug("Running %s" % argv)
-        s = subprocess.Popen(argv, stdout=stdout, cwd=cwd)
-        out, _ = s.communicate()
-        code = s.wait()
-        self.log.debug("Command %s exited with code %s" % (argv, code))
-        if code:
-            if not test:
-                self.log.error("Command %s failed" % argv)
-            raise RuntimeError()
-        return out
+        return execute(argv, self.log, capture, cwd, test)
 
     def get_repo_version(self, repo):
         ref = "HEAD"
@@ -117,6 +173,19 @@ class App:
                 package["distgit"] = package["name"]
             elif not package.get("distgit"):
                 package["distgit"] = "%s-distgit" % package["name"]
+
+            # Find the true koji package name
+            try:
+                if package["name"].startswith("rpms/python-"):
+                    package["pkg_name"] = "python3-%s" % (
+                        package["name"].split("rpms/python-")[1])
+                elif "/" in package["name"]:
+                    package["pkg_name"] = package["name"].split("/")[1]
+                else:
+                    package["pkg_name"] = package["name"]
+            except Exception:
+                print("Oops", package["name"])
+                raise
 
         self.distro_info["repos"] = self.distro_info.get("baserepos", []) + \
             self.distro_info.get("extrarepos", [])
