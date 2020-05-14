@@ -17,11 +17,9 @@
 import argparse
 import difflib
 
-from rpmUtils.miscutils import splitFilename
-
-import rpm
-
 import zuul_koji_lib
+
+from rpmUtils.miscutils import splitFilename
 
 
 class ZuulKojiCompareTag(zuul_koji_lib.App):
