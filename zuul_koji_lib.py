@@ -25,6 +25,10 @@ import rpm
 from rpmUtils.miscutils import splitFilename
 
 
+def list_repos(distro_info):
+    return list(map(lambda s: s['pkg_name'], distro_info["packages"]))
+
+
 def execute(argv, log=None, capture=False, cwd=None, test=False):
     if capture is True:
         stdout = subprocess.PIPE
@@ -49,6 +53,11 @@ def most_recent(rpms):
     return rpms[-1]
 
 
+# import typing
+# TagNvrs = typing.List[str]
+# TagPkgs = typing.Dict[str, typing.Tuple[str, str, str, str, str]]
+# TagRepo = typing.Tuple[TagNvrs, TagPkgs]
+# def list_tag(tag: str, log=None) -> TagRepo:
 def list_tag(tag, log=None):
     if log:
         log.info("===== Discovering package from koji")
@@ -74,6 +83,11 @@ def list_tag(tag, log=None):
             pkg = pkgs[0][0]
         nvrs.append(pkg)
     return nvrs, pkgs_list
+
+
+# def tag_to_packages(tagRepo: TagRepo) -> typing.List[str]:
+def tag_to_packages(tagRepo):
+    return list(tagRepo[1].keys())
 
 
 class App:
@@ -159,6 +173,18 @@ class App:
                 package["distgit"] = package["name"]
             elif not package.get("distgit"):
                 package["distgit"] = "%s-distgit" % package["name"]
+
+            # Find the true koji package name
+            try:
+                if package["name"].startswith("rpms/python-"):
+                    package["pkg_name"] = "python3-" + package["name"].split("rpms/python-")[1]
+                elif "/" in package["name"]:
+                    package["pkg_name"] = package["name"].split("/")[1]
+                else:
+                    package["pkg_name"] = package["name"]
+            except:
+                print("Oops", package["name"])
+                raise
 
         self.distro_info["repos"] = self.distro_info.get("baserepos", []) + \
             self.distro_info.get("extrarepos", [])
