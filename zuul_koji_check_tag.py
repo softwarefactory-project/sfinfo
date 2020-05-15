@@ -20,7 +20,7 @@ import zuul_koji_lib
 
 
 def prettify(lines):
-    return lambda line: map(lambda s: "* " + s, sorted(lines))
+    return map(lambda s: "* " + s, sorted(lines))
 
 
 class ZuulKojiCheckTarget(zuul_koji_lib.App):
@@ -30,13 +30,23 @@ class ZuulKojiCheckTarget(zuul_koji_lib.App):
 
     def main(self, args):
         repos = set(zuul_koji_lib.list_repos(self.distro_info))
-        tagged_repos = set(zuul_koji_lib.tag_to_packages(
-            zuul_koji_lib.list_tag(self.distro_info["koji-target"])))
-        print("To untag:\n" + "\n".join(
-            prettify(tagged_repos.difference(repos))))
-        print("")
-        print("To tag:\n" + "\n".join(
-            prettify(repos.difference(tagged_repos))))
+        list_tag =             zuul_koji_lib.list_tag(self.distro_info["koji-target"])
+        tagged_repos = set(zuul_koji_lib.tag_to_packages(list_tag))
+        tagged_nvr = list_tag[1]
+        argv = ["koji", "untag-build", self.distro_info["koji-target"]] + [
+            zuul_koji_lib.nvr_name(tagged_nvr[to_untag])
+            for to_untag in sorted(tagged_repos.difference(repos))
+        ]
+        if len(argv) > 3:
+            print("To untag:\n" + "\n".join(
+                prettify(tagged_repos)))
+            print("")
+            print(" ".join(argv))
+            zuul_koji_lib.execute(argv, log=self.log)
+        to_tag = repos.difference(tagged_repos)
+        if to_tag:
+            print("To tag:\n" + "\n".join(
+                prettify(to_tag)))
 
 
 if __name__ == "__main__":
