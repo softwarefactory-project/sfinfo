@@ -53,6 +53,13 @@ def most_recent(rpms):
     return rpms[-1]
 
 
+def nvr_name(nvr_tuple):
+    if nvr_tuple[3]:
+        raise RuntimeError("Can't format %s" % str(nvr_tuple))
+    return "%s-%s-%s.%s" % (nvr_tuple[0], nvr_tuple[1], nvr_tuple[2],
+                            nvr_tuple[4])
+
+
 # import typing
 # TagNvrs = typing.List[str]
 # TagPkgs = typing.Dict[str, typing.Tuple[str, str, str, str, str]]
