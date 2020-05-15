@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0849bde0_5514c008",
+        "filename": "zuul_koji_lib.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 385
+      },
+      "writtenOn": "2020-05-15T08:29:15Z",
+      "side": 1,
+      "message": "debug mode: on",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 46
+      },
+      "revId": "aa1f59f1e96cf763a9a4b2b06f7a42d24acc09b9",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    }
+  ]
+}
