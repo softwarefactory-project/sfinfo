@@ -25,6 +25,14 @@ import rpm  # type: ignore
 from rpmUtils.miscutils import splitFilename  # type: ignore
 
 
+def format_rst_header(header):
+    return "\n".join([
+        "",
+        header,
+        "~" * len(header)
+    ])
+
+
 def list_repos(distro_info):
     return list(map(lambda s: s['pkg_name'], distro_info["packages"]))
 
