@@ -31,6 +31,7 @@ class ZuulKojiCompareTag(zuul_koji_lib.App):
         return p
 
     def main(self, args):
+        src_name, dst_name = "src: " + args.src_tag, "dst: " + args.dst_tag
         src, src_pkgs = zuul_koji_lib.list_tag(args.src_tag, self.log)
         dst, dst_pkgs = zuul_koji_lib.list_tag(args.dst_tag, self.log)
         if args.rst:
@@ -47,16 +48,15 @@ class ZuulKojiCompareTag(zuul_koji_lib.App):
                 pkg_name = splitFilename(nvr)[0]
                 if pkg_name not in dst_pkgs:
                     deleted_pkgs.append(nvr)
-            print("Updated Packages")
-            print("~~~~~~~~~~~~~~~~\n")
+            print(zuul_koji_lib.format_rst_header("Updated Packages different in " + dst_name + " (package name is in src)"))
             for pkg in sorted(updated_pkgs):
                 print("- %s" % pkg)
-            print("\n\nNew Packages")
-            print("~~~~~~~~~~~~\n")
+            print("")
+            print(zuul_koji_lib.format_rst_header("Not in " + src_name))
             for pkg in sorted(new_pkgs):
                 print("- %s" % pkg)
-            print("\n\nRemoved Packages")
-            print("~~~~~~~~~~~~~~~~\n")
+            print("")
+            print(zuul_koji_lib.format_rst_header("Not in " + dst_name))
             for pkg in sorted(deleted_pkgs):
                 print("- %s" % pkg)
         else:
