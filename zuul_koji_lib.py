@@ -37,6 +37,18 @@ def list_repos(distro_info):
     return list(map(lambda s: s['pkg_name'], distro_info["packages"]))
 
 
+def prettify(lines):
+    return map(lambda s: "* " + s, sorted(lines))
+
+
+def diff_ensure(set1, set2, msg, log):
+    diff = set1.difference(set2)
+    if diff:
+        log.error(msg + ":\n" + "\n".join(
+            prettify(diff)))
+        raise RuntimeError("abort")
+
+
 def execute(argv, log=None, capture=False, cwd=None, test=False):
     if capture is True:
         stdout = subprocess.PIPE
@@ -68,17 +80,22 @@ def nvr_name(nvr_tuple):
                             nvr_tuple[4])
 
 
+def get_tag_content(tag, log=None):
+    return list(map(lambda x: x.split()[0],
+                    execute(["koji", "list-tagged", tag], log,
+                            capture=True).splitlines()[2:]))
+
+
+def list_tag(tag, log=None):
+    return list_tag_content(get_tag_content(tag, log))
+
+
 # import typing
 # TagNvrs = typing.List[str]
 # TagPkgs = typing.Dict[str, typing.Tuple[str, str, str, str, str]]
 # TagRepo = typing.Tuple[TagNvrs, TagPkgs]
 # def list_tag(tag: str, log=None) -> TagRepo:
-def list_tag(tag, log=None):
-    if log:
-        log.info("===== Discovering package from koji")
-    tag_content = map(lambda x: x.split()[0],
-                      execute(["koji", "list-tagged", tag], log,
-                              capture=True).splitlines()[2:])
+def list_tag_content(tag_content, log=None):
     # Remove 9999 package
     rpms = map(lambda x: (x, splitFilename(x)),
                filter(lambda x: "9999" not in x, tag_content))
