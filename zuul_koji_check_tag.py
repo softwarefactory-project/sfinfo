@@ -19,10 +19,6 @@ import argparse
 import zuul_koji_lib
 
 
-def prettify(lines):
-    return map(lambda s: "* " + s, sorted(lines))
-
-
 class ZuulKojiCheckTarget(zuul_koji_lib.App):
     def usage(self):
         p = argparse.ArgumentParser(description='Zuul Koji Check Target')
@@ -39,14 +35,14 @@ class ZuulKojiCheckTarget(zuul_koji_lib.App):
         ]
         if len(argv) > 3:
             print("To untag:\n" + "\n".join(
-                prettify(tagged_repos)))
+                zuul_koji_lib.prettify(tagged_repos)))
             print("")
             print(" ".join(argv))
             zuul_koji_lib.execute(argv, log=self.log)
         to_tag = repos.difference(tagged_repos)
         if to_tag:
             print("To tag:\n" + "\n".join(
-                prettify(to_tag)))
+                zuul_koji_lib.prettify(to_tag)))
 
 
 if __name__ == "__main__":

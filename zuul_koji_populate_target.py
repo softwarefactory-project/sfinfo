@@ -34,6 +34,7 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
         p = argparse.ArgumentParser(description='Zuul Koji Populate Target')
         p.add_argument("--git-server", default=os.environ.get("GIT_SERVER",
                        "https://softwarefactory-project.io/r"))
+        p.add_argument("--dry-run", action='store_true')
         p.add_argument("--local-git-dir", default="~/koji-git")
         p.add_argument("--candidate", action='store_true')
         p.add_argument("--update", action='store_true', help='Update repo')
@@ -96,10 +97,11 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
             self.log.info("%(name)s: %(nvr)s" % package)
 
     def discover_nvr_from_koji(self, packages, tag):
-        self.log.info("===== Discovering package from koji")
-        tag_content = map(lambda x: x.split()[0],
-                          self.execute(["koji", "list-tagged", tag],
-                                       capture=True).splitlines()[2:])
+        self.log.info("===== Discovering package from koji tag %s", tag)
+        tag_content = zuul_koji_lib.get_tag_content(tag, self.log)
+        (_, koji_tag_pkgs) = zuul_koji_lib.list_tag_content(tag_content)
+        koji_tag_pkgs_set = set(koji_tag_pkgs.keys())
+        distro_pkgs_set = set()
         # Remove 9999 package
         rpms = map(lambda x: (x, splitFilename(x)),
                    filter(lambda x: "9999" not in x, tag_content))
@@ -120,16 +122,31 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
                 self.log.warning("Package %s doesn't exists in %s" %
                                  (name, tag))
                 continue
+            distro_pkgs_set.add(name)
             package["nvr"] = pkg[0]
             v = pkg[1][1]
-            if v.startswith("0.0.0.0") or re.search("[a-zA-Z]", v):
+
+            def invalid_nvr():
+                return (
+                    name != "python3-devnest"  # It's ok, this one is on me
+                    and (v.startswith("0.0.0.0")
+                         or re.search("[a-zA-Z]", v))
+                    )
+            if invalid_nvr():
                 self.log.warning("Package %s doesn't look like to be "
                                  "tagged: %s" % (name, package["nvr"]))
                 package["valid_nvr"] = False
             else:
                 package["valid_nvr"] = True
 
-    def add_packages_to_target(self, packages, tag, candidate):
+        zuul_koji_lib.diff_ensure(
+            koji_tag_pkgs_set, distro_pkgs_set,
+            "Package in koji not in distro file", self.log)
+        zuul_koji_lib.diff_ensure(
+            distro_pkgs_set, koji_tag_pkgs_set,
+            "Package in distro not in koji", self.log)
+
+    def add_packages_to_target(self, packages, tag, candidate, dry_run=False):
         self.log.info("===== Adding package to target")
         if candidate:
             tag += "-candidate"
@@ -148,16 +165,19 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
             # Check if package in tag
             # Prefix with new line to prevent conflict when nvr exists in scl
             if "\n" + package["nvr"] in tag_content:
-                self.log.info("%s already in %s" % (package["nvr"], tag))
+                # self.log.info("%s already in %s" % (package["nvr"], tag))
                 package["populated"] = True
                 continue
-            self.log.info("Package %s not in %s" % (name, tag))
-            self.execute(["koji", "add-pkg", tag, name, "--owner=sfci"])
+            self.log.info("Adding package %s to %s (because it is missing)" %
+                          (name, tag))
+            if not dry_run:
+                self.execute(["koji", "add-pkg", tag, name, "--owner=sfci"])
             to_tag.append(package["nvr"])
         try:
             if to_tag:
                 self.log.info("Tagging %s for %s", tag, to_tag)
-                self.execute(["koji", "tag-build", tag] + to_tag)
+                if not dry_run:
+                    self.execute(["koji", "tag-build", tag] + to_tag)
             package["populated"] = True
         except RuntimeError:
             self.log.warning("Couldn't tag build for %s", to_tag)
@@ -165,7 +185,10 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
         if missing_packages:
             self.log.warning("Missing packages %s", missing_packages)
             exit(1)
-        self.log.info("SUCCESS: %s is populated" % tag)
+        if dry_run:
+            self.log.info("Remove dry-run to proceed")
+        else:
+            self.log.info("SUCCESS: %s is populated" % tag)
 
     def main(self, args):
         if self.distro_info["branch"] == "master":
@@ -189,7 +212,7 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
             self.clone_projects(pkgs, base_dir, args.git_server, args.update)
             self.discover_nvr_from_repo(pkgs, base_dir)
         self.add_packages_to_target(pkgs, self.distro_info["koji-target"],
-                                    args.candidate)
+                                    args.candidate, args.dry_run)
 
 
 if __name__ == "__main__":

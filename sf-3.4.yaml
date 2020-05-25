@@ -492,6 +492,8 @@ packages:
     source: external
   - name: rpms/zuul-executor-ansible-28
     source: external
+#  - name: rpms/zuul-executor-ansible-29
+#    source: external
   - name: rpms/python-dulwich
     source: external
   - name: rpms/python-reno
@@ -729,6 +731,30 @@ packages:
   - name: rpms/python-jenkinsapi
     source: external
   - name: rpms/python-terminaltables
+    source: external
+
+  # New packages for the release
+  - name: python3-devnest
+    source: external
+  - name: python3-google-api-python-client
+    source: external
+  - name: python3-google-auth-httplib2
+    source: external
+  - name: python3-psycopg2
+    source: external
+  - name: yaml-cpp
+    source: external
+  - name: zuul-executor-ansible-29
+    source: external
+
+  # Package were missing from distro info and they were in the release
+  - name: python-tox
+    source: external
+  - name: python-zmq
+    source: external
+  - name: zeromq
+    source: external
+  - name: libsodium
     source: external
 
 chrootpackages: "@buildsys-build buildsys-macros-el7 python-rpm-macros make gcc shadow-utils rpm-build python2-devel openstack-macros scl-utils-build rh-python35 rh-python35-build rh-python35-runtime python3 python3-devel"
