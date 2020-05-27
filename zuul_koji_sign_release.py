@@ -83,14 +83,16 @@ class ZuulKojiSignRelease(zuul_koji_lib.App):
             self.retrieve_pkgs_to_sign()
             self.write_nvr_list_to_sign()
             print("Now run:")
-            print("cd %s" % self.td)
-            print("rpm --addsign *.rpm")
-            print("koji import-sig *.rpm")
-            print("""
-for nvr in $(cat %s); do
-    koji write-signed-rpm 1c3bae4b $nvr;
-done""" % self.to_sign_txt)
-
+            print(" && ".join([
+                "cd %s" % self.td,
+                "rpm --addsign *.rpm",
+                "echo Importing signature in koji"
+                "koji import-sig *.rpm",
+                "echo Writting signed rpm"
+                "koji write-signed-rpm 1c3bae4b $(cat %s)" % self.to_sign_txt,
+                "cd -",
+                "echo rm -Rf %s" % self.td
+            ]))
 
 if __name__ == "__main__":
     ZuulKojiSignRelease()
