@@ -105,9 +105,6 @@ packages:
   - name: software-factory/bubblewrap
     source: external
 
-  - name: software-factory/zookeeper-lite
-    source: external
-
   - name: logreduce
     source: internal
     spec: included
@@ -197,6 +194,8 @@ packages:
     source: external
 
   # The new rpms package collection
+  - name: rpms/zookeeper
+    source: external
   - name: rpms/libuv
     source: external
   - name: rpms/web-assets
