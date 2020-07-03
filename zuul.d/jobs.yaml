@@ -84,3 +84,7 @@
     run: playbooks/sfdocbuild.yaml
     post-run: playbooks/sfdocpublish.yaml
     success-url: 'docs-html/index.html'
+    nodeset:
+      nodes:
+        - name: container
+          label: pod-python-f32
