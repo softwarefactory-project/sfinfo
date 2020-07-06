@@ -1,8 +1,0 @@
----
-- hosts: all
-  tasks:
-    - name: Fetch docs
-      synchronize:
-        src: "{{ zuul.project.src_dir }}/docs-html/"
-        dest: "{{ zuul.executor.log_root }}/docs-html/"
-        mode: pull
