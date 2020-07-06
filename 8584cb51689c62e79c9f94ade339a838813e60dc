@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "139c58db_1f93866c",
+        "filename": "playbooks/sfdocbuild.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7
+      },
+      "writtenOn": "2020-07-06T12:05:36Z",
+      "side": 1,
+      "message": "typo, and the zuul-output directory creation should already be performed by the base job",
+      "range": {
+        "startLine": 6,
+        "startChar": 37,
+        "endLine": 6,
+        "endChar": 50
+      },
+      "revId": "8584cb51689c62e79c9f94ade339a838813e60dc",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
+    }
+  ]
+}
