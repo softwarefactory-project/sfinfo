@@ -82,7 +82,6 @@
     name: sf-docs-build
     description: Build the sf docs
     run: playbooks/sfdocbuild.yaml
-    post-run: playbooks/sfdocpublish.yaml
     success-url: 'docs-html/index.html'
     nodeset:
       nodes:
