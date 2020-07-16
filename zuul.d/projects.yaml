@@ -13,6 +13,7 @@
                   label: pod-haskell-lts-16
             required-projects:
               - software-factory/gerrit-haskell
+              - software-factory/podman-haskell
         - hlint:
             nodeset:
               nodes:
