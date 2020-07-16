@@ -1,11 +1,15 @@
 -- | A clone function
 module Sfinfo.Cloner
   ( clone,
+    commit,
+    gitReview,
   )
 where
 
+import Crypto.Hash (Digest, SHA1 (..), hash)
 import Data.Maybe
 import Data.Text
+import Data.Text.Encoding (encodeUtf8)
 import Network.URI
 import Turtle
 
@@ -14,14 +18,36 @@ urlToDir :: Text -> Maybe Text
 urlToDir url = do
   uri <- parseURI (unpack url)
   uriAuth <- uriAuthority uri
-  return (pack (uriRegName uriAuth <> uriPath uri))
+  return $ replace ".io/r/" ".io/" (pack (uriRegName uriAuth <> uriPath uri))
 
-clone :: MonadIO io => Text -> Text -> io ()
+commit :: MonadIO io => Text -> Text -> io Bool
+commit gitDir commitMessage =
+  do
+    res <- Turtle.proc "/bin/git" gitargs mempty
+    pure $ case res of
+      ExitSuccess -> True
+      ExitFailure _ -> False
+  where
+    gitargs = ["-C", gitDir, "commit", "-a", "-m", commitMessage <> "\n\n" <> changeIdStr]
+    changeIdStr :: Text
+    changeIdStr = "Change-Id: I" <> pack (show changeId)
+    changeId :: Digest SHA1
+    changeId = hash (encodeUtf8 (gitDir <> commitMessage))
+
+clone :: MonadIO io => Text -> Text -> io Text
 clone base url =
   case urlToDir url of
-    Nothing -> err "Invalid url"
+    Nothing -> error "Invalid url"
     Just urlDir -> do
       gitDirExist <- testdir (fromText (dest <> "/.git"))
       unless gitDirExist (procs "/bin/git" ["clone", url, dest] mempty)
+      pure dest
       where
         dest = base <> fromMaybe urlDir (stripSuffix ".git" urlDir)
+
+gitReview :: MonadIO io => Text -> Text -> Text -> io ()
+gitReview user projectName gitDir = procs "/bin/git" gitargs mempty
+  where
+    gitargs = ["-C", gitDir, "push", giturl, gitref]
+    giturl = "ssh://" <> user <> "@softwarefactory-project.io:29418/" <> projectName
+    gitref = "HEAD:refs/for/master"

@@ -21,6 +21,10 @@ common common-options
                      , network-uri
                      , text
                      , random
+                     , directory
+                     , time
+                     , gerrit-haskell
+                     , cryptonite
 
   ghc-options:         -Wall
                        -Wcompat
@@ -49,6 +53,8 @@ library
   import:              common-options
   hs-source-dirs:      src
   exposed-modules:     Sfinfo
+                     , Sfinfo.Cloner
+                     , Sfinfo.RpmSpec
 
 executable sfinfo
   import:              common-options
@@ -60,6 +66,18 @@ executable sfinfo
                        -with-rtsopts=-N
 
 test-suite sfinfo-test
+  import:              common-options
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             RpmSpec.hs
+  build-depends:       sfinfo
+                     , tasty
+                     , tasty-hunit
+  ghc-options:         -threaded
+                       -rtsopts
+                       -with-rtsopts=-N
+
+test-suite sfinfo-doctest
   import:              common-options
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
