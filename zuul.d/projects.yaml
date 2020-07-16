@@ -1,12 +1,22 @@
 ---
 - project:
     name: software-factory/sfinfo
-    check:
+    check: &jobs
       jobs:
         - linters
-    gate:
-      jobs:
-        - linters
+        - haskell-stack-test:
+            vars:
+              lts_version: lts-16.5
+            nodeset:
+              nodes:
+                - name: container
+                  label: pod-haskell-lts-16
+        - hlint:
+            nodeset:
+              nodes:
+                - name: container
+                  label: pod-haskell-f32
+    gate: *jobs
 
 - project:
     name: software-factory/software-factory
