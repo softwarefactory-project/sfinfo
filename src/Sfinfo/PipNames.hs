@@ -2,11 +2,17 @@
 
 -- | An oracle table
 module Sfinfo.PipNames
-  ( pipList,
+  ( ignoreList,
+    pipList,
   )
 where
 
 import Data.Text (Text)
+
+ignoreList :: [Text]
+ignoreList =
+  [ "pyasn1-modules" -- This is provided by pyasn1
+  ]
 
 pipList :: [(Text, Text)]
 pipList =

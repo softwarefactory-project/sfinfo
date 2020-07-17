@@ -12,14 +12,14 @@ import Data.Text (Text)
 import qualified Data.Text.IO as T
 import Gerrit (GerritClient)
 import qualified Gerrit
-import Podman
-import Sfinfo.Cloner
-import Sfinfo.PipNames (pipList)
-import Sfinfo.RpmSpec
+import Podman (containerRunning, containerState, inspectContainer, isContainer)
+import Sfinfo.Cloner (clone, commit, gitReview)
+import Sfinfo.PipNames (ignoreList, pipList)
+import Sfinfo.RpmSpec (bumpVersion, getDate, getSpec)
 import SimpleCmd (cmd, cmdMaybe, cmd_)
 import System.Directory (doesDirectoryExist, doesFileExist)
-
--- import Turtle
+import Turtle (FilePath, encodeString)
+import Prelude hiding (FilePath)
 
 -- | A breakOn that drops the seprator
 -- >>> breakOn' " -> " "a -> b"
@@ -42,6 +42,7 @@ readOutdatedLine line = (package, version)
 author :: Text
 author = "sfinfo <softwarefactory-dev@redhat.com>"
 
+-- | Creat the bump version commit and return the changeID
 commitUpdate :: Text -> Text -> IO Text
 commitUpdate gitDir version =
   do
@@ -61,9 +62,12 @@ updatePackage client home gerritUser (name, version) =
     case gerritChanges of
       [] -> do
         putStrLn ("== submitting review with> " <> show gitDir)
-        Sfinfo.Cloner.gitReview gerritUser projectName gitDir
+        gitReview gerritUser projectName gitDir
       [x] ->
-        putStrLn ("== review already exit> " <> show x)
+        putStrLn ("== review already exists> " <> show x)
+      -- Is there a +2 ?
+      -- Is the zuul gate sf-master queue length < 2 ?
+      -- Then perhaps add +2/+A
       _ -> print $ "Humm, multiple change proposed: " <> show gerritChanges
   where
     queryGerrit changeId = Gerrit.queryChanges [Gerrit.Project projectName, Gerrit.ChangeId changeId] client
@@ -71,10 +75,10 @@ updatePackage client home gerritUser (name, version) =
     projectName = "rpms/" <> T.replace "python3-" "python-" name
     projectUrl = "https://softwarefactory-project.io/r/" <> projectName
 
-proposeUpdate :: Text -> Text -> Text -> IO ()
+proposeUpdate :: Text -> Text -> FilePath -> IO ()
 proposeUpdate home gerritUser fn = Gerrit.withClient "https://softwarefactory-project.io/r/" $ \client -> do
   print $ "Proposing update using: " <> fn
-  fcontent <- T.readFile (T.unpack fn)
+  fcontent <- T.readFile (encodeString fn)
   mapM_ (updatePackage client home gerritUser . readOutdatedLine) $ T.lines fcontent
 
 -- | Convenient bind unless wrapper for the `if "test in IO" then "do this IO" pattern`
@@ -109,7 +113,10 @@ getPipList =
 convertPipFreezeToRpmQa :: String -> Maybe String
 convertPipFreezeToRpmQa name' =
   case T.splitOn "==" (T.pack name') of
-    [name, version] -> Just $ T.unpack $ convert name <> "-" <> version <> fakeRelease
+    [name, version] ->
+      if name `elem` ignoreList
+        then Nothing
+        else Just $ T.unpack $ convert name <> "-" <> version <> fakeRelease
     _ -> Nothing
   where
     fakeRelease = "-1.el7.noarch"
@@ -139,7 +146,7 @@ getRpmList =
 masterRpm :: String
 masterRpm = "https://softwarefactory-project.io/kojifiles/repos/sf-master-el7/Mash/sf-release-9999.14.g1439b64-14.el7.noarch.rpm"
 
-comparePipAndRpm :: Text -> IO ()
+comparePipAndRpm :: FilePath -> IO ()
 comparePipAndRpm outputFile =
   do
     -- pip freeze output of a zuul and nodepool venv
@@ -148,7 +155,7 @@ comparePipAndRpm outputFile =
     void $ cacheAndGet "rpm.txt" getRpmList
     writeFile "pipRpm.txt" $ unlines $ mapMaybe convertPipFreezeToRpmQa pipVer
     runDiff "missing.txt" "Missing package:" "--new"
-    runDiff (T.unpack outputFile) "Outdated packages:" "--updated"
+    runDiff (encodeString outputFile) "Outdated packages:" "--updated"
   where
     runDiff fn desc flag = do
       putStrLn desc
