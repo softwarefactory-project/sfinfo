@@ -1,16 +1,23 @@
 module Sfinfo
   ( proposeUpdate,
+    comparePipAndRpm,
   )
 where
 
-import Control.Monad (void)
+import Control.Monad (unless, void)
+import qualified Data.List
+import Data.Maybe (catMaybes, fromJust, fromMaybe, isJust, isNothing, mapMaybe)
 import qualified Data.Text as T
 import Data.Text (Text)
 import qualified Data.Text.IO as T
 import Gerrit (GerritClient)
 import qualified Gerrit
+import Podman
 import Sfinfo.Cloner
+import Sfinfo.PipNames (pipList)
 import Sfinfo.RpmSpec
+import SimpleCmd (cmd, cmdMaybe, cmd_)
+import System.Directory (doesDirectoryExist, doesFileExist)
 
 -- import Turtle
 
@@ -69,3 +76,87 @@ proposeUpdate home gerritUser fn = Gerrit.withClient "https://softwarefactory-pr
   print $ "Proposing update using: " <> fn
   fcontent <- T.readFile (T.unpack fn)
   mapM_ (updatePackage client home gerritUser . readOutdatedLine) $ T.lines fcontent
+
+-- | Convenient bind unless wrapper for the `if "test in IO" then "do this IO" pattern`
+--
+-- unless        :: Applicative f => Bool -> f () -> f ()
+-- flip          ::    (a -> b -> c) -> b -> a    -> c
+-- (flip unless) :: Applicative f => f () -> Bool -> f ()
+--
+-- For example to print something if a file does not exist:
+-- (flip unless (print "Nop")) :: Bool     -> IO ()
+-- (doesFileExist)             :: FilePath -> IO Bool
+-- (doesFileExist "/test" >>=) :: (Bool -> IO b) -> IO b
+-- >>> doesFileExist "/test" `bunless` print "Nop!"
+-- "Nop!"
+bunless :: IO Bool -> IO () -> IO ()
+a `bunless` b = a >>= flip unless b
+
+-- fixity value ensure this get evaluated last
+infixl 0 `bunless`
+
+-- | Install zuul in a venv using pip
+getPipList :: IO [String]
+getPipList =
+  do
+    doesDirectoryExist "venv" `bunless` cmd_ "python3" ["-m", "venv", "venv"]
+    doesFileExist "/usr/include/re2/re2.h" `bunless` cmd_ "sudo" ["dnf", "install", "-y", "re2-devel"]
+    mapM_ ensure ["zuul", "nodepool", "ansible"]
+    lines <$> cmd "./venv/bin/pip3" ["freeze"]
+  where
+    ensure name = doesFileExist ("venv/bin/" <> name) `bunless` cmd_ "./venv/bin/pip3" ["install", name]
+
+convertPipFreezeToRpmQa :: String -> Maybe String
+convertPipFreezeToRpmQa name' =
+  case T.splitOn "==" (T.pack name') of
+    [name, version] -> Just $ T.unpack $ convert name <> "-" <> version <> fakeRelease
+    _ -> Nothing
+  where
+    fakeRelease = "-1.el7.noarch"
+    convert :: Text -> Text
+    convert name = fromMaybe ("python3-" <> name) (lookup name pipList)
+
+-- | Install zuul in a container using software factory rpm
+getRpmList :: IO [String]
+getRpmList =
+  do
+    isContainer "sf" `bunless` cmd_ "podman" ["create", "--name", "sf", "registry.centos.org/centos:7", "sleep", "Inf"]
+    isRunning "sf" `bunless` cmd_ "podman" ["start", "sf"]
+    isSfReleaseInstalled "master" `bunless` run_ ["yum", "install", "-y", masterRpm]
+    ensure "zuul" ["zuul-merger", "zuul-web", "zuul-executor", "zuul-scheduler", "python3-virtualenv"]
+    ensure "nodepool" ["nodepool-launcher", "nodepool-builder"]
+    Data.List.sort . lines <$> run ["rpm", "-qa"]
+  where
+    isSfReleaseInstalled release = (== release) . fromMaybe "" <$> runMaybe ["cat", "/etc/sf-release"]
+    isRunning name = containerRunning . containerState . fromJust <$> inspectContainer name
+    ensure name req = doesExistInContainer name `bunless` run_ (["yum", "install", "-y"] <> req)
+    doesExistInContainer name = isJust <$> runMaybe ["test", "-f", "/usr/bin/" <> name]
+    runContainer c arg = c "podman" (["exec", "sf"] <> arg)
+    runMaybe = runContainer cmdMaybe
+    run_ = runContainer cmd_
+    run = runContainer cmd
+
+masterRpm :: String
+masterRpm = "https://softwarefactory-project.io/kojifiles/repos/sf-master-el7/Mash/sf-release-9999.14.g1439b64-14.el7.noarch.rpm"
+
+comparePipAndRpm :: Text -> IO ()
+comparePipAndRpm outputFile =
+  do
+    -- pip freeze output of a zuul and nodepool venv
+    pipVer <- cacheAndGet "pip.txt" getPipList
+    -- rpm -qa output of an installation in sf-master
+    void $ cacheAndGet "rpm.txt" getRpmList
+    writeFile "pipRpm.txt" $ unlines $ mapMaybe convertPipFreezeToRpmQa pipVer
+    runDiff "missing.txt" "Missing package:" "--new"
+    runDiff (T.unpack outputFile) "Outdated packages:" "--updated"
+  where
+    runDiff fn desc flag = do
+      putStrLn desc
+      output <- cmd "pkgtreediff" ["--ignore-arch", "--ignore-release", flag, "./rpm.txt", "./pipRpm.txt"]
+      writeFile fn output
+      putStrLn output
+      putStrLn ""
+    cacheAndGet :: String -> IO [String] -> IO [String]
+    cacheAndGet fn action = doesFileExist fn >>= \case
+      True -> (lines <$> readFile fn)
+      False -> action >>= \content -> writeFile fn (unlines content) >> return content

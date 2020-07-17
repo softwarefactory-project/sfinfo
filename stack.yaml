@@ -2,3 +2,4 @@ resolver: lts-16.3
 packages:
   - .
   - ../gerrit-haskell
+  - ../podman-haskell

@@ -2,16 +2,35 @@ module Main (main) where
 
 import Data.Maybe (fromMaybe)
 import Data.Text (Text)
-import Sfinfo (proposeUpdate)
-import Turtle (Parser, argText, need, options)
+import Sfinfo (comparePipAndRpm, proposeUpdate)
+import Turtle
 
-usage :: Parser (Text, Text)
+data Command = ComputeDiff Text | ProposeUpdate (Text, Text)
+  deriving (Show)
+
+usage :: Parser Command
 usage =
-  (,) <$> argText "outdated-list" "Pkgtreediff outdated output file"
-    <*> argText "gerrit-user" "Gerrit ssh name user to push review"
+  fmap
+    ComputeDiff
+    ( subcommand
+        "compute-diff"
+        "Compare package between rpm and pypi"
+        (argText "outdated-list" "the output file name")
+    )
+    <|> fmap
+      ProposeUpdate
+      ( subcommand
+          "propose-update"
+          "Generate git reviews to bump outdated packages"
+          ( (,) <$> argText "outdated-list" "gen-diff output file name"
+              <*> argText "gerrit-user" "Gerrit ssh name user to push review"
+          )
+      )
 
 main :: IO ()
 main = do
-  (outdatedList, gerritUser) <- options "Propose spec files update" usage
-  home <- need "HOME"
-  proposeUpdate (fromMaybe "/home/fedora" home) outdatedList gerritUser
+  command <- options "SFInfo toolkit" usage
+  home' <- need "HOME"
+  case command of
+    ComputeDiff outputFile -> comparePipAndRpm outputFile
+    ProposeUpdate (outdatedList, gerritUser) -> proposeUpdate (fromMaybe "/home/fedora" home') gerritUser outdatedList
