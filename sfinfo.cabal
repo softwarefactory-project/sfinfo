@@ -25,6 +25,7 @@ common common-options
                      , time
                      , cryptonite
                      , simple-cmd
+                     , ansi-wl-pprint
                      -- Internal dep
                      , gerrit
                      , podman
