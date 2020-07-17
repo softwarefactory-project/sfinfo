@@ -29,7 +29,8 @@ Install sfinfo:
 
 ```ShellSession
 $ sudo dnf copr enable -y petersen/stack2 && sudo dnf install -y stack && sudo stack upgrade
-$ git clone https://softwarefactory-project.io/r/software-factory/bugzilla-haskell ..
+$ git clone https://softwarefactory-project.io/r/software-factory/gerrit-haskell ..
+$ git clone https://softwarefactory-project.io/r/software-factory/podman-haskell ..
 $ stack install sfinfo
 $ sfinfo --help
 SFInfo toolkit
