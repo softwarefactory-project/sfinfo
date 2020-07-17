@@ -4,7 +4,7 @@ module Sfinfo
   )
 where
 
-import Control.Monad (unless, void)
+import Control.Monad (forM_, unless, void)
 import qualified Data.List
 import Data.Maybe (catMaybes, fromJust, fromMaybe, isJust, isNothing, mapMaybe)
 import qualified Data.Text as T
@@ -18,8 +18,9 @@ import Sfinfo.PipNames (ignoreList, pipList)
 import Sfinfo.RpmSpec (bumpVersion, getDate, getSpec)
 import SimpleCmd (cmd, cmdMaybe, cmd_)
 import System.Directory (doesDirectoryExist, doesFileExist)
+import Text.PrettyPrint.ANSI.Leijen (green, putDoc, text)
 import Turtle (FilePath, encodeString)
-import Prelude hiding (FilePath)
+import Prelude hiding (FilePath, id)
 
 -- | A breakOn that drops the seprator
 -- >>> breakOn' " -> " "a -> b"
@@ -53,33 +54,40 @@ commitUpdate gitDir version =
   where
     commitTitle = "Bump to " <> version
 
-updatePackage :: GerritClient -> Text -> Text -> (Text, Text) -> IO ()
+updatePackage :: GerritClient -> Text -> Text -> (Text, Text) -> IO (Text, Maybe Text)
 updatePackage client home gerritUser (name, version) =
   do
     gitDir <- clone gitBase projectUrl
     changeId <- commitUpdate gitDir version
     gerritChanges <- queryGerrit changeId
-    case gerritChanges of
+    result <- case gerritChanges of
       [] -> do
-        putStrLn ("== submitting review with> " <> show gitDir)
         gitReview gerritUser projectName gitDir
-      [x] ->
-        putStrLn ("== review already exists> " <> show x)
+        pure $ Just "review submited"
+      [change@Gerrit.GerritChange {..}] ->
+        if status == Gerrit.MERGED
+          then pure Nothing -- Change is merged, nothing to report
+          else pure $ Just $ changeUrl change
       -- Is there a +2 ?
       -- Is the zuul gate sf-master queue length < 2 ?
       -- Then perhaps add +2/+A
-      _ -> print $ "Humm, multiple change proposed: " <> show gerritChanges
+      _ -> pure $ Just $ T.pack $ "multiple review opened: " <> show (map changeUrl gerritChanges)
+    pure (name, result)
   where
+    changeUrl = Gerrit.changeUrl client
     queryGerrit changeId = Gerrit.queryChanges [Gerrit.Project projectName, Gerrit.ChangeId changeId] client
     gitBase = home <> "/src/"
     projectName = "rpms/" <> T.replace "python3-" "python-" name
     projectUrl = "https://softwarefactory-project.io/r/" <> projectName
 
 proposeUpdate :: Text -> Text -> FilePath -> IO ()
-proposeUpdate home gerritUser fn = Gerrit.withClient "https://softwarefactory-project.io/r/" $ \client -> do
+proposeUpdate home gerritUser fn = Gerrit.withClient "https://softwarefactory-project.io/r" $ \client -> do
   print $ "Proposing update using: " <> fn
   fcontent <- T.readFile (encodeString fn)
-  mapM_ (updatePackage client home gerritUser . readOutdatedLine) $ T.lines fcontent
+  results <- mapM (updatePackage client home gerritUser . readOutdatedLine) $ T.lines fcontent
+  putDoc (green (text ("Summary:\n")))
+  forM_ (filter (isJust . snd) results) $ \(name, message) ->
+    putStrLn $ T.unpack $ name <> ": " <> fromMaybe "N/A" message
 
 -- | Convenient bind unless wrapper for the `if "test in IO" then "do this IO" pattern`
 --
