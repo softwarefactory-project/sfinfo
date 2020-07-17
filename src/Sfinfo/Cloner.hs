@@ -11,7 +11,7 @@ import Data.Maybe
 import Data.Text
 import Data.Text.Encoding (encodeUtf8)
 import Network.URI
-import Turtle
+import Turtle hiding (stderr, stdout)
 
 -- | Strip scheme, port, auth and query fragments
 urlToDir :: Text -> Maybe Text
