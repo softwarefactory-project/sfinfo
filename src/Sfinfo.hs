@@ -12,10 +12,10 @@ import Data.Text (Text)
 import qualified Data.Text.IO as T
 import Gerrit (GerritClient)
 import qualified Gerrit
-import Podman
-import Sfinfo.Cloner
-import Sfinfo.PipNames (pipList)
-import Sfinfo.RpmSpec
+import Podman (containerRunning, containerState, inspectContainer, isContainer)
+import Sfinfo.Cloner (clone, commit, gitReview)
+import Sfinfo.PipNames (ignoreList, pipList)
+import Sfinfo.RpmSpec (bumpVersion, getDate, getSpec)
 import SimpleCmd (cmd, cmdMaybe, cmd_)
 import System.Directory (doesDirectoryExist, doesFileExist)
 
@@ -42,6 +42,7 @@ readOutdatedLine line = (package, version)
 author :: Text
 author = "sfinfo <softwarefactory-dev@redhat.com>"
 
+-- | Creat the bump version commit and return the changeID
 commitUpdate :: Text -> Text -> IO Text
 commitUpdate gitDir version =
   do
@@ -61,9 +62,12 @@ updatePackage client home gerritUser (name, version) =
     case gerritChanges of
       [] -> do
         putStrLn ("== submitting review with> " <> show gitDir)
-        Sfinfo.Cloner.gitReview gerritUser projectName gitDir
+        gitReview gerritUser projectName gitDir
       [x] ->
-        putStrLn ("== review already exit> " <> show x)
+        putStrLn ("== review already exists> " <> show x)
+      -- Is there a +2 ?
+      -- Is the zuul gate sf-master queue length < 2 ?
+      -- Then perhaps add +2/+A
       _ -> print $ "Humm, multiple change proposed: " <> show gerritChanges
   where
     queryGerrit changeId = Gerrit.queryChanges [Gerrit.Project projectName, Gerrit.ChangeId changeId] client
@@ -109,7 +113,10 @@ getPipList =
 convertPipFreezeToRpmQa :: String -> Maybe String
 convertPipFreezeToRpmQa name' =
   case T.splitOn "==" (T.pack name') of
-    [name, version] -> Just $ T.unpack $ convert name <> "-" <> version <> fakeRelease
+    [name, version] -> do
+      if elem name ignoreList
+        then Nothing
+        else Just $ T.unpack $ convert name <> "-" <> version <> fakeRelease
     _ -> Nothing
   where
     fakeRelease = "-1.el7.noarch"

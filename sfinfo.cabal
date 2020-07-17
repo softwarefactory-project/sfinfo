@@ -23,10 +23,11 @@ common common-options
                      , random
                      , directory
                      , time
-                     , gerrit-haskell
-                     , podman
                      , cryptonite
                      , simple-cmd
+                     -- Internal dep
+                     , gerrit
+                     , podman
 
   ghc-options:         -Wall
                        -Wcompat
