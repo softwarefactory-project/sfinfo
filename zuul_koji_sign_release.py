@@ -86,9 +86,9 @@ class ZuulKojiSignRelease(zuul_koji_lib.App):
             print(" && ".join([
                 "cd %s" % self.td,
                 "rpm --addsign *.rpm",
-                "echo Importing signature in koji"
+                "echo Importing signature in koji",
                 "koji import-sig *.rpm",
-                "echo Writting signed rpm"
+                "echo Writting signed rpm",
                 "koji write-signed-rpm 1c3bae4b $(cat %s)" % self.to_sign_txt,
                 "cd -",
                 "echo rm -Rf %s" % self.td
