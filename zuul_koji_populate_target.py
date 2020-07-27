@@ -86,9 +86,8 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
                 package["version"] = self.get_spec_version(specfile)
 
             package["release"] = self.get_spec_release(specfile)
-            name = os.path.basename(package["name"])
-            if package["name"].startswith("rpms/python-"):
-                name = name.replace("python-", "python3-")
+            name = os.path.basename(package["name"].replace(
+                "rpms/python-", "rpms/python3-"))
             package["nvr"] = "%s-%s-%s" % (name,
                                            package["version"],
                                            package["release"])
