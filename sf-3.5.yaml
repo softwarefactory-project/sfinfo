@@ -194,6 +194,8 @@ packages:
     source: external
 
   # The new rpms package collection
+  - name: rpms/dhall
+    source: external
   - name: rpms/zookeeper
     source: external
   - name: rpms/libuv
@@ -512,6 +514,8 @@ packages:
   - name: rpms/python-fixtures
     source: external
   - name: rpms/python-botocore
+    source: external
+  - name: rpms/python3-requests_aws4auth
     source: external
   - name: rpms/python-s3transfer
     source: external
