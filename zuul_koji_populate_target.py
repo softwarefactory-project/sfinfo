@@ -105,11 +105,10 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
         rpms = map(lambda x: (x, splitFilename(x)),
                    filter(lambda x: "9999" not in x, tag_content))
         for package in packages:
-            name = os.path.basename(package["name"])
+            name = os.path.basename(package["name"].replace(
+                "rpms/python-", "rpms/python3-"))
             if package.get("scl"):
                 name = "%s-%s" % (package["scl"], name)
-            if package["name"].startswith("rpms/python-"):
-                name = name.replace("python-", "python3-")
             pkgs = [rpm for rpm in rpms if rpm[1][0] == name]
             if len(pkgs) > 1:
                 pkg = most_recent(pkgs)
