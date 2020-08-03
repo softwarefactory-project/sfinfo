@@ -35,10 +35,6 @@ packages:
     source: internal
     spec: included
 
-  - name: software-factory/firehooks
-    source: internal
-    spec: included
-
   - name: software-factory/sf-web-assets
     source: external
 
