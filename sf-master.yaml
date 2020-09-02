@@ -31,6 +31,10 @@ packages:
     source: internal
     spec: included
 
+  - name: software-factory/pynotedb
+    source: internal
+    spec: included
+
   - name: software-factory/cauth
     source: internal
     spec: included
