@@ -35,6 +35,10 @@ packages:
     source: internal
     spec: included
 
+  - name: software-factory/purgelogs
+    source: internal
+    spec: included
+
   - name: software-factory/cauth
     source: internal
     spec: included
