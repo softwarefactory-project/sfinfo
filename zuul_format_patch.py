@@ -132,6 +132,10 @@ def main():
         if "refs/changes" in ref:
             ref = ref.split()[1].split('/')
             cn, pn = ref[-2], ref[-1]
+            try:
+                int(pn)
+            except ValueError:
+                continue
             if cn in changes and int(changes[cn]) >= int(pn):
                 continue
             changes[ref[-2]] = ref[-1]
