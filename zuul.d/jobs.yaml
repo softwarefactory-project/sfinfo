@@ -46,6 +46,25 @@
           label: cloud-centos-7
 
 - job:
+    name: npm-rpm-publish
+    description: Publish sf rpm to koji
+    pre-run: playbooks/install_requirements.yaml
+    run: playbooks/npm-rpmpublish.yaml
+    vars:
+      rpmbuild_extra_vars: "%dist .el7"
+      scratch_build: True
+      target: sf-master-el7
+    roles:
+      - zuul: zuul-distro-jobs
+    secrets:
+      - secret: sf_koji_configuration
+        name: koji_configuration
+    nodeset:
+      nodes:
+        - label: pod-nodejs-builder
+          name: container
+
+- job:
     name: sf-rpm-publish-scl
     description: duplicate of sf-rpm-publish so that it can be run concurrently for projects migrating from py2x to py3x
     parent: sf-rpm-publish
