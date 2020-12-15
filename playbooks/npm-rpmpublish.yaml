@@ -24,9 +24,6 @@
       args:
         chdir: "{{ project_dir }}"
 
-    - name: Setup rpmbuild tree
-      command: rpmdev-setuptree
-
     - name: Create tarball
       command: tar czf HEAD.tar.gz dist/
       args:

@@ -48,7 +48,6 @@
 - job:
     name: npm-rpm-publish
     description: Publish sf rpm to koji
-    pre-run: playbooks/install_requirements.yaml
     run: playbooks/npm-rpmpublish.yaml
     vars:
       rpmbuild_extra_vars: "%dist .el7"
