@@ -25,7 +25,7 @@
         chdir: "{{ project_dir }}"
 
     - name: Create tarball
-      command: tar czf HEAD.tar.gz dist/
+      command: tar czf HEAD.tgz dist/
       args:
         chdir: "{{ project_dir }}"
 
