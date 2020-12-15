@@ -50,6 +50,7 @@
     description: Publish sf rpm to koji
     run: playbooks/npm-rpmpublish.yaml
     vars:
+      koji_extra_args: "--authtype=ssl"
       rpmbuild_extra_vars: "%dist .el7"
       scratch_build: True
       target: sf-master-el7
