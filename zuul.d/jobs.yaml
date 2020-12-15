@@ -52,7 +52,8 @@
     vars:
       koji_extra_args: "--authtype=ssl"
       rpmbuild_extra_vars: "%dist .el7"
-      scratch_build: True
+      build_from_source: true
+      scratch_build: true
       target: sf-master-el7
     roles:
       - zuul: zuul-distro-jobs
