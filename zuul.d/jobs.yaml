@@ -51,7 +51,7 @@
     run: playbooks/npm-rpmpublish.yaml
     vars:
       koji_extra_args: "--authtype=ssl"
-      rpmbuild_extra_vars: "%dist .el7"
+      rpmbuild_extra_args: "%dist .el7"
       build_from_source: true
       scratch_build: true
       target: sf-master-el7
