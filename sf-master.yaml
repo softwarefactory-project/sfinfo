@@ -117,6 +117,9 @@ packages:
   - name: software-factory/bubblewrap
     source: external
 
+  - name: rpms/python-typing-extensions
+    source: external
+
   - name: logreduce
     source: internal
     spec: included
