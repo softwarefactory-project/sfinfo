@@ -8,6 +8,7 @@
     # Symlink does not work when npm link to parent file directory
     - name: Install node_modules
       command: "mv /usr/libexec/shake/node_modules {{ project_dir }}/node_modules"
+      when: use_shake
 
     - name: Run yarn install
       command: yarn install --no-lockfile --offline
@@ -18,11 +19,13 @@
       command: yarn build
       args:
         chdir: "{{ project_dir }}"
+      when: yarn_build
 
     - name: Run yarn dist
       command: yarn dist
       args:
         chdir: "{{ project_dir }}"
+      when: yarn_dist
 
     - name: Create tarball
       command: tar czf HEAD.tgz dist/

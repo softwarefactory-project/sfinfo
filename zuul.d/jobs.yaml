@@ -50,6 +50,9 @@
     description: Publish sf rpm to koji
     run: playbooks/npm-rpmpublish.yaml
     vars:
+      use_shake: true
+      yarn_build: true
+      yarn_dist: true
       koji_extra_args: "--authtype=ssl"
       rpmbuild_extra_args: "-D \"%dist .el7\""
       build_from_source: true
