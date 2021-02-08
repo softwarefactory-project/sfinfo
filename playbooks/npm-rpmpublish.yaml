@@ -11,7 +11,8 @@
       when: use_shake
 
     - name: Run yarn install
-      command: yarn install --no-lockfile --offline
+      command: |
+        yarn install {% if yarn_no_lockfile %} --no-lockfile {% endif %} {% if yarn_offline %} --offline {% endif %}
       args:
         chdir: "{{ project_dir }}"
 

@@ -53,6 +53,8 @@
       use_shake: true
       yarn_build: true
       yarn_dist: true
+      yarn_offline: true
+      yarn_no_lockfile: true
       koji_extra_args: "--authtype=ssl"
       rpmbuild_extra_args: "-D \"%dist .el7\""
       build_from_source: true
