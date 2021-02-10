@@ -29,7 +29,8 @@
       when: yarn_dist
 
     - name: Create tarball
-      command: tar czf HEAD.tgz dist/
+      command: |
+        tar czf HEAD.tgz {% if yarn_dist %} dist/ {% else %} node_modules/ {% endif %}
       args:
         chdir: "{{ project_dir }}"
 
