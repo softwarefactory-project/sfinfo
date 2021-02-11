@@ -101,7 +101,7 @@
     nodeset:
       nodes:
         - name: publish-host
-          label: centos-oci
+          label: zuul-worker-fedora
 
 - job:
     name: sf-docs-build
