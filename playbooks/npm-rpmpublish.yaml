@@ -10,6 +10,16 @@
       command: "mv /usr/libexec/shake/node_modules {{ project_dir }}/node_modules"
       when: use_shake
 
+    - name: Check if yarn archive exists
+      stat:
+        path: "{{ project_dir }}/yarn.lock.bz2"
+      register: _yarn_archive
+
+    - name: Extract yarn archive if exists
+      shell: |
+        cat {{ project_dir }}/yarn.lock.bz2 | bzip2 -d > {{ project_dir }}/yarn.lock
+      when: _yarn_archive.stat.exists
+
     - name: Run yarn install
       command: |
         yarn install {% if yarn_no_lockfile %} --no-lockfile {% endif %} {% if yarn_offline %} --offline {% endif %}
