@@ -37,8 +37,7 @@ class ZuulRpmBuild(zuul_koji_lib.App):
                        default=os.environ.get('ZUUL_BRANCH', 'master'))
         p.add_argument("--pipeline",
                        default=os.environ.get('ZUUL_PIPELINE', 'check'))
-        p.add_argument("--project", action='append',
-                       default=[os.environ.get('ZUUL_PROJECT')],
+        p.add_argument("--project", action='append', default=[],
                        help="Specify project name when running outside"
                             " of Zuul context"),
         p.add_argument("--source",
@@ -323,6 +322,9 @@ class ZuulRpmBuild(zuul_koji_lib.App):
                         "%s %s", project, ref)
                     # Special case for zuul ui to re-use the src.rpm:
                     buildset_url = zuul_koji_lib.get_buildset_url(project, ref)
+                    if buildset_url is None:
+                        self.log.warning("Buildset is missing")
+                        continue
                     self.log.info("Using this buildset", buildset_url)
                     srpms = zuul_koji_lib.get_srpms(buildset_url)
                     self.log.info("And this srpm %s", str(srpms))

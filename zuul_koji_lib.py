@@ -274,5 +274,8 @@ def get_buildset_url(project, ref):
                      "local/builds?"
                      "project=" + project + "&"
                      "change=" + ref)
-    build = r.json()[0]
+    try:
+        build = r.json()[0]
+    except IndexError:
+        return None
     return build["log_url"] + "buildset/"
