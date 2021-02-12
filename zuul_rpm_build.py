@@ -325,7 +325,7 @@ class ZuulRpmBuild(zuul_koji_lib.App):
                     if buildset_url is None:
                         self.log.warning("Buildset is missing")
                         continue
-                    self.log.info("Using this buildset", buildset_url)
+                    self.log.info("Using this buildset %s", buildset_url)
                     srpms = zuul_koji_lib.get_srpms(buildset_url)
                     self.log.info("And this srpm %s", str(srpms))
                     srpm = zuul_koji_lib.download(
