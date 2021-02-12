@@ -328,7 +328,14 @@ class ZuulRpmBuild(zuul_koji_lib.App):
                                  change, branch))
                 continue
             try:
-                if self.build(project):
+                if project.endswith("patternfly-react-ui-deps-distgit"):
+                    # Special case for zuul ui to re-use the src.rpm:
+                    buildset_url = zuul_koji_lib.get_buildset_url(project, ref)
+                    srpms = zuul_koji_lib.get_srpms(buildset_url)
+                    srpm = zuul_koji_lib.download(
+                        self.log, buildset_url + srpms[0])
+                    self.execute(["mv", srpm, self.args.local_output])
+                elif self.build(project):
                     self.execute(["createrepo", "."],
                                  cwd=self.args.local_output)
             except RuntimeError:

@@ -266,3 +266,13 @@ def download(log, url):
         for chunk in r.iter_content(chunk_size=1024):
             if chunk:
                 f.write(chunk)
+    return local_filename
+
+
+def get_buildset_url(project, ref):
+    r = requests.get("https://softwarefactory-project.io/zuul/api/tenant/"
+                     "local/builds?"
+                     "project=" + project + "&"
+                     "change=" + ref)
+    build = r.json()[0]
+    return build["log_url"] + "buildset/"
