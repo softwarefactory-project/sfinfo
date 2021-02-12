@@ -37,8 +37,6 @@ class ZuulRpmBuild(zuul_koji_lib.App):
                        default=os.environ.get('ZUUL_BRANCH', 'master'))
         p.add_argument("--pipeline",
                        default=os.environ.get('ZUUL_PIPELINE', 'check'))
-        p.add_argument("--changes",
-                       default=os.environ.get('ZUUL_CHANGES', ''))
         p.add_argument("--project", action='append',
                        default=[os.environ.get('ZUUL_PROJECT')],
                        help="Specify project name when running outside"
@@ -293,18 +291,9 @@ class ZuulRpmBuild(zuul_koji_lib.App):
         else:
             branch = args.branch
 
-        if not self.args.changes and not self.args.project:
+        if not self.args.project:
             self.log.error("No changes or project defined, stopping now")
             exit(1)
-        if not self.args.changes:
-            changes = []
-            for project in self.args.project:
-                if project is None:
-                    continue
-                changes.append("%s:%s:refs/HEAD" % (project, branch))
-            self.args.changes = "^".join(changes)
-        self.log.debug("Computed or detected ZUUL_CHANGES is %s" %
-                       self.args.changes)
 
         if os.path.isdir(self.args.local_output):
             if self.args.clean:
@@ -321,7 +310,7 @@ class ZuulRpmBuild(zuul_koji_lib.App):
             os.unlink(logfile)
 
         # For each change, build package and create intermediary repo
-        for change in self.args.changes.split('^'):
+        for change in self.args.project:
             project, change_branch, ref = change.split(':')
             if change_branch != branch:
                 self.log.warning("Skipping %s because not on branch %s" % (
@@ -329,9 +318,14 @@ class ZuulRpmBuild(zuul_koji_lib.App):
                 continue
             try:
                 if project.endswith("patternfly-react-ui-deps-distgit"):
+                    self.log.info(
+                        "Injecting patternfly-react-ui depends workaound for"
+                        "%s %s", project, ref)
                     # Special case for zuul ui to re-use the src.rpm:
                     buildset_url = zuul_koji_lib.get_buildset_url(project, ref)
+                    self.log.info("Using this buildset", buildset_url)
                     srpms = zuul_koji_lib.get_srpms(buildset_url)
+                    self.log.info("And this srpm %s", str(srpms))
                     srpm = zuul_koji_lib.download(
                         self.log, buildset_url + srpms[0])
                     self.execute(["mv", srpm, self.args.local_output])
