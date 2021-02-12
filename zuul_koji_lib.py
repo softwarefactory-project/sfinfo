@@ -19,6 +19,8 @@ import yaml
 import subprocess
 import sys
 import os
+import re
+import requests
 
 import rpm  # type: ignore
 
@@ -243,3 +245,24 @@ class App:
         self._setup_logging(args.verbose)
         self._load_distro_info(args.distro_info)
         self.main(args)
+
+
+def get_srpms(url):
+    match = re.findall(r'<a href="([^"]*)">', requests.get(url).text)
+    if not match:
+        raise RuntimeError("Couldn't find srpms in %s..." % url)
+    srpms = []
+    for m in match:
+        if m.endswith(".src.rpm"):
+            srpms.append(m)
+    return srpms
+
+
+def download(log, url):
+    local_filename = url.split('/')[-1]
+    log.info("Downloading %s" % url)
+    r = requests.get(url, stream=True)
+    with open(local_filename, 'wb') as f:
+        for chunk in r.iter_content(chunk_size=1024):
+            if chunk:
+                f.write(chunk)
