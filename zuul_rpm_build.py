@@ -331,6 +331,7 @@ class ZuulRpmBuild(zuul_koji_lib.App):
                     srpm = zuul_koji_lib.download(
                         self.log, buildset_url + srpms[0])
                     self.execute(["mv", srpm, self.args.local_output])
+                    self.mock_macros = ["-D", "dist .el7"]
                     self.build_rpm()
                     self.execute(["createrepo", "."],
                                  cwd=self.args.local_output)
