@@ -2,7 +2,7 @@
 - hosts: all
   vars:
     # Set projects_args to a list of "--project project_name"
-    projects_args: "{% for item in zuul['items'] %}--project {{ item.project.name }} {% endfor %}"
+    projects_args: "{% for item in zuul['items'] %}--project {{ item.project.name }}:{{ item.branch }}:{{ item.change }},{{ item.patchset }} {% endfor %}"
     # Get sfinfo location
     sfinfo_path_query: "[?name=='software-factory/sfinfo'].src_dir"
     sfinfo_path: "{{ (zuul.projects.values() | list | json_query(sfinfo_path_query))[0] }}"
