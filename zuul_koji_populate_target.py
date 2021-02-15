@@ -152,11 +152,10 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
         to_tag = []
         missing_packages = []
         for package in packages:
-            name = os.path.basename(package["name"])
+            name = os.path.basename(package["name"].replace(
+                "rpms/python-", "rpms/python3-"))
             if package.get("scl"):
                 name = "%s-%s" % (package["scl"], name)
-            if package["name"].startswith("rpms/python-"):
-                name = name.replace("python-", "python3-")
             if candidate and not package["valid_nvr"]:
                 missing_packages.append(name)
                 continue
