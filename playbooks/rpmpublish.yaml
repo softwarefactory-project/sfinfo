@@ -51,7 +51,8 @@
           command: >
             ./software-factory/sfinfo/zuul_rpm_build.py --distro-info \
                 ./software-factory/sfinfo/sf-{{ _branch_name.stdout_lines[-1] }}.yaml \
-                --zuulv3 --srpm --project "{{ zuul.project.name }}"
+                --zuulv3 --srpm \
+                --project {{ zuul.project.name }}:{{ zuul.branch }}:{{ zuul.tag|default('HEAD') }}
           args:
             chdir: "{{ sfnamespace_path }}"
 
