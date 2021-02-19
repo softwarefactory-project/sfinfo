@@ -4,6 +4,7 @@
     description: Build sf rpm
     pre-run: playbooks/install_requirements.yaml
     run: playbooks/rpmbuild.yaml
+    timeout: 3600
     required-projects:
       - software-factory/sfinfo
     nodeset:
