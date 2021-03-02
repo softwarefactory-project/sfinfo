@@ -47,6 +47,26 @@
           label: cloud-centos-7
 
 - job:
+    name: pnpm-rpm-publish
+    description: Publish sf rpm to koji
+    run: playbooks/pnpm-rpmpublish.yaml
+    vars:
+      target: sf-master-el7
+      koji_extra_args: "--authtype=ssl"
+      rpmbuild_extra_args: "-D \"%dist .el7\""
+      build_from_source: true
+      scratch_build: true
+    roles:
+      - zuul: zuul-distro-jobs
+    secrets:
+      - secret: sf_koji_configuration
+        name: koji_configuration
+    nodeset:
+      nodes:
+        - label: zuul-worker-javascript
+          name: container
+
+- job:
     name: npm-rpm-publish
     description: Publish sf rpm to koji
     run: playbooks/npm-rpmpublish.yaml

@@ -1,0 +1,35 @@
+- hosts: all
+  vars:
+    project_dir: "{{ zuul.project.src_dir }}/"
+  tasks:
+    - include_role:
+        name: koji-conf
+
+    - name: Run pnpm install "{{ pnpm_install | default ('') }}"
+      command: pnpm install
+      args:
+        chdir: "{{ project_dir }}"
+
+    - name: Run pnpm build
+      command: pnpm build
+      args:
+        chdir: "{{ project_dir }}"
+
+    - name: Run pnpm dist
+      command: pnpm dist
+      args:
+        chdir: "{{ project_dir }}"
+
+    - name: Setup rpmbuild tree
+      command: rpmdev-setuptree
+
+    - name: Create tarball
+      command: tar czf HEAD.tar.gz dist/
+      args:
+        chdir: "{{ project_dir }}"
+
+    - include_role:
+        name: simple-srpm-build
+
+    - include_role:
+        name: koji-build
