@@ -2,13 +2,6 @@
   vars:
     project_dir: "{{ zuul.project.src_dir }}/"
   tasks:
-    - name: Ensure rpmbuild and tools are installed
-      package:
-        name:
-          - rpmdevtools
-          - rpm-build
-          - koji
-
     - name: Run pnpm install "{{ pnpm_install | default ('') }}"
       command: "pnpm install {{ pnpm_install }}"
       args:
@@ -24,11 +17,8 @@
       args:
         chdir: "{{ project_dir }}"
 
-    - name: Setup rpmbuild tree
-      command: rpmdev-setuptree
-
     - name: Create tarball
-      command: tar czf HEAD.tar.gz dist/
+      command: tar czf HEAD.tgz dist/
       args:
         chdir: "{{ project_dir }}"
 
