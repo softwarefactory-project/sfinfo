@@ -2,11 +2,15 @@
   vars:
     project_dir: "{{ zuul.project.src_dir }}/"
   tasks:
-    - include_role:
-        name: koji-conf
+    - name: Ensure rpmbuild and tools are installed
+      package:
+        name:
+          - rpmdevtools
+          - rpm-build
+          - koji
 
     - name: Run pnpm install "{{ pnpm_install | default ('') }}"
-      command: pnpm install
+      command: "pnpm install {{ pnpm_install }}"
       args:
         chdir: "{{ project_dir }}"
 
@@ -27,6 +31,9 @@
       command: tar czf HEAD.tar.gz dist/
       args:
         chdir: "{{ project_dir }}"
+
+    - include_role:
+        name: koji-conf
 
     - include_role:
         name: simple-srpm-build
