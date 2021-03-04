@@ -56,6 +56,8 @@
       rpmbuild_extra_args: "-D \"%dist .el7\""
       build_from_source: true
       scratch_build: true
+    required-projects:
+      - software-factory/res-remoteapi
     roles:
       - zuul: zuul-distro-jobs
     secrets:
