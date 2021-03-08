@@ -70,12 +70,6 @@ packages:
   - name: software-factory/haveged
     source: external
 
-  - name: software-factory/lecm
-    source: external
-
-  - name: software-factory/monit
-    source: external
-
   - name: software-factory/wait4service
     source: internal
     spec: included
@@ -183,9 +177,6 @@ packages:
   - name: software-factory/libwebsockets
     source: external
 
-  - name: software-factory/mirror2swift
-    source: external
-
   # EL curator
   - name: software-factory/elasticsearch-curator
     source: external
@@ -201,8 +192,6 @@ packages:
     source: external
 
   # Epel import
-  - name: software-factory/acme-tiny
-    source: external
   - name: software-factory/uthash
     source: external
   - name: software-factory/c-ares
@@ -530,7 +519,7 @@ packages:
     source: external
   - name: rpms/python-botocore
     source: external
-  - name: rpms/python3-requests_aws4auth
+  - name: rpms/python-requests_aws4auth
     source: external
   - name: rpms/python-s3transfer
     source: external

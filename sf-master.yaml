@@ -70,12 +70,6 @@ packages:
   - name: software-factory/haveged
     source: external
 
-  - name: software-factory/lecm
-    source: external
-
-  - name: software-factory/monit
-    source: external
-
   - name: software-factory/wait4service
     source: internal
     spec: included
@@ -530,7 +524,7 @@ packages:
     source: external
   - name: rpms/python-botocore
     source: external
-  - name: rpms/python3-requests_aws4auth
+  - name: rpms/python-requests_aws4auth
     source: external
   - name: rpms/python-s3transfer
     source: external
