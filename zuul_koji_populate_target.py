@@ -127,6 +127,7 @@ class ZuulKojiPopulateTarget(zuul_koji_lib.App):
             def invalid_nvr():
                 return (
                     name != "python3-devnest"  # It's ok, this one is on me
+                    and name != "python3-graphene" # on me too!
                     and (v.startswith("0.0.0.0")
                          or re.search("[a-zA-Z]", v))
                     )
