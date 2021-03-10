@@ -3,7 +3,7 @@
     project_dir: "{{ zuul.project.src_dir }}/"
   tasks:
     - name: Ensure the tag version is in the spec
-      command: "sed -e 's/Version:.*/Version: {{ zuul.tag }}/ -i {{ zuul.project.short_name }}.spec"
+      command: "sed -e 's/Version:.*/Version: {{ zuul.tag }}/' -i {{ zuul.project.short_name }}.spec"
       args:
         chdir: "{{ project_dir }}"
       when: zuul.tag is defined
