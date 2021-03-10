@@ -195,7 +195,7 @@ packages:
     source: external
 
   # Epel import
-  - name: software-factory/acme-tiny
+  - name: rpms/acme-tiny
     source: external
   - name: software-factory/uthash
     source: external

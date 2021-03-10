@@ -15,6 +15,10 @@ packages:
     source: internal
     spec: included
 
+  - name: software-factory/sf-ui
+    source: internal
+    spec: included
+
   - name: software-factory/sf-docs
     source: internal
     spec: included
@@ -44,10 +48,6 @@ packages:
     spec: included
 
   - name: software-factory/cauth
-    source: internal
-    spec: included
-
-  - name: software-factory/firehooks
     source: internal
     spec: included
 
@@ -137,7 +137,7 @@ packages:
     source: external
 
   # Gerrit
-  - name: software-factory/gerrit
+  - name: rpms/gerrit
     source: external
 
   - name: software-factory/gitweb-theme-kogakure
@@ -161,10 +161,6 @@ packages:
     source: external
 
   - name: software-factory/ochlero
-    source: internal
-    spec: included
-
-  - name: software-factory/hydrant
     source: internal
     spec: included
 
@@ -192,6 +188,8 @@ packages:
     source: external
 
   # Epel import
+  - name: rpms/acme-tiny
+    source: external
   - name: software-factory/uthash
     source: external
   - name: software-factory/c-ares
@@ -759,6 +757,57 @@ packages:
     source: external
   - name: rpms/python-psycopg2
     source: external
+  - name: rpms/python-adal
+    source: external
+  - name: rpms/python-aniso8601
+    source: external
+  - name: rpms/python-azure-common
+    source: external
+  - name: rpms/python-azure-core
+    source: external
+  - name: rpms/python-azure-mgmt-compute
+    source: external
+  - name: rpms/python-azure-mgmt-core
+    source: external
+  - name: rpms/python-azure-mgmt-network
+    source: external
+  - name: rpms/python-azure-mgmt-resource
+    source: external
+  - name: rpms/python-distlib
+    source: external
+  - name: rpms/python-filelock
+    source: external
+  - name: rpms/python-google-api-core
+    source: external
+  - name: rpms/python-googleapis-common-protos
+    source: external
+  - name: rpms/python-graphene
+    source: external
+  - name: rpms/python-graphql-core
+    source: external
+  - name: rpms/python-graphql-relay
+    source: external
+  - name: rpms/python-importlib-metadata
+    source: external
+  - name: rpms/python-importlib-resources
+    source: external
+  - name: rpms/python-isodate
+    source: external
+  - name: rpms/python-msrest
+    source: external
+  - name: rpms/python-msrestazure
+    source: external
+  - name: rpms/python-protobuf
+    source: external
+  - name: rpms/python-rehash
+    source: external
+  - name: rpms/python-ruamel-yaml-clib
+    source: external
+  - name: rpms/python-virtualenv
+    source: external
+  - name: rpms/python-zipp
+    source: external
+
 
 chrootpackages: "@buildsys-build buildsys-macros-el7 python-rpm-macros make gcc shadow-utils rpm-build python2-devel openstack-macros python3 python3-devel"
 
