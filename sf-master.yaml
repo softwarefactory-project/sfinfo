@@ -137,7 +137,10 @@ packages:
     source: external
 
   # Gerrit
-  - name: software-factory/gerrit
+  - name: rpms/gerrit
+    source: external
+
+  - name: software-factory/zuul-results-gerrit-plugin
     source: external
 
   - name: software-factory/gitweb-theme-kogakure
