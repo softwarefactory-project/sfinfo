@@ -1,6 +1,7 @@
 - hosts: all
   vars:
     project_dir: "{{ zuul.project.src_dir }}/"
+    scratch_build: false
   tasks:
     - name: Ensure the tag version is in the spec
       command: "sed -e 's/Version:.*/Version: {{ zuul.tag }}/' -i {{ zuul.project.short_name }}.spec"
@@ -8,8 +9,8 @@
         chdir: "{{ project_dir }}"
       when: zuul.tag is defined
 
-    - name: Run pnpm install "{{ pnpm_install | default ('') }}"
-      command: "pnpm install {{ pnpm_install }}"
+    - name: Run pnpm install "{{ pnpm_install | default ('--shamefully-hoist') }}"
+      command: "pnpm install {{ pnpm_install | default('--shamefully-hoist') }}"
       args:
         chdir: "{{ project_dir }}"
 

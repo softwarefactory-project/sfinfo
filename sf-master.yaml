@@ -141,7 +141,8 @@ packages:
     source: external
 
   - name: software-factory/zuul-results-gerrit-plugin
-    source: external
+    source: internal
+    spec: included
 
   - name: software-factory/gitweb-theme-kogakure
     source: external
