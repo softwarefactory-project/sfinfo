@@ -235,6 +235,8 @@ packages:
     source: external
   - name: rpms/python-scipy
     source: external
+  - name: rpms/python-prometheus-client
+    source: external
   - name: rpms/python-pbr
     source: external
 # TODO: remove sf/etherpad and replace by the rpms repo
