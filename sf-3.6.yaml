@@ -284,6 +284,8 @@ packages:
     source: external
   - name: rpms/python-urllib3
     source: external
+  - name: rpms/python-ib3
+    source: external
   - name: rpms/python-requests
     source: external
   - name: rpms/python-sphinx-theme-alabaster
