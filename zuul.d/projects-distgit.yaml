@@ -53,7 +53,7 @@
 - project:
     name: software-factory/python-zmq-distgit
     templates:
-      - sf-ci-no-jobs
+      - sf-ci-jobs-light
 
 - project:
     name: software-factory/re2-distgit
