@@ -1,0 +1,760 @@
+---
+name: software-factory
+
+koji-target: sf-3.7-el7
+signing_key: 1c3bae4b
+arch: x86_64
+koji-url: https://softwarefactory-project.io/kojifiles/repos/sf-3.7-el7-build/latest/x86_64/
+branch: 3.7
+packages:
+  # ===========================================================================
+  # Services packages
+  # ===========================================================================
+  # SF internals
+  - name: software-factory/sf-release
+    source: internal
+    spec: included
+
+  - name: software-factory/sf-docs
+    source: internal
+    spec: included
+
+  - name: software-factory/sf-config
+    source: internal
+    spec: included
+
+  - name: software-factory/python-sfmanager
+    source: internal
+    spec: included
+
+  - name: software-factory/managesf
+    source: internal
+    spec: included
+
+  - name: software-factory/pynotedb
+    source: internal
+    spec: included
+
+  - name: software-factory/zuulfmt
+    source: internal
+    spec: included
+
+  - name: software-factory/purgelogs
+    source: internal
+    spec: included
+
+  - name: software-factory/cauth
+    source: internal
+    spec: included
+
+  - name: software-factory/sf-web-assets
+    source: external
+
+  - name: software-factory/sf-elements
+    source: internal
+    spec: included
+
+  # Git
+  - name: software-factory/cgit
+    source: external
+
+  # Auth
+  - name: software-factory/mod_auth_pubtkt
+    source: external
+
+  # System bits
+  - name: software-factory/haveged
+    source: external
+
+  - name: software-factory/wait4service
+    source: internal
+    spec: included
+
+  - name: software-factory/keycloak
+    source: external
+
+  # Zuul
+  - name: software-factory/patternfly-react-ui-deps
+    source: external
+
+  - name: software-factory/re2
+    source: external
+
+  - name: software-factory/libgit2
+    source: external
+
+  - name: software-factory/gitolite3
+    source: external
+
+  - name: software-factory/perl-generators
+    source: external
+
+  - name: software-factory/perl-Redis
+    source: external
+
+  - name: software-factory/perl-IO-Socket-Timeout
+    source: external
+
+  - name: software-factory/perl-PerlIO-via-Timeout
+    source: external
+
+  - name: software-factory/perl-Test-TCP
+    source: external
+
+  - name: software-factory/perl-Test-SharedFork
+    source: external
+
+  - name: rpms/python-typing-extensions
+    source: external
+
+  # Log server
+  - name: software-factory/os-loganalyze
+    source: external
+
+  # MQTT
+  - name: software-factory/mosquitto
+    source: external
+
+  # Status
+  - name: software-factory/python-slugify
+    source: external
+
+  - name: software-factory/python-unidecode
+    source: external
+
+  - name: software-factory/grafyaml
+    source: external
+
+  - name: software-factory/git-review
+    source: external
+
+  # Codesearch
+  - name: software-factory/hound
+    source: external
+
+  # Extra service
+  - name: software-factory/lodgeit
+    source: external
+
+  - name: software-factory/umurmur
+    source: external
+
+  - name: software-factory/ochlero
+    source: internal
+    spec: included
+
+  - name: software-factory/hydrant
+    source: internal
+    spec: included
+
+  # ===========================================================================
+  # Requirements
+  # ===========================================================================
+  - name: software-factory/python-testinfra
+    source: external
+
+  - name: software-factory/libwebsockets
+    source: external
+
+  - name: software-factory/mirror2swift
+    source: external
+
+  # Python2
+  - name: software-factory/python-log2gearman
+    source: external
+  - name: software-factory/python-gear
+    source: external
+  - name: software-factory/python-paho-mqtt
+    source: external
+  - name: software-factory/python-zmq
+    source: external
+
+  # Epel import
+  - name: rpms/acme-tiny
+    source: external
+  - name: software-factory/uthash
+    source: external
+  - name: software-factory/c-ares
+    source: external
+
+  # The new rpms package collection
+  - name: rpms/dhall
+    source: external
+  - name: rpms/zookeeper
+    source: external
+  - name: rpms/libuv
+    source: external
+  - name: rpms/web-assets
+    source: external
+  - name: rpms/zeromq
+    source: external
+  - name: rpms/libsodium
+    source: external
+  - name: rpms/python-setuptools
+    source: external
+  - name: rpms/python-Cython
+    source: external
+  - name: rpms/python-pyyaml
+    source: external
+  - name: rpms/python-docutils
+    source: external
+  - name: rpms/python-markupsafe
+    source: external
+  - name: rpms/python-mock
+    source: external
+  - name: rpms/python-numpy
+    source: external
+  - name: rpms/python-scipy
+    source: external
+  - name: rpms/python-prometheus-client
+    source: external
+  - name: rpms/python-pbr
+    source: external
+  - name: rpms/google-roboto-slab-fonts
+    source: external
+  - name: rpms/ttembed
+    source: external
+  - name: rpms/python-pymod2pkg
+    source: external
+  - name: rpms/python-six
+    source: external
+  - name: rpms/python-pyparsing
+    source: external
+  - name: rpms/python-packaging
+    source: external
+  - name: rpms/python-pytz
+    source: external
+  - name: rpms/python-babel
+    source: external
+  - name: rpms/python-jinja2
+    source: external
+  - name: rpms/python-renderspec
+    source: external
+  - name: rpms/python-setuptools-scm
+    source: external
+  - name: rpms/python-more-itertools
+    source: external
+  - name: rpms/python-jaraco-functools
+    source: external
+  - name: rpms/python-tempora
+    source: external
+  - name: rpms/python-future
+    source: external
+  - name: rpms/python-lockfile
+    source: external
+  - name: rpms/python-msgpack
+    source: external
+  - name: rpms/python-jsonpointer
+    source: external
+  - name: rpms/python-jsonpatch
+    source: external
+  - name: rpms/python-bottle
+    source: external
+  - name: rpms/python-pycurl
+    source: external
+  - name: rpms/python-certifi
+    source: external
+  - name: rpms/python-idna
+    source: external
+  - name: rpms/python-chardet
+    source: external
+  - name: rpms/python-urllib3
+    source: external
+  - name: rpms/python-requests
+    source: external
+  - name: rpms/python-sphinx-theme-alabaster
+    source: external
+  - name: rpms/python-pygments
+    source: external
+  - name: rpms/python-sqlalchemy
+    source: external
+  - name: rpms/python-sphinxcontrib-websupport
+    source: external
+  - name: rpms/python-sphinx_rtd_theme
+    source: external
+  - name: rpms/python-imagesize
+    source: external
+  - name: rpms/python-sphinx
+    source: external
+  - name: rpms/python-zuul-sphinx
+    source: external
+  - name: rpms/python-XStatic
+    source: external
+  - name: rpms/python-XStatic-Patternfly
+    source: external
+  - name: rpms/python-pytest-runner
+    source: external
+  - name: rpms/python-mccabe
+    source: external
+  - name: rpms/python-pycodestyle
+    source: external
+  - name: rpms/python-pyflakes
+    source: external
+  - name: rpms/python-flake8
+    source: external
+  - name: rpms/python-dateutil
+    source: external
+  - name: rpms/python-pure-sasl
+    source: external
+  - name: rpms/python-kazoo
+    source: external
+  - name: rpms/python-multidict
+    source: external
+  - name: rpms/python-rfc3986
+    source: external
+  - name: rpms/python-olefile
+    source: external
+  - name: rpms/python-pillow
+    source: external
+  - name: rpms/python-cachetools
+    source: external
+  - name: rpms/python-pyasn1
+    source: external
+  - name: rpms/python-rsa
+    source: external
+  - name: rpms/python-google-auth
+    source: external
+  - name: rpms/python-asn1crypto
+    source: external
+  - name: rpms/python-crypto
+    source: external
+  - name: rpms/python-jwt
+    source: external
+  - name: rpms/python-vcversioner
+    source: external
+  - name: rpms/python-jsonschema
+    source: external
+  - name: rpms/python-elasticsearch
+    source: external
+  - name: rpms/python-webob
+    source: external
+  - name: rpms/python-logutils
+    source: external
+  - name: rpms/python-mako
+    source: external
+  - name: rpms/python-beautifulsoup
+    source: external
+  - name: rpms/python-webtest
+    source: external
+  - name: rpms/python-pecan
+    source: external
+  - name: rpms/python-gunicorn
+    source: external
+  - name: rpms/python-cffi
+    source: external
+  - name: rpms/python-pycparser
+    source: external
+  - name: rpms/python-cryptography
+    source: external
+  - name: rpms/python-sphinxcontrib-httpdomain
+    source: external
+  - name: rpms/python-ply
+    source: external
+  - name: rpms/python-decorator
+    source: external
+  - name: rpms/python-jsonpath-rw
+    source: external
+  - name: rpms/python-iso8601
+    source: external
+  - name: rpms/python-wrapt
+    source: external
+  - name: rpms/python-debtcollector
+    source: external
+  - name: rpms/python-monotonic
+    source: external
+  - name: rpms/python-netifaces
+    source: external
+  - name: rpms/python-netaddr
+    source: external
+  - name: rpms/python-oslo-utils
+    source: external
+  - name: rpms/python-oslo-serialization
+    source: external
+  - name: rpms/python-oslo-i18n
+    source: external
+  - name: rpms/python-stevedore
+    source: external
+  - name: rpms/python-oslo-config
+    source: external
+  - name: rpms/python-oslo-context
+    source: external
+  - name: rpms/python-oslo-log
+    source: external
+  - name: rpms/python-storyboardclient
+    source: external
+  - name: rpms/python-pyopenssl
+    source: external
+  - name: rpms/python-ipaddress
+    source: external
+  - name: rpms/python-psutil
+    source: external
+  - name: rpms/python-XStatic-Bootstrap-SCSS
+    source: external
+  - name: rpms/python-pyfakefs
+    source: external
+  - name: rpms/python-XStatic-Patternfly-Bootstrap-Treeview
+    source: external
+  - name: rpms/python-click
+    source: external
+  - name: rpms/python-werkzeug
+    source: external
+  - name: rpms/python-itsdangerous
+    source: external
+  - name: rpms/python-flask
+    source: external
+  - name: rpms/python-flask-script
+    source: external
+  - name: rpms/python-XStatic-DataTables
+    source: external
+  - name: rpms/python-extras
+    source: external
+  - name: rpms/python-testtools
+    source: external
+  - name: rpms/python-subunit
+    source: external
+  - name: rpms/python-junit-xml
+    source: external
+  - name: rpms/python-prettytable
+    source: external
+  - name: rpms/python-pyperclip
+    source: external
+  - name: rpms/python-cmd2
+    source: external
+  - name: rpms/python-unicodecsv
+    source: external
+  - name: rpms/python-cliff
+    source: external
+  - name: rpms/python-pynacl
+    source: external
+  - name: rpms/python-bcrypt
+    source: external
+  - name: rpms/python-paramiko
+    source: external
+  - name: rpms/python-selinux
+    source: external
+  - name: rpms/ansible
+    source: external
+  - name: rpms/python-XStatic-jQuery
+    source: external
+  - name: rpms/python-flask-frozen
+    source: external
+  - name: rpms/python-flask-sqlalchemy
+    source: external
+  - name: rpms/python-alembic
+    source: external
+  - name: rpms/python-flask-migrate
+    source: external
+  - name: rpms/ara
+    source: external
+  - name: rpms/python-dogpile-cache
+    source: external
+  - name: rpms/python-munch
+    source: external
+  - name: rpms/python-os-service-types
+    source: external
+  - name: rpms/python-requestsexceptions
+    source: external
+  - name: rpms/python-appdirs
+    source: external
+  - name: rpms/python-jmespath
+    source: external
+  - name: rpms/python-keystoneauth1
+    source: external
+  - name: rpms/python-positional
+    source: external
+  - name: rpms/python-os-client-config
+    source: external
+  - name: rpms/python-openstacksdk
+    source: external
+  - name: rpms/python-ruamel-yaml
+    source: external
+  - name: rpms/python-oauthlib
+    source: external
+  - name: rpms/python-requests-oauthlib
+    source: external
+  - name: rpms/python-websocket-client
+    source: external
+  - name: rpms/python-kubernetes
+    source: external
+  - name: rpms/python-dictdiffer
+    source: external
+  - name: rpms/python-string-utils
+    source: external
+  - name: rpms/python-openshift
+    source: external
+  - name: rpms/python-dulwich
+    source: external
+  - name: rpms/python-reno
+    source: external
+  - name: rpms/python-portend
+    source: external
+  - name: rpms/python-fixtures
+    source: external
+  - name: rpms/python-botocore
+    source: external
+  - name: rpms/python-requests_aws4auth
+    source: external
+  - name: rpms/python-s3transfer
+    source: external
+  - name: rpms/python-boto3
+    source: external
+  - name: rpms/python-uritemplate
+    source: external
+  - name: rpms/python-jwcrypto
+    source: external
+  - name: rpms/python-github3
+    source: external
+  - name: rpms/python-async-timeout
+    source: external
+  - name: rpms/python-yarl
+    source: external
+  - name: rpms/python-aiohttp
+    source: external
+  - name: rpms/python-passlib
+    source: external
+  - name: rpms/python-re2
+    source: external
+  - name: rpms/python-greenlet
+    source: external
+  - name: rpms/python-gevent
+    source: external
+  - name: rpms/python-simplejson
+    source: external
+  - name: rpms/python-repoze-lru
+    source: external
+  - name: rpms/python-routes
+    source: external
+  - name: rpms/python-zc-lockfile
+    source: external
+  - name: rpms/python-cheroot
+    source: external
+  - name: rpms/python-cherrypy
+    source: external
+  - name: rpms/python-tornado
+    source: external
+  - name: rpms/python-ws4py
+    source: external
+  - name: rpms/python-daemon
+    source: external
+  - name: rpms/python-sphinxcontrib-programoutput
+    source: external
+  - name: rpms/python-tzlocal
+    source: external
+  - name: rpms/python-APScheduler
+    source: external
+  - name: rpms/python-sphinx-autodoc-typehints
+    source: external
+  - name: rpms/python-gflags
+    source: external
+  - name: rpms/python-fasteners
+    source: external
+  - name: rpms/python-httplib2
+    source: external
+  - name: rpms/python-smmap
+    source: external
+  - name: rpms/python-gitdb
+    source: external
+  - name: rpms/python-GitPython
+    source: external
+  - name: rpms/python-distroinfo
+    source: external
+  - name: rpms/python-warlock
+    source: external
+  - name: rpms/python-CacheControl
+    source: external
+  - name: rpms/python-flask-httpauth
+    source: external
+  - name: rpms/python-jeepney
+    source: external
+  - name: rpms/python-SecretStorage
+    source: external
+  - name: rpms/python-keyring
+    source: external
+  - name: rpms/python-snowballstemmer
+    source: external
+  - name: rpms/python-shade
+    source: external
+  - name: rpms/python-bunch
+    source: external
+  - name: rpms/python-rjsmin
+    source: external
+  - name: rpms/python-gear
+    source: external
+  - name: rpms/python-sphinxcontrib-openapi
+    source: external
+  - name: rpms/python-webcolors
+    source: external
+  - name: rpms/python-deprecation
+    source: external
+  - name: rpms/python-basicauth
+    source: external
+  - name: rpms/python-statsd
+    source: external
+  - name: rpms/python-keystoneclient
+    source: external
+  - name: rpms/python-glanceclient
+    source: external
+  - name: rpms/python-osc-lib
+    source: external
+  - name: rpms/dlrnapi-client
+    source: external
+  - name: rpms/python-sh
+    source: external
+  - name: rpms/python-PyMySQL
+    source: external
+  - name: rpms/python-funcparserlib
+    source: external
+  - name: rpms/python-blockdiag
+    source: external
+  - name: rpms/python-joblib
+    source: external
+  - name: rpms/rdopkg
+    source: external
+  - name: rpms/k1s
+    source: external
+  - name: rpms/python-rcssmin
+    source: external
+  - name: rpms/python-sphinxcontrib-blockdiag
+    source: external
+  - name: rpms/python-networkx
+    source: external
+  - name: rpms/python-paho-mqtt
+    source: external
+  - name: rpms/python-deepdiff
+    source: external
+  - name: rpms/python-scikit-learn
+    source: external
+  - name: rpms/python-oslo-policy
+    source: external
+  - name: rpms/python-oauth2client
+    source: external
+  - name: rpms/dlrn
+    source: external
+  - name: rpms/python-voluptuous
+    source: external
+  - name: rpms/python-paste
+    source: external
+  - name: rpms/python-uvloop
+    source: external
+  - name: rpms/zuul-jobs
+    source: external
+  - name: rpms/python-zmq
+    source: external
+  - name: rpms/python-gerritlib
+    source: external
+  - name: rpms/python-irc
+    source: external
+  - name: rpms/gerritbot
+    source: external
+  - name: rpms/python-coverage
+    source: external
+  - name: rpms/python-nose
+    source: external
+  - name: rpms/germqtt
+    source: external
+  - name: rpms/python-restructuredtext-lint
+    source: external
+  - name: rpms/python-nose-htmloutput
+    source: external
+  - name: rpms/python-termcolor
+    source: external
+  - name: rpms/python-nose-timer
+    source: external
+  - name: rpms/python-inflect
+    source: external
+  - name: rpms/python-jaraco-classes
+    source: external
+  - name: rpms/python-jaraco-collections
+    source: external
+  - name: rpms/python-jaraco-itertools
+    source: external
+  - name: rpms/python-jaraco-logging
+    source: external
+  - name: rpms/python-jaraco-stream
+    source: external
+  - name: rpms/python-jaraco-text
+    source: external
+  - name: rpms/python-orderedmultidict
+    source: external
+  - name: rpms/python-jwkest
+    source: external
+  - name: rpms/python-beaker
+    source: external
+  - name: rpms/python-oic
+    source: external
+  - name: rpms/python-ldap
+    source: external
+  - name: rpms/python-cryptodomex
+    source: external
+  - name: rpms/python-httmock
+    source: external
+  - name: rpms/python-mockldap
+    source: external
+  - name: rpms/python-colorama
+    source: external
+  - name: rpms/python-args
+    source: external
+  - name: rpms/python-requests-toolbelt
+    source: external
+  - name: rpms/python-sure
+    source: external
+  - name: rpms/python-taiga
+    source: external
+  - name: rpms/python-pathspec
+    source: external
+  - name: rpms/yamllint
+    source: external
+  - name: rpms/python-colorlog
+    source: external
+  - name: rpms/python-terminaltables
+    source: external
+  - name: rpms/yaml-cpp
+    source: external
+  - name: rpms/python-devnest
+    source: external
+  - name: rpms/python-google-api-python-client
+    source: external
+  - name: rpms/python-google-auth-httplib2
+    source: external
+  - name: rpms/python-psycopg2
+    source: external
+  - name: rpms/python-importlib-metadata
+    source: external
+  - name: rpms/python-importlib-resources
+    source: external
+  - name: rpms/python-zipp
+    source: external
+  - name: rpms/python-ib3
+    source: external
+
+chrootpackages: "@buildsys-build buildsys-macros-el7 python-rpm-macros make gcc shadow-utils rpm-build python2-devel openstack-macros python3 python3-devel"
+
+baserepos:
+  - name: centos7-os
+    baseurl: http://mirror.centos.org/centos/7/os/x86_64/
+    mirror: http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=os
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+    gpgcheck: 1
+    kojipriority: 12
+
+  - name: centos7-updates
+    baseurl: http://mirror.centos.org/centos/7/updates/x86_64/
+    mirror: http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=updates
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+    gpgcheck: 1
+    kojipriority: 11
+
+  - name: centos7-extras
+    baseurl: http://mirror.centos.org/centos/7/extras/x86_64/
+    mirror: http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=extras
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+    gpgcheck: 1
+    kojipriority: 10
+
+  - name: centos-sclo-rh
+    baseurl: http://mirror.centos.org/centos/7/sclo/x86_64/rh/
+    gpgcheck: 1
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-SCLo
+    kojipriority: 17
+
+extrarepos: []
