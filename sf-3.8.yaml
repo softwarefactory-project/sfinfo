@@ -1,0 +1,232 @@
+---
+name: software-factory
+
+koji-target: sf-3.8-el7
+signing_key: 1c3bae4b
+arch: x86_64
+koji-url: https://softwarefactory-project.io/kojifiles/repos/sf-3.8-el7-build/latest/x86_64/
+branch: 3.8
+packages:
+  # ===========================================================================
+  # Services packages
+  # ===========================================================================
+  # SF internals
+  - name: software-factory/sf-release
+    source: internal
+    spec: included
+
+  - name: software-factory/sf-docs
+    source: internal
+    spec: included
+
+  - name: software-factory/sf-config
+    source: internal
+    spec: included
+
+  - name: software-factory/managesf
+    source: internal
+    spec: included
+
+  - name: software-factory/pynotedb
+    source: internal
+    spec: included
+
+  - name: software-factory/sf-web-assets
+    source: external
+
+  - name: software-factory/sf-elements
+    source: internal
+    spec: included
+
+  # System bits
+  - name: software-factory/haveged
+    source: external
+
+  - name: software-factory/wait4service
+    source: internal
+    spec: included
+
+  # Managesf
+  - name: rpms/python-typing-extensions
+    source: external
+
+  - name: software-factory/git-review
+    source: external
+
+  # ===========================================================================
+  # Requirements
+  # ===========================================================================
+  - name: software-factory/python-testinfra
+    source: external
+
+  # The new rpms package collection
+  - name: rpms/web-assets
+    source: external
+  - name: rpms/python-pyyaml
+    source: external
+  - name: rpms/python-markupsafe
+    source: external
+  - name: rpms/python-pbr
+    source: external
+  - name: rpms/python-six
+    source: external
+  - name: rpms/python-pyparsing
+    source: external
+  - name: rpms/python-pytz
+    source: external
+  - name: rpms/python-babel
+    source: external
+  - name: rpms/python-jinja2
+    source: external
+  - name: rpms/python-more-itertools
+    source: external
+  - name: rpms/python-jaraco-functools
+    source: external
+  - name: rpms/python-tempora
+    source: external
+  - name: rpms/python-msgpack
+    source: external
+  - name: rpms/python-certifi
+    source: external
+  - name: rpms/python-idna
+    source: external
+  - name: rpms/python-chardet
+    source: external
+  - name: rpms/python-urllib3
+    source: external
+  - name: rpms/python-requests
+    source: external
+  - name: rpms/python-sqlalchemy
+    source: external
+  - name: rpms/python-rfc3986
+    source: external
+  - name: rpms/python-crypto
+    source: external
+  - name: rpms/python-jwt
+    source: external
+  - name: rpms/python-webob
+    source: external
+  - name: rpms/python-logutils
+    source: external
+  - name: rpms/python-mako
+    source: external
+  - name: rpms/python-beautifulsoup
+    source: external
+  - name: rpms/python-webtest
+    source: external
+  - name: rpms/python-gunicorn
+    source: external
+  - name: rpms/python-cffi
+    source: external
+  - name: rpms/python-pycparser
+    source: external
+  - name: rpms/python-cryptography
+    source: external
+  - name: rpms/python-iso8601
+    source: external
+  - name: rpms/python-wrapt
+    source: external
+  - name: rpms/python-debtcollector
+    source: external
+  - name: rpms/python-monotonic
+    source: external
+  - name: rpms/python-netifaces
+    source: external
+  - name: rpms/python-netaddr
+    source: external
+  - name: rpms/python-oslo-utils
+    source: external
+  - name: rpms/python-oslo-serialization
+    source: external
+  - name: rpms/python-oslo-i18n
+    source: external
+  - name: rpms/python-stevedore
+    source: external
+  - name: rpms/python-oslo-config
+    source: external
+  - name: rpms/python-oslo-context
+    source: external
+  - name: rpms/python-pyopenssl
+    source: external
+  - name: rpms/python-pynacl
+    source: external
+  - name: rpms/python-bcrypt
+    source: external
+  - name: rpms/python-paramiko
+    source: external
+  - name: rpms/python-selinux
+    source: external
+  - name: rpms/ansible
+    source: external
+  - name: rpms/python-portend
+    source: external
+  - name: rpms/python-passlib
+    source: external
+  - name: rpms/python-simplejson
+    source: external
+  - name: rpms/python-repoze-lru
+    source: external
+  - name: rpms/python-routes
+    source: external
+  - name: rpms/python-zc-lockfile
+    source: external
+  - name: rpms/python-cheroot
+    source: external
+  - name: rpms/python-cherrypy
+    source: external
+  - name: rpms/python-smmap
+    source: external
+  - name: rpms/python-gitdb
+    source: external
+  - name: rpms/python-GitPython
+    source: external
+  - name: rpms/python-basicauth
+    source: external
+  - name: rpms/python-PyMySQL
+    source: external
+  - name: rpms/k1s
+    source: external
+  - name: rpms/python-deepdiff
+    source: external
+  - name: rpms/python-oslo-policy
+    source: external
+  - name: rpms/zuul-jobs
+    source: external
+  - name: rpms/yaml-cpp
+    source: external
+  - name: rpms/python-pyasn1
+    source: external
+  - name: rpms/python-asn1crypto
+    source: external
+
+chrootpackages: "@buildsys-build buildsys-macros-el7 python-rpm-macros make gcc shadow-utils rpm-build python2-devel openstack-macros python3 python3-devel"
+
+baserepos:
+  - name: centos7-os
+    baseurl: http://mirror.centos.org/centos/7/os/x86_64/
+    mirror: http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=os
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+    gpgcheck: 1
+    kojipriority: 12
+
+  - name: centos7-updates
+    baseurl: http://mirror.centos.org/centos/7/updates/x86_64/
+    mirror: http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=updates
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+    gpgcheck: 1
+    kojipriority: 11
+
+  - name: centos7-extras
+    baseurl: http://mirror.centos.org/centos/7/extras/x86_64/
+    mirror: http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=extras
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+    gpgcheck: 1
+    kojipriority: 10
+
+  - name: centos-sclo-rh
+    baseurl: http://mirror.centos.org/centos/7/sclo/x86_64/rh/
+    gpgcheck: 1
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-SCLo
+    kojipriority: 17
+
+extrarepos: []
