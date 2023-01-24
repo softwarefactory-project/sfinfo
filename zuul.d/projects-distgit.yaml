@@ -106,11 +106,6 @@
       - sf-ci-jobs-light
 
 - project:
-    name: software-factory/acme-tiny-distgit
-    templates:
-      - sf-ci-no-jobs
-
-- project:
     name: software-factory/ansible-lint-distgit
     templates:
       - sf-ci-jobs-light

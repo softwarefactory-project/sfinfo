@@ -124,7 +124,7 @@
     nodeset:
       nodes:
         - name: publish-host
-          label: zuul-worker-fedora
+          label: zuul-worker-f37
 
 - job:
     name: sf-docs-build
@@ -134,4 +134,4 @@
     nodeset:
       nodes:
         - name: container
-          label: pod-python-f32
+          label: zuul-worker-f37
