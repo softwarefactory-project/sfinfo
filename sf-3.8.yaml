@@ -199,6 +199,19 @@ packages:
   - name: rpms/python-asn1crypto
     source: external
 
+  - name: rpms/python-XStatic-Patternfly
+    source: external
+  - name: rpms/python-importlib-metadata
+    source: external
+  - name: rpms/python-zipp
+    source: external
+  - name: rpms/python-importlib-resources
+    source: external
+  - name: rpms/python-future
+    source: external
+  - name: rpms/python-pecan
+    source: external
+
 chrootpackages: "@buildsys-build buildsys-macros-el7 python-rpm-macros make gcc shadow-utils rpm-build python2-devel openstack-macros python3 python3-devel"
 
 baserepos:
