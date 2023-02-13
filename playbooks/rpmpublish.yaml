@@ -30,7 +30,7 @@
       command: >
         ./software-factory/sfinfo/zuul_rpm_publish.py \
             --distro-info ./software-factory/sfinfo/sf-{{ zuul.branch }}.yaml \
-            --testing-repo "{{ buildset_artifacts_url }}" \
+            --testing-repo "{{ buildset_artifacts_url.rstrip('/') }}/" \
             --project {{ zuul.project.name }}
       args:
         chdir: "{{ sfnamespace_path }}"
