@@ -1,7 +1,20 @@
 ---
 - hosts: all
   tasks:
-    - name: "Run sphinx-build"
-      command: sphinx-build -W -b html -d build/doctrees docs/ {{ ansible_user_dir }}/zuul-output/logs/docs-html/
+    - name: Check if project contains requirements.txt file
+      ansible.builtin.stat:
+        path: "{{ zuul.project.src_dir }}/requirements.txt"
+      register: _python_requirements
+
+    - name: Install Python requirements related to project
+      become: true
+      ansible.builtin.pip:
+        requirements: "{{ zuul.project.src_dir }}/requirements.txt"
+      when: _python_requirements.stat.exists
+
+    - name: Run sphinx-build
+      ansible.builtin.command: >
+        sphinx-build -W -b html
+        -d build/doctrees docs/ {{ ansible_user_dir }}/zuul-output/logs/docs-html/
       args:
         chdir: "{{ zuul.project.src_dir }}"
