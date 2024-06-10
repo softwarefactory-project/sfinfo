@@ -1,3 +1,4 @@
+
 ---
 - project:
     name: software-factory/sfinfo
@@ -18,12 +19,6 @@
         - noop
 
 - project:
-    name: logreduce
-    release:
-      jobs:
-        - sf-rpm-publish
-
-- project:
     name: software-factory/firehooks
     templates:
       - sf-ci-no-jobs
@@ -33,7 +28,6 @@
     name: software-factory/sf-config
     templates:
       - sf-ci-jobs
-      - sf-ci-packages-publish
     check:
       jobs:
         - linters:
