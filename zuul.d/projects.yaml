@@ -67,9 +67,6 @@
     gate:
       jobs:
         - noop
-    post:
-      jobs:
-        - wwwsf-build-and-publish-pages
 
 # Internal SF python projects
 - project:
