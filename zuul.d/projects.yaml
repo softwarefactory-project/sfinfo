@@ -57,17 +57,6 @@
       - sf-ci-jobs-light
       - sf-ci-packages-publish
 
-- project:
-    name: www.softwarefactory-project.io
-    check:
-      jobs:
-        - build-pages:
-            vars:
-              src_dir: website
-    gate:
-      jobs:
-        - noop
-
 # Internal SF python projects
 - project:
     name: software-factory/pysflib
